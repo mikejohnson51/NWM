@@ -77,7 +77,7 @@ viz_csv = function(type, COMIDs, csv, catchment_path, flowlines_path){
   catchments = readOGR(catchment_path)
   flowlines = readOGR(flowlines_path)
   
-  data = read.csv(paste0("/Users/mikejohnson/Desktop/Tester/Output/", csv), header = TRUE, sep =",")
+  data = read.csv(paste0(getwd(), csv), header = TRUE, sep =",")
   data = as.matrix(data)
   name = substr(csv,1, nchar(csv)-4)
   
