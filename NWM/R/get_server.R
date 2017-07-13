@@ -5,18 +5,25 @@
 #'If left blank all files for the day will be downloaded.
 #'
 #' @param 
-#' date given in "YYY-MM-DD" format
+#' start.date given as "YYYY-MM-DD" 
 #' @param 
-#' forecast_type default is "short_term" but can be chaged to "medium_range"
+#' forecast_type default is "short_term" but can be chaged to "medium_range", "long_range", "analysis_assim" \cr
+#' analysis_assim data is avaliable from '2016-05-28' forward, all others have ~2 weeks latency
 #' @param 
-#' type default is set to "channel' other options include 'land', 'terrain', or 'reservoir'
+#' end.date this is ONLY applicable for forecast_type = 'analysis_assim'. Must be given in 'YYYY-MM-DD' format
+#' @param 
+#' type this is the type of data to be returned. Default is set to 'channel' other options include 'land', 'terrain', or 'reservoir'
 #' @param 
 #' time give as "HH" this is the time the forecast is made, default set to 'ALL'
 #' @param 
 #' forecast_hour given as "HHH", this is the number of hours from the time the forecast is made (time), defualt is set to "ALL"
 #' 
 #' @examples 
-#' get_chosen(date = '2017-06-17', type = 'channel', hour = '00', forecast_hour = '000')
+#' To get the inital (forecast_hour = "001") analysis and assimulation data for all hours between  Oct 10, 2016 and Oct 14, 2016
+#' the following code would be used:
+#' 
+#' get_server = function(start.date = "2016-10-10", forecast_type = "analysis_assim", 
+#' end.date = "2016-10-14", type = "channel", time= NULL, forecast_hour = "001")
 #' 
 #' @author 
 #' Mike Johnson and Jim Coll
@@ -24,17 +31,8 @@
 #' @export
 #' 
 #' @return 
-#' This function returns all .nc files to the NetCDFs subfolder for a given day. 
+#' This function returns all .nc files to the NetCDFs subfolder for given inputs. 
 #'
-
-
-
-
-
-
-
-
-
 
 
 get_server = function(start.date, forecast_type = "short_range", 
