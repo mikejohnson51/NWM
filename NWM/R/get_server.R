@@ -36,8 +36,8 @@
 #'
 
 
-get_server = function(start.date, forecast_type = "short_range", 
-            end.date = NULL, type = NULL, time= NULL, forecast_hour = NULL){
+get_server = function(start.date, end.date = NULL, forecast_type = "short_range", 
+             type = NULL, time= NULL, forecast_hour = NULL){
 
 # starting function -------------------------------------------------------
 
