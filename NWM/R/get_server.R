@@ -37,11 +37,12 @@
 
 
 
-get_server = function(start.date, forecast_type = "short_range", end.date = NULL, type = NULL, time= NULL, forecast_hour = NULL){
+get_server = function(start.date, forecast_type = "short_range", 
+            end.date = NULL, type = NULL, time= NULL, forecast_hour = NULL){
 
 # starting function -------------------------------------------------------
 
-  start.date = "2017-06-12"; forecast_type = "short_range"; end.date = "2017-06-14"; type = NULL; time= '03'; forecast_hour = '001'
+  #start.date = "2017-06-12"; forecast_type = "short_range"; end.date = "2017-06-14"; type = NULL; time= '03'; forecast_hour = '001'
 
   if(forecast_type != "analysis_assim" &  !is.null(end.date) ){
    print("End date is only applicable for forecast type = 'analysis_assim'. Please leave as NULL for other forecast types.")
