@@ -1,7 +1,8 @@
-#' Getting Past NWM data from HydroShare Server
+#' Getting Historic NWM data from HydroShare Server
 #'
-#'Accesses  HydroShare server to download data for a specified day. If that day is not avaiable error messages help identify days with data.
-#'Parameters are avaliable to filter what data is downloaded. These include forecast type, model output, and time of forecast and latency. 
+#'Accesses  HydroShare server to download data for a time period (analysis_assim) or day (all other forecast_types). 
+#'If that day is not avaiable error messages help identify days with data.
+#'Parameters are avaliable to filter what data is downloaded. These include 'forecast type', 'data type, and time of forecast and latency. 
 #'If left blank all files for the day will be downloaded.
 #'
 #' @param 
