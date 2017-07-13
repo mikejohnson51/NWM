@@ -157,8 +157,6 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
     
   }
   
-  
-}
 
 
 
