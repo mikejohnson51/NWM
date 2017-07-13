@@ -33,6 +33,8 @@ build_files = function(){
   dir.create(paste0(working.directory, "/NetCDFs"))
   dir.create(paste0(working.directory, "/Output"))
   dir.create(paste0(working.directory, "/NetCDFs/Current"))
+  dir.create(paste0(working.directory, "/Output/Current"))
+  dir.create(paste0(working.directory, "/Images/Current"))
   
   
 }

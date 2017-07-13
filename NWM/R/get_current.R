@@ -25,6 +25,7 @@ get_current= function() {
    
   
   file.remove(list.files(paste0(Directory, "NetCDFs/Current"), pattern = ".nc", full.names = TRUE))
+  file.remove(list.files(paste0(Directory, "Output/Current"), pattern = ".csv", full.names = TRUE))
   
   date = format(Sys.Date(), tz = "GMT")
   time = strptime(format(Sys.time(), tz = "GMT"), format = "%Y-%m-%d %H:%M:%S")$hour
