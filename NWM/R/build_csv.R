@@ -79,6 +79,8 @@
 build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, end.date = NULL, end.time = NULL, comids, regions.name = "OnionCreek"){
   
   # Getting indexes -----------------------------------------------------
+    #folder = 'current'; start.date = "2016-10-10"; start.time = NULL; end.date = "2016-10-14"; end.time = NULL; comids; regions.name = "OnionCreek"
+    #folder ="/Users/mikejohnson/Desktop/SPRNT_data/NetCDFs/analysis_assim_channel_20161010tall"; comids = NC_comids; regions.name = "NC"
   
   if (folder == 'current'){
     folder = paste0(getwd(), "/NetCDFs/Current")
@@ -88,13 +90,13 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
   
   files = dir(folder)
   
-  if ( is.null(start.date) ){
+  if (is.null(start.date)){
     start.index = 1
-    start.date = gsub("-","",Sys.Date())
+    start.date = gsub("-","", Sys.Date())
   }else{
     start.date = gsub("-", "", start.date)
     fileOne = paste0(start.date)
-    start.index = grep(fileOne, files)
+    start.index = grep(fileOne, files)[1]
   }
   
   if (is.null(end.date)){
@@ -103,6 +105,7 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
   }else{
     end.date = gsub("-", "", end.date)
     end.index = grep(end.date, files)
+    end.index = end.index[length(end.index)]
   }
   
   if(is.null(start.time)){
@@ -121,6 +124,7 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
   start <- vector(mode = "numeric", length(comids))
   
   for (i in 1:length(comids)){
+    i=1
     start[i] = which(vars$streamflow$dim[[1]]$vals == comids[i], arr.ind = TRUE)
   }
   
