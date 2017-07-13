@@ -109,7 +109,6 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
     start.time = NULL
   }else{
     start.time = paste0("t",start.time)
-    end.index = grep()
   }
   
   files = files[start.index:end.index]
