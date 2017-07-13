@@ -93,7 +93,7 @@ files = fromJSON(file=filelist_hydro)
   } else if(length(files) > 3 ) {
     
     print("Success!")
-    break
+
     
   } else {
     
