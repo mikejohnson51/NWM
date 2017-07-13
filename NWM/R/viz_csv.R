@@ -72,14 +72,14 @@
 #' @export
 
 
-viz_csv = function(type, COMIDs, csv, catchment_path, flowlines_path){
+viz_csv = function(type, COMIDs, csv_path, catchment_path, flowlines_path, region){
   
   catchments = readOGR(catchment_path)
   flowlines = readOGR(flowlines_path)
   
-  data = read.csv(paste0("/Users/mikejohnson/Desktop/Tester/Output/", csv), header = TRUE, sep =",")
+  data = read.csv(csv_path, header = TRUE, sep =",")
   data = as.matrix(data)
-  name = substr(csv,1, nchar(csv)-4)
+  name = gsub(" ","",region)
   
   export_path = paste0(getwd(),"/Images/", name)
   
@@ -125,7 +125,7 @@ if(type == "hydrograph"){
       number = 1
       path000 = paste0(export_path,"/", type, "s")
       dir.create(path000)
-      path111 =  paste0(path000, "/flow", number)
+      path111 =  paste0(path000, "/", type, number)
       dir.create(path111)
       
     } else {
@@ -137,10 +137,10 @@ if(type == "hydrograph"){
     
    
     
-    for(i in 2:dim(data[2])){ 
+    for(i in 2:dim(data)[2]){ 
     
     png(paste0(path111,"/timestep",sprintf("%03d",i),".png"), 
-        width = col*1000, height = row*1000, units= 'px', res = 300)
+        width = 3000, height = 1500, units= 'px', res = 300)
     
     plot(catchments, border = 'white', col= 'lightgrey', main = paste0("Flow Forecasts"), 
          ylim = c(catchments@bbox[2,1], catchments@bbox[2,2]),
@@ -154,13 +154,16 @@ if(type == "hydrograph"){
     
     dev.off()
     
+    
+    
+    
   } else if(type == "combo") {
   
   if(length(dir(paste0(export_path,"/", type, "s"))) == 0) {
     number = 1
     path000 = paste0(export_path,"/", type, "s")
     dir.create(path000)
-    path111 =  paste0(path000, "/flow", number)
+    path111 =  paste0(path000, "/",type, number)
     dir.create(path111)
     
   } else {
@@ -185,7 +188,7 @@ if(type == "hydrograph"){
     plot(flowlines,add = TRUE, col ="blue", lwd = (data[,i]/10))   
     
     plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMIDs), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
-    points(i,data[index,i], cex = 1, pch =16, col = 'red')  
+    points(i-1,data[index,i], cex = 1, pch =16, col = 'red')  
     
     dev.off()
   }
