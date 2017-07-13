@@ -77,7 +77,11 @@ viz_csv = function(type, COMIDs, csv_path, catchment_path, flowlines_path, regio
   catchments = readOGR(catchment_path)
   flowlines = readOGR(flowlines_path)
   
+<<<<<<< HEAD
   data = read.csv(csv_path, header = TRUE, sep =",")
+=======
+  data = read.csv(paste0(getwd(), csv), header = TRUE, sep =",")
+>>>>>>> a8816409f8e4fbe680f0ca6af43bd628df1bfcc2
   data = as.matrix(data)
   name = gsub(" ","",region)
   
