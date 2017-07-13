@@ -2,32 +2,40 @@
 % Please edit documentation in R/get_server.R
 \name{get_server}
 \alias{get_server}
-\title{Getting Past NWM data from HydroShare Server}
+\title{Getting Historic NWM data from HydroShare Server}
 \usage{
-get_server(start.date, forecast_type = "short_range", end.date = NULL,
+get_server(start.date, end.date = NULL, forecast_type = "short_range",
   type = NULL, time = NULL, forecast_hour = NULL)
 }
 \arguments{
-\item{forecast_type}{default is "short_term" but can be chaged to "medium_range"}
+\item{start.date}{given as "YYYY-MM-DD"}
 
-\item{type}{default is set to "channel' other options include 'land', 'terrain', or 'reservoir'}
+\item{end.date}{this is ONLY applicable for forecast_type = 'analysis_assim'. Must be given in 'YYYY-MM-DD' format}
+
+\item{forecast_type}{default is "short_term" but can be chaged to "medium_range", "long_range", "analysis_assim" \cr
+analysis_assim data is avaliable from '2016-05-28' forward, all others have ~2 weeks latency}
+
+\item{type}{this is the type of data to be returned. Default is set to 'channel' other options include 'land', 'terrain', or 'reservoir'}
 
 \item{time}{give as "HH" this is the time the forecast is made, default set to 'ALL'}
 
 \item{forecast_hour}{given as "HHH", this is the number of hours from the time the forecast is made (time), defualt is set to "ALL"}
-
-\item{date}{given in "YYY-MM-DD" format}
 }
 \value{
-This function returns all .nc files to the NetCDFs subfolder for a given day.
+This function returns all .nc files to the NetCDFs subfolder for given inputs.
 }
 \description{
-Accesses  HydroShare server to download data for a specified day. If that day is not avaiable error messages help identify days with data.
-Parameters are avaliable to filter what data is downloaded. These include forecast type, model output, and time of forecast and latency. 
+Accesses  HydroShare server to download data for a time period (analysis_assim) or day (all other forecast_types). 
+If that day is not avaiable error messages help identify days with data.
+Parameters are avaliable to filter what data is downloaded. These include 'forecast type', 'data type, and time of forecast and latency. 
 If left blank all files for the day will be downloaded.
 }
 \examples{
-get_chosen(date = '2017-06-17', type = 'channel', hour = '00', forecast_hour = '000')
+To get the inital (forecast_hour = "001") analysis and assimulation data for all hours between  Oct 10, 2016 and Oct 14, 2016
+the following code would be used: \\cr \\cr
+
+get_server = function(start.date = "2016-10-10", forecast_type = "analysis_assim", 
+end.date = "2016-10-14", type = "channel", time= NULL, forecast_hour = "001")
 
 }
 \author{

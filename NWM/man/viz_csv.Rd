@@ -4,7 +4,7 @@
 \alias{viz_csv}
 \title{Visualize Streamflow Data}
 \usage{
-viz_csv(type, COMIDs, csv, catchment_path, flowlines_path)
+viz_csv(type, COMIDs, csv_path, catchment_path, flowlines_path, region)
 }
 \arguments{
 \item{type}{What type of images should be returned? Options are: \cr \cr
@@ -20,11 +20,13 @@ and the proportional width flowlines. A folder of images, one for each time step
 \item{COMIDs}{requires a list of COMIDs. For type = 'hydrograph' up to 25 COMIDs can be entered. 
 For type = "flow" and type = "combo" only one COMID should be entered. See \code{\link{get_COMIDS}}}
 
-\item{csv}{path to a csv where column one is a COMIDS and column 2:X are timeseries flow values}
-
 \item{catchment_path}{path name to NHDPlusV2 catchments shapefile (.shp)}
 
 \item{flowlines_path}{path name to NHDPlusV2 flowlines shapefile (.shp)}
+
+\item{region}{a string of the regions name}
+
+\item{csv}{path to a csv where column one is a COMIDS and column 2:X are timeseries flow values}
 }
 \value{
 Images of the specified type to the "Images/" subfolder

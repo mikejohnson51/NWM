@@ -9,14 +9,18 @@ get_COMIDs(shapefile = NULL, path = NULL)
 \arguments{
 \item{shapefile}{takes a shapefile object of COMIDs. This must be preprossed in R using readOGR() or other package}
 
-\item{path}{takes a path to a .shp (hopefully stored in the Flowlines subfolder)}
+\item{path}{takes a path to a .shp}
 }
 \value{
 This function returns a list of COMIDs from a shapefile of flowlines.
 }
 \description{
 Takes a shapefile already process in R using readOGR() or a path to a shapefile folder and converts it into a list of COMIDs. 
-This list can be used in the \code{\link{build_csv}} function. Either a path to a local .shp or a shapefile object is required.
+This list can be used in the \code{\link{build_csv}} function. \cr \cr
+}
+\details{
+Either a path to a local .shp file OR a shapefile object is required. \cr \cr
+
 For validation this function will plot the shapefile to ensure it is correct.
 }
 \author{
