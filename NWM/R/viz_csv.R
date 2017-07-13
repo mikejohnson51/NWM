@@ -41,7 +41,8 @@
 #' catchment_path path name to NHDPlusV2 catchments shapefile (.shp)
 #' @param 
 #' flowlines_path path name to NHDPlusV2 flowlines shapefile (.shp)
-#' 
+#' @param 
+#' region a string of the regions name
 #' 
 #' @return 
 #' Images of the specified type to the "Images/" subfolder
@@ -169,7 +170,7 @@ if(type == "hydrograph"){
     
   } else {
     number = length(dir(paste0(export_path,"/", type, "s"))) + 1
-    path111 =  paste0(paste0(export_path,"/", type, "s"),"/flow", number)
+    path111 =  paste0(paste0(export_path,"/", type, "s"),"/", type, number)
     dir.create(path111)
     
   }

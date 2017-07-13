@@ -30,6 +30,7 @@
 #' A .csv of flow records for the given time period for each given COMID. This file will be stored in the Output subfolder and will be named according to the dates and region provided
 #' @author 
 #' Mike Johnson and Jim Coll
+#' 
 #' @examples 
 #' 
 #' Example 1) Return all time slices in a folder: \cr
