@@ -18,6 +18,7 @@
 #' time give as "HH" this is the time the forecast is made, default set to 'ALL'
 #' @param 
 #' forecast_hour given as "HHH", this is the number of hours from the time the forecast is made (time), defualt is set to "ALL"
+#' 
 #' @examples 
 #' To get the inital (forecast_hour = "001") analysis and assimulation data for all hours between  Oct 10, 2016 and Oct 14, 2016
 #' the following code would be used: \cr \cr
