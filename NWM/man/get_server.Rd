@@ -19,7 +19,8 @@ analysis_assim data is avaliable from '2016-05-28' forward, all others have ~2 w
 
 \item{time}{give as "HH" this is the time the forecast is made, default set to 'ALL'}
 
-\item{forecast_hour}{given as "HHH", this is the number of hours from the time the forecast is made (time), defualt is set to "ALL"}
+\item{forecast_hour}{given as "HHH", this is the number of hours from the time the forecast is made (time), defualt is set to "ALL"
+If using anal}
 }
 \value{
 This function returns all .nc files to the NetCDFs subfolder for given inputs.
@@ -27,7 +28,7 @@ This function returns all .nc files to the NetCDFs subfolder for given inputs.
 \description{
 Accesses  HydroShare server to download data for a time period (analysis_assim) or day (all other forecast_types). 
 If that day is not avaiable error messages help identify days with data.
-Parameters are avaliable to filter what data is downloaded. These include 'forecast type', 'data type, and time of forecast and latency. 
+Parameters are avaliable to filter what data is downloaded. These include 'forecast type', 'data type', and time of forecast and latency. 
 If left blank all files for the day will be downloaded.
 }
 \examples{
