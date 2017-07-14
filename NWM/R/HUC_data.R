@@ -12,14 +12,14 @@
 #' @author 
 #' Mike Johnson and Jim Coll
 #' 
-#' @export
-#' 
 #' @return 
 #' This function downloads the associated shapefiles into the /Flowlines folder built using 
 #' \code{\link{build_files}}
 #' 
 #' @seealso 
 #' \code{\link{build_files}}
+#' 
+#' #' @export
 
 
 get_HUC6_data = function(HUC6 = "010100"){

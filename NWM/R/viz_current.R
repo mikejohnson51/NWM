@@ -17,11 +17,10 @@
 #' 
 #' @seealso 
 #' \code{\link{get_COMIDS}}
+#' 
 #' @seealso 
 #' \code{\link{get_current}}
-#' 
-#' @param 
-#' 
+#'
 #' @param 
 #' COMIDs requires a single COMID. See \code{\link{get_COMIDS}}
 #' @param 

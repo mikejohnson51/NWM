@@ -5,7 +5,6 @@
 #'created using the 'build_files()' function in the NWM package. Each time this function is run the old files will be removed.
 #'Therefore if you see something interesting be sure to save the data elsewhere!
 #'
-#' @param None 
 #' @examples 
 #' get_current()
 #' @author 
