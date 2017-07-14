@@ -19,8 +19,7 @@
 #' @seealso 
 #' \code{\link{build_files}}
 #' 
-#' #' @export
-
+#' @export
 
 get_HUC6_data = function(HUC6 = "010100"){
   build.file.list = c(paste0(HUC6, "-flows.dbf"),
