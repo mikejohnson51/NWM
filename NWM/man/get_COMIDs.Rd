@@ -23,6 +23,12 @@ Either a path to a local .shp file OR a shapefile object is required. \cr \cr
 
 For validation this function will plot the shapefile to ensure it is correct.
 }
+\examples{
+comid_OC = get_COMIDs(shapefiles = flowlines)
+
+comid_OC = get_COMIDs (path ="F:/johnson/NWM_DATA/Flowlines/nhdflowlines_OC.shp")
+
+}
 \author{
 Mike Johnson and Jim Coll
 }

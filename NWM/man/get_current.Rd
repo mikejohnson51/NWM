@@ -6,9 +6,6 @@
 \usage{
 get_current()
 }
-\arguments{
-\item{None}{}
-}
 \value{
 This fuction saves the 18 NetCDF files related to the most recent short term forecast to the NetCDFs/Current folder.
 }

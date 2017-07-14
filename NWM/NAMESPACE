@@ -3,7 +3,6 @@
 export(build_csv)
 export(build_files)
 export(get_COMIDs)
-export(get_HUC6_data)
 export(get_current)
 export(get_server)
 export(viz_csv)
