@@ -79,13 +79,15 @@
 build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, end.date = NULL, end.time = NULL, comids, regions.name = "OnionCreek"){
   
   # Getting indexes -----------------------------------------------------
-    #folder = 'current'; start.date = "2016-10-10"; start.time = NULL; end.date = "2016-10-14"; end.time = NULL; comids; regions.name = "OnionCreek"
-    #folder ="/Users/mikejohnson/Desktop/SPRNT_data/NetCDFs/analysis_assim_channel_20161010tall"; comids = NC_comids; regions.name = "NC"
+    folder = 'current'; start.date = NULL; start.time = NULL; end.date = NULL; end.time = NULL; comids; regions.name = "OnionCreek"
+    comids = NC_comids; regions.name = "NC"
   
   if (folder == 'current'){
-    folder = paste0(getwd(), "/NetCDFs/Current")
+    folder = paste0(getwd(), "/NetCDFs/Current"
+                    folder2 = 'current')
   }else{
     folder = folder
+    folder2 = "BugsBunny"
   }
   
   files = dir(folder)
@@ -124,7 +126,7 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
   start <- vector(mode = "numeric", length(comids))
   
   for (i in 1:length(comids)){
-    i=1
+  
     start[i] = which(vars$streamflow$dim[[1]]$vals == comids[i], arr.ind = TRUE)
   }
   
@@ -152,7 +154,7 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
   
   if(start.date == end.date){end.date = NULL}
   
-  if(folder == 'current'){
+  if(folder2 == 'current'){
     write.csv(nwm.flow, paste0(getwd(),"/Output/Current/",regions.name,"_",start.date,"_", end.date, ".csv"))
   }else{
     write.csv(nwm.flow, paste0(getwd(),"/Output/",regions.name,"_",start.date,"_", end.date, ".csv"))
