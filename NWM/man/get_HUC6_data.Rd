@@ -23,8 +23,6 @@ get_HUC6_data(HUC6 = "010100")
 }
 \seealso{
 \code{\link{build_files}}
-
-#' @export
 }
 \author{
 Mike Johnson and Jim Coll
