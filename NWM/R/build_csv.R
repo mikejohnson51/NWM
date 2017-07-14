@@ -79,12 +79,10 @@
 build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, end.date = NULL, end.time = NULL, comids, regions.name = "OnionCreek"){
   
   # Getting indexes -----------------------------------------------------
-    #folder = 'current'; start.date = NULL; start.time = NULL; end.date = NULL; end.time = NULL; comids; regions.name = "OnionCreek"
-    #comids = NC_comids; regions.name = "NC"
-  
+   
   if (folder == 'current'){
-    folder = paste0(getwd(), "/NetCDFs/Current"
-                    folder2 = 'current')
+    folder = paste0(getwd(), "/NetCDFs/Current")
+    folder2 = 'current'
   }else{
     folder = folder
     folder2 = "BugsBunny"
