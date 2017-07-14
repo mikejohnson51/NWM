@@ -1,10 +1,9 @@
 #' Visualize Current Streamflow Forecasts
 #' 
-#' Automatically generates a labeled visulization of hydrogrpahy at a point and porportionalized flow records.
+#' Automatically generates a proportional streamflow visulization and hydrogrpah at a point.
 #' 
 #' @details 
-#' Each time the function is executed a subfolder mirroring the csv files name will be generated in the "Images" subfolder. 
-#' An addtion subfolder within this folder will be created named after the 'type' entered. \cr \cr
+#' Each time the function is executed the 'Current' image \cr \cr
 #'  
 #' Each time the function is executed an additional subfolder will be created and numbered according to t
 #' he number of times
@@ -49,24 +48,33 @@
 
 #' @export
 
-  viz_current = function(catchment_path, flowlines_path, COMID, region){
+  viz_current = function(catchment = NULL, flowlines = NULL, catchment_path = NULL, flowline_path = NULL, COMID, region){
     
-    colors = c('#f1eef6','#d0d1e6','#a6bddb','#74a9cf','#2b8cbe','#045a8d')
+    if(is.null(catchment)){
+      catchments = readOGR(catchment_path)
+    } else {
+      catchments = catchment
+    }
+    
+    if(is.null(flowlines)){
+      flowlines = readOGR(flowline_path)
+    } else {
+      flowlines = flowlines
+    }
+    
     
   files = dir(paste0(getwd(),"/NetCDFs/Current"))
   file.remove(list.files(paste0(getwd(),"/Images/Current"), pattern = ".png", full.names = TRUE))
   
   data = read.csv(paste0(getwd(),"/Output/Current/", dir(paste0(getwd(),"/Output/Current"))))
   data = as.matrix(data)
+  data = na.omit(data)
 
-  
-  catchments = readOGR(catchment_path)
-  flowlines = readOGR(flowlines_path)
-  
   subset = cbind(data[,2],data[,2:19])
   
   
-  for(i in 2:19){ 
+  
+  for(i in 3:19){ 
     
     png(paste0(getwd(),"/Images/Current/timestep", sprintf("%03d",i-1), ".png"), width = 3000, height = 1500, units= 'px', res = 300)
     
@@ -74,16 +82,20 @@
     
     index = which(data[,1] == COMID)
     
-    plot(catchments, border = 'white', col= 'lightgray', main = paste0("Short Range Forecasts For \n ", region), 
+    plot(catchments, border = 'black', col= 'grey80', main = paste0("Short Range Forecasts For \n ", region), 
          xlab = paste0(paste0("Forcast Type: ", substrRight(substr(files[1], 1, 20),11)),
                         paste0("\nGenerated On: ", Sys.Date()),
                         paste0("\nTime of forecast: ", substrRight(substr(files[1], 1,7),2)),
                         paste0("\nTime since forcast (hr): ", substrRight(substr(files[i-1], 1, 36), 3)))) 
     
     
-    plot(flowlines, add = TRUE, 
-         col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgray', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue')),
-         lwd = .75*abs((subset[,i]-subset[,i-1]+2)))
+    plot(flowlines, 
+         col = 'grey94',
+         lwd = ifelse(flowlines@data$StreamOrde >=3, (as.numeric(paste(flowlines@data$StreamOrde)))/4, 0), add=TRUE)
+    
+    plot(flowlines, 
+         col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue')),
+         lwd = .0035*abs((subset[,i]-subset[,i-1]+2)), add = TRUE)
     
     
     plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMID), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')

@@ -79,7 +79,9 @@
 build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, end.date = NULL, end.time = NULL, comids, regions.name = "OnionCreek"){
   
   # Getting indexes -----------------------------------------------------
-   
+  #folder = 'current'; start.date = NULL;start.time = NULL; end.date = NULL; end.time = NULL; 
+  #folder = "/Users/mikejohnson/Desktop/SPRNT_data/NetCDFs/20161005_20161016"; comids = SPRNT_comids; regions.name = "GoldsboroNC"
+  
   if (folder == 'current'){
     folder = paste0(getwd(), "/NetCDFs/Current")
     folder2 = 'current'
@@ -121,6 +123,7 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
   
   nc <- nc_open(filename = paste0(folder,"/", files[[1]]))
   vars <- nc$var
+  
   start <- vector(mode = "numeric", length(comids))
   
   for (i in 1:length(comids)){
@@ -136,7 +139,7 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
     nc = nc_open(filename = paste0(folder,"/", files[i]))
     
     for(j in 1:length(comids)){
-      nwm.flow[j,i] = ncvar_get( nc, varid = "streamflow", start = c(start[j]), count = c(1))
+      nwm.flow[j,i] = ncvar_get( nc, varid = "streamflow", start = c(start[j],1), count = c(1,1))
     } 
     
     nc_close(nc)
