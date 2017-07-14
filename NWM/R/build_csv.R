@@ -154,7 +154,7 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
   
   if(start.date == end.date){end.date = NULL}
   
-  if(folder2 == 'current'){
+  if(folder2 ==  'current'){
     write.csv(nwm.flow, paste0(getwd(),"/Output/Current/",regions.name,"_",start.date,"_", end.date, ".csv"))
   }else{
     write.csv(nwm.flow, paste0(getwd(),"/Output/",regions.name,"_",start.date,"_", end.date, ".csv"))
