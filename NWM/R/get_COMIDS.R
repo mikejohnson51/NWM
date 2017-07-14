@@ -15,7 +15,7 @@
 #' @examples 
 #' comid_OC = get_COMIDs(shapefiles = flowlines)
 #' 
-#' comid_OC = get_COMIDs (path = "F:/johnson/NWM_DATA/Flowlines/nhdflowlines_OC.shp")
+#' comid_OC = get_COMIDs (path ="F:/johnson/NWM_DATA/Flowlines/nhdflowlines_OC.shp")
 #' 
 #' @author 
 #' Mike Johnson and Jim Coll
@@ -24,11 +24,6 @@
 #' 
 #' @return 
 #' This function returns a list of COMIDs from a shapefile of flowlines.
-#' 
-
-
-
-
 
 get_COMIDs = function(shapefile = NULL, path = NULL){
  
