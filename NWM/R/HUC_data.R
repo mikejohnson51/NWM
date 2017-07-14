@@ -1,5 +1,25 @@
+#' Get HUC6 Flowlines and Catchment Boundaries
+#'
+#'This function hits the CyberGIS FTP server to pull the flowline and catchment shapefiles for a HUC6 unit specified by 
+#'unit code.
 
-  
+#' @param 
+#' HUC6 This is the six unit identifer for the HUC6 unit. 
+#'
+#' @examples 
+#' get_HUC6_data(HUC6 = "010100")
+#' 
+#' @author 
+#' Mike Johnson and Jim Coll
+#' 
+#' @export
+#' 
+#' @return 
+#' This function downloads the associated shapefiles into the /Flowlines folder built using 
+#' \code{\link{build_files}}
+#' 
+#' @seealso 
+#' \code{\link{build_files}}
 
 
 get_HUC6_data = function(HUC6 = "010100"){
