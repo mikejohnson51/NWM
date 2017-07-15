@@ -49,8 +49,6 @@
 
   viz_current = function(catchment = NULL, flowlines = NULL, catchment_path = NULL, flowline_path = NULL, COMID, region){
     
-    catchment= catchments; flowlines = flowlines; COMID = HUC6_flows[99]; region = "HUC6 030202"
-    
     if(is.null(catchment)){
       catchments = readOGR(catchment_path)
     } else {
