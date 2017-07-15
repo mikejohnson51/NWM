@@ -121,9 +121,16 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
   
   nc <- nc_open(filename = paste0(folder,"/", files[[1]]))
     vars <- nc$var
-    start <- vector(mode = "numeric", length(comids))
+    
     test1test2 = vars$streamflow$dim[[1]]$vals
-    start = comids[comids %in% test1test2]
+    comids_of_value = comids[comids %in% test1test2]
+    
+    start <- vector(mode = "numeric", length(comids_of_value))
+    
+    for(i in 1:length(comids_of_value)){
+      start[i] = which(test1test2 == comids_of_value[i])}
+    
+    
     nwm.flow = matrix(NA, ncol = length(files), nrow = length(start))
   nc_close(nc)
   
@@ -132,11 +139,12 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
         values = ncvar_get(nc, varid = "streamflow")
     for(j in 1:length(start)){
         nwm.flow[j,i] = values[start[j]]
+  
     } 
     nc_close(nc)
   }
   
-  rownames(nwm.flow) = start
+  rownames(nwm.flow) = comids_of_value
   colnames(nwm.flow) = substr(files, 1, 12)
   
   nwm.flow = nwm.flow * 35.3147

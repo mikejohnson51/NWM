@@ -49,6 +49,8 @@
 
   viz_current = function(catchment = NULL, flowlines = NULL, catchment_path = NULL, flowline_path = NULL, COMID, region){
     
+    catchment= catchments; flowlines = flowlines; COMID = HUC6_flows[99]; region = "HUC6 030202"
+    
     if(is.null(catchment)){
       catchments = readOGR(catchment_path)
     } else {
@@ -76,9 +78,8 @@
   for(i in 3:19){ 
     
     png(paste0(getwd(),"/Images/Current/timestep", sprintf("%03d",i-1), ".png"), width = 3000, height = 1500, units= 'px', res = 300)
-    
+  
     par(mfrow= c(1,2)); 
-    
     index = which(data[,1] == COMID)
     
     plot(catchments, border = 'black', col= 'grey80', main = paste0("Short Range Forecasts For \n ", region), 
@@ -93,8 +94,8 @@
          lwd = ifelse(flowlines@data$StreamOrde >=3, (as.numeric(paste(flowlines@data$StreamOrde)))/4, 0), add=TRUE)
     
     plot(flowlines, 
-         col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue')),
-         lwd = .0035*abs((subset[,i]-subset[,i-1]+2)), add = TRUE)
+         col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue'))
+    ,lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
     
     
     plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMID), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
@@ -103,6 +104,6 @@
     dev.off()
   }
   }
-    
+
     
     
