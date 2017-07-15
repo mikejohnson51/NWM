@@ -80,7 +80,7 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
   
   # Getting indexes -----------------------------------------------------
   folder = 'current'; start.date = NULL;start.time = NULL; end.date = NULL; end.time = NULL; 
-  folder = "current"; comids = HUC6_flows; regions.name = "GoldsboroNC"
+  folder = "current"; comids = HUC6_flows; regions.name = "paste0(HUC6)"
   
   if (folder == 'current'){
     folder = paste0(getwd(), "/NetCDFs/Current")
@@ -120,34 +120,23 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
   
   
   nc <- nc_open(filename = paste0(folder,"/", files[[1]]))
-  
-  vars <- nc$var
-  start <- vector(mode = "numeric", length(comids))
-  
-  for (i in 1:length(comids)){
+    vars <- nc$var
+    start <- vector(mode = "numeric", length(comids))
     test1test2 = vars$streamflow$dim[[1]]$vals
-    
-    if(comids[i] %in% test1test2){
-    start[i] = (which(vars$streamflow$dim[[1]]$vals == comids[i], arr.ind = TRUE))
-    } else {
-    start[i] = -9999
-  }}
-  
-  start1 =  start[! start %in% -9999]
-  nwm.flow = matrix(NA, ncol = length(files), nrow = length(start1))
-  
+    start = comids[comids %in% test1test2]
+    nwm.flow = matrix(NA, ncol = length(files), nrow = length(start))
   nc_close(nc)
   
   for (i in 1:length(files)) {
-    nc = nc_open(filename = paste0(folder,"/", files[i]))
-    values = ncvar_get(nc, varid = "streamflow")
-    for(j in 1:length(start1)){
-      nwm.flow[j,i] = values[start1[j]]
+        nc = nc_open(filename = paste0(folder,"/", files[i]))
+        values = ncvar_get(nc, varid = "streamflow")
+    for(j in 1:length(start)){
+        nwm.flow[j,i] = values[start[j]]
     } 
     nc_close(nc)
   }
   
-  rownames(nwm.flow) = comids
+  rownames(nwm.flow) = start
   colnames(nwm.flow) = substr(files, 1, 12)
   
   nwm.flow = nwm.flow * 35.3147
