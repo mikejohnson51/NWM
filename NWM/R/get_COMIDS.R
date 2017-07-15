@@ -37,9 +37,8 @@ get_COMIDs = function(shapefile = NULL, path = NULL){
   
   } else {
   
-    comids = vector(mode = "numeric",length(shapefile@data$OBJECTID))
+    comids = vector(mode = "numeric",length(shapefile))
     comids = shapefile@data$COMID
-    comids = as.numeric(levels(comids))[comids]
     plot(shapefile, col = 'blue', main= "Your Area of Interest")
   }
   
