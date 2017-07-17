@@ -79,8 +79,8 @@
 build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, end.date = NULL, end.time = NULL, comids, regions.name = "OnionCreek"){
   
   # Getting indexes -----------------------------------------------------
-  folder = 'current'; start.date = NULL;start.time = NULL; end.date = NULL; end.time = NULL; 
-  folder = "current"; comids = HUC6_flows; regions.name = "paste0(HUC6)"
+  #folder = 'current'; start.date = NULL;start.time = NULL; end.date = NULL; end.time = NULL; 
+  #folder = "current"; comids = HUC6_flows; regions.name = "paste0(HUC6)"
   
   if (folder == 'current'){
     folder = paste0(getwd(), "/NetCDFs/Current")

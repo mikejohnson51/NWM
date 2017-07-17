@@ -31,14 +31,14 @@ get_COMIDs = function(shapefile = NULL, path = NULL){
   
     flowlines = readOGR(path)
     comids = vector(mode = "numeric",length(flowlines@data$OBJECTID))
-    comids = flowlines@data$COMID
+    comids = flowlines@data$comid
     comids = as.numeric(levels(comids))[comids]
     plot(flowlines, col = 'blue', main= "Your Area of Interest")
   
   } else {
   
     comids = vector(mode = "numeric",length(shapefile))
-    comids = shapefile@data$COMID
+    comids = shapefile@data$comid
     plot(shapefile, col = 'blue', main= "Your Area of Interest")
   }
   
