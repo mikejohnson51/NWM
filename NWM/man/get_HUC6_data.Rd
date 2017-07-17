@@ -2,28 +2,35 @@
 % Please edit documentation in R/get_HUC6_data.R
 \name{get_HUC6_data}
 \alias{get_HUC6_data}
-\title{Get HUC6 Flowlines and Catchment Boundaries}
+\title{Get HUC6 Flowlines, Catchment Boundaries, and HAND Products}
 \usage{
-get_HUC6_data(HUC6 = "010100")
+get_HUC6_data(HUC6 = "010100", need.shp = FALSE, need.hand.data = TRUE)
 }
 \arguments{
-\item{HUC6}{This is the six unit identifer for the HUC6 unit.}
+\item{HUC6}{A six unit identifer for the HUC6 unit. Can be a single value or a string.}
+
+\item{need.shp}{If TRUE then the shapefiles for the flowlines and HUC6 catchment boundary will be downloaded.}
+
+\item{need.hand.data}{If TRUE the HAND raster and catchment mask .tif files will be downloaded. This are large files and take a significant amount of time to download,
+only do so if interested in applying the HAND method for innudation mapping.}
 }
 \value{
 This function downloads the associated shapefiles into the /Flowlines folder built using 
 \code{\link{build_files}}
 }
 \description{
-This function hits the CyberGIS FTP server to pull the flowline and catchment shapefiles for a HUC6 unit specified by 
+This function builds a list of needed file and downloads them from CyberGIS FTP server. Spatial boundaries are the HUC6 units and avialable data include NHDflowlines, 
+catchment boundary, the HAND raster, and the catchment mask.
 unit code.
 }
 \examples{
-get_HUC6_data(HUC6 = "010100")
+get_HUC6_data(HUC6 = c("180600",180701), need.shp = TRUE, need.hand.data =TRUE)
 
 }
 \seealso{
 \code{\link{build_files}}
+\code{\link{get_stage}}
 }
 \author{
-Mike Johnson and Jim Coll
+Mike Johnson
 }
