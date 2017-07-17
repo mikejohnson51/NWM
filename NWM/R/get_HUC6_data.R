@@ -71,5 +71,3 @@ get_HUC6_data = function(HUC6 = "010100", need.shp = FALSE, need.hand.data = TRU
     }
   
 }
-
-get_HUC6_data(need.hand.data = FALSE)
