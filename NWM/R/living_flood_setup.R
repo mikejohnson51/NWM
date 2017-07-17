@@ -18,11 +18,12 @@
 #' \code{\link{living_flood_data()}}
 #' 
 #' @export
+#' 
+#' @author 
+#' Mike Johnson
 
 
-
-
-setup_living_flood = function(flowlines_path, hand.raster.needed = TRUE){
+living_flood_setup = function(flowlines_path, hand.raster.needed = TRUE){
   
   
   flow_lines.shp = readOGR(flowlines_path)
