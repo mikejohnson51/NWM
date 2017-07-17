@@ -16,11 +16,13 @@
 #' \code{\link{get_HUC6_data()}}
 #' \code{\link{get_rating_curves()}}
 #' \code{\link{living_flood_data()}}
+#' 
+#' @export
 
 
 
 
-setup_livingflood = function(flowlines_path, hand.raster.needed = TRUE){
+setup_living_flood = function(flowlines_path, hand.raster.needed = TRUE){
   
   
   flow_lines.shp = readOGR(flowlines_path)
