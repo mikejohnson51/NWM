@@ -42,8 +42,9 @@ get_stage = function(discharge_csv_path, rating_curve_path, units_discharge = 'c
     discharge = cbind(discharge[,1], discharge[,2:dim(discharge)[2]] * 0.028316847)
   }
 
-  comids_final = comids_d[discharge[,1] %in% as.numeric(unique(rating[,1]))]
-
+  comids_final = discharge[,1][discharge[,1] %in% as.numeric(unique(rating[,1]))]
+ 
+  
 stage_data = matrix(0, nrow = length(comids_final), ncol = dim(discharge)[2])
   stage_data[,1] = comids_final
  
@@ -54,7 +55,7 @@ stage_data = matrix(0, nrow = length(comids_final), ncol = dim(discharge)[2])
       for (j in 2:dim(stage_data)[2]){
         
         index = which.min(abs(COMcurve[,2]-discharge[i,j]))
-        stage_data[i,j] = rating[index,3]
+        stage_data[i,j] = COMcurve[index,3]
         
       }
     }

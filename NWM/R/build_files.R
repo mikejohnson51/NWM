@@ -28,7 +28,10 @@ build_files = function(){
   
   working.directory = getwd()
   
-  dir.create(paste0(working.directory, "/Flowlines"))
+  dir.create(paste0(working.directory, "/Geospatial"))
+  dir.create(paste0(working.directory, "/Geospatial/HAND"))
+  dir.create(paste0(working.directory, "/Geospatial/Catchments"))
+  dir.create(paste0(working.directory, "/Geospatial/Flowlines"))
   dir.create(paste0(working.directory, "/Images"))
   dir.create(paste0(working.directory, "/NetCDFs"))
   dir.create(paste0(working.directory, "/Output"))

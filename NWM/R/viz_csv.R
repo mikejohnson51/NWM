@@ -53,22 +53,22 @@
 #' Return hydrograph
 #' 
 #' viz_csv(type = "hydrograph", COMIDs = comids[1:25], csv ="OnionCreek_20170711_20170711.csv",
-#' catchment_path = "/Users/mikejohnson/Desktop/Tester/Flowlines/Catchments/catchments.shp",
-#' flowlines_path = "/Users/mikejohnson/Desktop/Tester/Flowlines/Flowlines/Flowlines.shp")
+#' catchment_path = "/Users/mikejohnson/Desktop/Tester/Geospatial/Flowlines/Catchments/catchments.shp",
+#' flowlines_path = "/Users/mikejohnson/Desktop/Tester/Geospatial/Flowlines/Flowlines/Flowlines.shp")
 #' 
 #' @examples 
 #' Return proportionally symbolized flowlines
 #' 
 #' viz_csv(type = "flow", COMIDs = comids[56], csv ="OnionCreek_20170711_20170711.csv",
-#' catchment_path = "/Users/mikejohnson/Desktop/Tester/Flowlines/Catchments/catchments.shp",
-#' flowlines_path = "/Users/mikejohnson/Desktop/Tester/Flowlines/Flowlines/Flowlines.shp")
+#' catchment_path = "/Users/mikejohnson/Desktop/Tester/Geospatia;Flowlines/Catchments/catchments.shp",
+#' flowlines_path = "/Users/mikejohnson/Desktop/Tester/Geospatial/Flowlines/Flowlines.shp")
 #' 
 #' @examples 
 #' Return combontion of proportionally symbolized flowlines an hydrograph
 #' 
 #' viz_csv(type = "combo", COMIDs = comids[56], csv ="OnionCreek_20170711_20170711.csv",
-#' catchment_path = "/Users/mikejohnson/Desktop/Tester/Flowlines/Catchments/catchments.shp",
-#' flowlines_path = "/Users/mikejohnson/Desktop/Tester/Flowlines/Flowlines/Flowlines.shp")
+#' catchment_path = "/Users/mikejohnson/Desktop/Tester/Geospatial/Flowlines/Catchments/catchments.shp",
+#' flowlines_path = "/Users/mikejohnson/Desktop/Tester/Geospatial/Flowlines/Flowlines.shp")
 
 #' @export
 

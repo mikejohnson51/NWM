@@ -10,11 +10,16 @@ setup_livingflood(flowlines_path, hand.raster.needed = TRUE)
 \item{hand.raster.needed}{default is set to TRUE. If a user already has the necessary hand rasters then avoid long
 download times by setting to FALSE.}
 
-\item{flow_lines.shp}{a path to a flowlines shapefile downloaded and stored in the /Flowlines folder
+\item{flow_lines.shp}{a path to a flowlines shapefile downloaded and stored in the /Geospatial folder
 generated with the \code{\link{build_files()}}.}
 }
 \description{
 Step one for running 'LivingFlood'. This function downloads and structures the data needed from a supplied 
 flowline shapefile. Data is  stored in the appropriate folders as setup with \code{\link{build_files}}. Set up only needs to be run once 
 for each community and the approximete time needed is ~ 15 for the City the size of Austin, Texas.
+}
+\seealso{
+\code{\link{get_HUC6_data()}}
+\code{\link{get_rating_curves()}}
+\code{\link{living_flood_data()}}
 }

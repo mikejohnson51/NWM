@@ -37,8 +37,8 @@ In each of these will be two subfolders named ex: ('type'1), ('type"2).
 Return hydrograph
 
 viz_csv(type = "hydrograph", COMIDs = comids[1:25], csv ="OnionCreek_20170711_20170711.csv",
-catchment_path = "/Users/mikejohnson/Desktop/Tester/Flowlines/Catchments/catchments.shp",
-flowlines_path = "/Users/mikejohnson/Desktop/Tester/Flowlines/Flowlines/Flowlines.shp")
+catchment_path = "/Users/mikejohnson/Desktop/Tester/Geospatial/Flowlines/Catchments/catchments.shp",
+flowlines_path = "/Users/mikejohnson/Desktop/Tester/Geospatial/Flowlines/Flowlines.shp")
 
 viz_current = function(catchment_path, flowlines_path, COMID, region = "Santa Barbara")
 }

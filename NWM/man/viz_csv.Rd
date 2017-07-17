@@ -52,20 +52,20 @@ In each of these will be two subfolders named ex: ('type'1), ('type"2).
 Return hydrograph
 
 viz_csv(type = "hydrograph", COMIDs = comids[1:25], csv ="OnionCreek_20170711_20170711.csv",
-catchment_path = "/Users/mikejohnson/Desktop/Tester/Flowlines/Catchments/catchments.shp",
-flowlines_path = "/Users/mikejohnson/Desktop/Tester/Flowlines/Flowlines/Flowlines.shp")
+catchment_path = "/Users/mikejohnson/Desktop/Tester/Geospatial/Flowlines/Catchments/catchments.shp",
+flowlines_path = "/Users/mikejohnson/Desktop/Tester/Geospatial/Flowlines/Flowlines/Flowlines.shp")
 
 Return proportionally symbolized flowlines
 
 viz_csv(type = "flow", COMIDs = comids[56], csv ="OnionCreek_20170711_20170711.csv",
-catchment_path = "/Users/mikejohnson/Desktop/Tester/Flowlines/Catchments/catchments.shp",
-flowlines_path = "/Users/mikejohnson/Desktop/Tester/Flowlines/Flowlines/Flowlines.shp")
+catchment_path = "/Users/mikejohnson/Desktop/Tester/Geospatia;Flowlines/Catchments/catchments.shp",
+flowlines_path = "/Users/mikejohnson/Desktop/Tester/Geospatial/Flowlines/Flowlines.shp")
 
 Return combontion of proportionally symbolized flowlines an hydrograph
 
 viz_csv(type = "combo", COMIDs = comids[56], csv ="OnionCreek_20170711_20170711.csv",
-catchment_path = "/Users/mikejohnson/Desktop/Tester/Flowlines/Catchments/catchments.shp",
-flowlines_path = "/Users/mikejohnson/Desktop/Tester/Flowlines/Flowlines/Flowlines.shp")
+catchment_path = "/Users/mikejohnson/Desktop/Tester/Geospatial/Flowlines/Catchments/catchments.shp",
+flowlines_path = "/Users/mikejohnson/Desktop/Tester/Geospatial/Flowlines/Flowlines.shp")
 }
 \seealso{
 \code{\link{build_csv}}

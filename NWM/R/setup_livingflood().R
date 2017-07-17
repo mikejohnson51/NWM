@@ -5,12 +5,18 @@
 #' for each community and the approximete time needed is ~ 15 for the City the size of Austin, Texas. 
 #' 
 #' @param 
-#' flow_lines.shp a path to a flowlines shapefile downloaded and stored in the /Flowlines folder
+#' flow_lines.shp a path to a flowlines shapefile downloaded and stored in the /Geospatial folder
 #' generated with the \code{\link{build_files()}}. 
 #' 
 #' @param 
 #' hand.raster.needed default is set to TRUE. If a user already has the necessary hand rasters then avoid long
 #' download times by setting to FALSE.
+#' 
+#' @seealso 
+#' \code{\link{get_HUC6_data()}}
+#' \code{\link{get_rating_curves()}}
+#' \code{\link{living_flood_data()}}
+
 
 
 
@@ -27,7 +33,7 @@ setup_livingflood = function(flowlines_path, hand.raster.needed = TRUE){
   
   if(hand.raster.needed == TRUE){
     get_HUC6_data(HUC_units6, need.shp = FALSE, need.hand.data = TRUE)
-    print('HAND datasets downloaded to /Flowlines/ folder')
+    print('HAND datasets downloaded to /Geospatial subfolders')
     print()
   }
   

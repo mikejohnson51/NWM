@@ -2,8 +2,7 @@
 #'
 #'This function builds a list of needed file and downloads them from CyberGIS FTP server. Spatial boundaries are the HUC6 units and avialable data include NHDflowlines, 
 #'catchment boundary, the HAND raster, and the catchment mask.
-#'unit code.
-
+#'
 #' @param 
 #' HUC6 A six unit identifer for the HUC6 unit. Can be a single value or a string.
 #' @param 
@@ -19,18 +18,19 @@
 #' Mike Johnson
 #' 
 #' @return 
-#' This function downloads the associated shapefiles into the /Flowlines folder built using 
+#' This function downloads the associated shapefiles into the /Geospatial/Flowlines folder built using 
 #' \code{\link{build_files}}
 #' 
 #' @seealso 
 #' \code{\link{build_files}}
-#' \code{\link{get_stage}}
+#' \code{\link{get_rating_curve}}
 #' 
 #' @export
 
 get_HUC6_data = function(HUC6 = "010100", need.shp = FALSE, need.hand.data = TRUE){
   
   hand = list() 
+  catchment = list()
   shp = list()
   
   
@@ -51,19 +51,25 @@ get_HUC6_data = function(HUC6 = "010100", need.shp = FALSE, need.hand.data = TRU
                                     
   }
   
-      if (need.hand.data == FALSE){hand = NULL} 
+      if (need.hand.data == FALSE){hand = NULL}
+      if (need.hand.data == FALSE){catchment = NULL}
       if (need.shp == FALSE){shp = NULL} 
-  
-      build.file.list = c(Reduce(c,hand),Reduce(c,shp))
-      
-  if(is.null(build.file.list)) {print("No data requested")
-    break
-    }else{print("Data list built!")}
 
-  for(i in 1:length(build.file.list)){
-    URL = paste0("http://141.142.170.172/nfiedata/HUC6/", build.file.list[i])
-    download.file(url = URL, destfile = paste0(getwd(),"/Flowlines/",substr(build.file.list[i],8,nchar(build.file.list[i]))))
-    }
+
+  for(i in 1:length(hand)){
+    URL = paste0("http://141.142.170.172/nfiedata/HUC6/", hand[i])
+    download.file(url = URL, destfile = paste0(getwd(),"/Geospatial/HAND/",substr(hand[i],8,nchar(hand[i]))))
+  }
+  
+  for(i in 1:length(catchments)){
+    URL = paste0("http://141.142.170.172/nfiedata/HUC6/", catchments[i])
+    download.file(url = URL, destfile = paste0(getwd(),"/Geospatial/Catchments/",substr(catchments[i],8,nchar(catchments[i]))))
+  }
+  
+  for(i in 1:length(shp)){
+    URL = paste0("http://141.142.170.172/nfiedata/HUC6/", shp[i])
+    download.file(url = URL, destfile = paste0(getwd(),"/Geospatial/Flowlines/",substr(shp[i],8,nchar(shp[i]))))
+  }
   
 }
 

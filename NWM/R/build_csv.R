@@ -79,9 +79,7 @@
 build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, end.date = NULL, end.time = NULL, comids, regions.name = "OnionCreek"){
   
   # Getting indexes -----------------------------------------------------
-  #folder = 'current'; start.date = NULL;start.time = NULL; end.date = NULL; end.time = NULL; 
-  #folder = "current"; comids = HUC6_flows; regions.name = "paste0(HUC6)"
-  
+
   if (folder == 'current'){
     folder = paste0(getwd(), "/NetCDFs/Current")
     folder2 = 'current'
@@ -159,6 +157,11 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
     write.csv(nwm.flow, paste0(getwd(),"/Output/",regions.name,"_",start.date,"_", end.date, ".csv"))
   }
   
+  if(folder2 ==  'current'){
+    return(paste0(getwd(),"/Output/Current/",regions.name,"_",start.date,"_", end.date, ".csv"))
+  }else{
+    return(paste0(getwd(),"/Output/",regions.name,"_",start.date,"_", end.date, ".csv"))
+  }
     
   }
   

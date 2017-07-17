@@ -15,13 +15,12 @@ get_HUC6_data(HUC6 = "010100", need.shp = FALSE, need.hand.data = TRUE)
 only do so if interested in applying the HAND method for innudation mapping.}
 }
 \value{
-This function downloads the associated shapefiles into the /Flowlines folder built using 
+This function downloads the associated shapefiles into the /Geospatial/Flowlines folder built using 
 \code{\link{build_files}}
 }
 \description{
 This function builds a list of needed file and downloads them from CyberGIS FTP server. Spatial boundaries are the HUC6 units and avialable data include NHDflowlines, 
 catchment boundary, the HAND raster, and the catchment mask.
-unit code.
 }
 \examples{
 get_HUC6_data(HUC6 = c("180600",180701), need.shp = TRUE, need.hand.data =TRUE)
@@ -29,7 +28,7 @@ get_HUC6_data(HUC6 = c("180600",180701), need.shp = TRUE, need.hand.data =TRUE)
 }
 \seealso{
 \code{\link{build_files}}
-\code{\link{get_stage}}
+\code{\link{get_rating_curve}}
 }
 \author{
 Mike Johnson

@@ -26,7 +26,7 @@ For validation this function will plot the shapefile to ensure it is correct.
 \examples{
 comid_OC = get_COMIDs(shapefiles = flowlines)
 
-comid_OC = get_COMIDs (path ="F:/johnson/NWM_DATA/Flowlines/nhdflowlines_OC.shp")
+comid_OC = get_COMIDs (path ="F:/johnson/NWM_DATA/Geospatial/Flowlines/nhdflowlines_OC.shp")
 
 }
 \author{
