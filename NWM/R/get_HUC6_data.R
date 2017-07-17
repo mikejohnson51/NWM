@@ -30,35 +30,30 @@
 
 get_HUC6_data = function(HUC6 = "010100", need.shp = FALSE, need.hand.data = TRUE){
   
-  
-  
   hand = list() 
   shp = list()
   
   
   for(i in 1:length(HUC6)){
  
-  hand[[i]] = c(                          paste0(HUC6[i], "hand.tif"),
-                                          paste0(HUC6[i], "catchmask.tif"))
+  hand[[i]] = c(    paste0(HUC6[i],"/", HUC6[i], "hand.tif"),
+                    paste0(HUC6[i],"/",HUC6[i], "catchmask.tif"))
                                     
   
-  shp[[i]]       = c(                      paste0(HUC6[i], "-flows.dbf"),
-                                           paste0(HUC6[i], "-flows.prj"),
-                                           paste0(HUC6[i], "-flows.shp"),
-                                           paste0(HUC6[i], "-flows.shx"),
-                                           paste0(HUC6[i], "-wbd.dbf"),
-                                           paste0(HUC6[i], "-wbd.prj"),
-                                           paste0(HUC6[i], "-wbd.shp"),
-                                           paste0(HUC6[i], "-wbd.shx"))
+  shp[[i]]  = c(    paste0(HUC6[i],"/",HUC6[i], "-flows.dbf"),
+                    paste0(HUC6[i],"/",HUC6[i], "-flows.prj"),
+                    paste0(HUC6[i],"/",HUC6[i], "-flows.shp"),
+                    paste0(HUC6[i],"/",HUC6[i], "-flows.shx"),
+                    paste0(HUC6[i],"/",HUC6[i], "-wbd.dbf"),
+                    paste0(HUC6[i],"/",HUC6[i], "-wbd.prj"),
+                    paste0(HUC6[i],"/",HUC6[i], "-wbd.shp"),
+                    paste0(HUC6[i],"/",HUC6[i], "-wbd.shx"))
                                     
-
-  
   }
   
       if (need.hand.data == FALSE){hand = NULL} 
       if (need.shp == FALSE){shp = NULL} 
-
-
+  
       build.file.list = c(Reduce(c,hand),Reduce(c,shp))
       
   if(is.null(build.file.list)) {print("No data requested")
@@ -66,8 +61,10 @@ get_HUC6_data = function(HUC6 = "010100", need.shp = FALSE, need.hand.data = TRU
     }else{print("Data list built!")}
 
   for(i in 1:length(build.file.list)){
-    URL = paste0("http://141.142.170.172/nfiedata/HUC6/",HUC6,"/", build.file.list[i])
-    download.file(url = URL, destfile = paste0(getwd(),"/Flowlines/",build.file.list[i]))
+    URL = paste0("http://141.142.170.172/nfiedata/HUC6/", build.file.list[i])
+    download.file(url = URL, destfile = paste0(getwd(),"/Flowlines/",substr(build.file.list[i],8,nchar(build.file.list[i]))))
     }
   
 }
+
+
