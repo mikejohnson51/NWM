@@ -32,6 +32,7 @@ build_files = function(){
   dir.create(paste0(working.directory, "/Images"))
   dir.create(paste0(working.directory, "/NetCDFs"))
   dir.create(paste0(working.directory, "/Output"))
+  dir.create(paste0(working.directory, "/Raw_RatingCurves"))
   dir.create(paste0(working.directory, "/NetCDFs/Current"))
   dir.create(paste0(working.directory, "/Output/Current"))
   dir.create(paste0(working.directory, "/Images/Current"))
@@ -39,4 +40,3 @@ build_files = function(){
   
 }
 
-?setwd()
