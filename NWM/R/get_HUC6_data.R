@@ -29,6 +29,10 @@
 
 get_HUC6_data = function(HUC6 = "010100", need.shp = FALSE, need.hand.data = TRUE){
   
+  HUC6 = HUC_units6
+  need.shp = FALSE
+  need.hand.data = TRUE
+  
   hand = list() 
   catchment = list()
   shp = list()
@@ -36,8 +40,9 @@ get_HUC6_data = function(HUC6 = "010100", need.shp = FALSE, need.hand.data = TRU
   
   for(i in 1:length(HUC6)){
  
-  hand[[i]] = c(    paste0(HUC6[i],"/", HUC6[i], "hand.tif"),
-                    paste0(HUC6[i],"/",HUC6[i], "catchmask.tif"))
+  hand[[i]] = c(    paste0(HUC6[i],"/", HUC6[i], "hand.tif"))
+  
+  catchment[[i]] = c( paste0(HUC6[i],"/",HUC6[i], "catchmask.tif"))
                                     
   
   shp[[i]]  = c(    paste0(HUC6[i],"/",HUC6[i], "-flows.dbf"),
@@ -50,6 +55,9 @@ get_HUC6_data = function(HUC6 = "010100", need.shp = FALSE, need.hand.data = TRU
                     paste0(HUC6[i],"/",HUC6[i], "-wbd.shx"))
                                     
   }
+  
+  
+  
   
       if (need.hand.data == FALSE){hand = NULL}
       if (need.hand.data == FALSE){catchment = NULL}
