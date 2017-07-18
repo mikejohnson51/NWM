@@ -181,7 +181,7 @@ if(type == "hydrograph"){
       
       plot(flowlines, 
            col = 'grey50',lwd = ifelse(flowlines@data$streamorde >=3, 
-           (as.numeric(paste(flowlines@data$streamorde)))/4, 0)
+           (as.numeric(paste(flowlines@data$streamorde)))/4, 0))
       
       plot(flowlines, 
            col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue')),
