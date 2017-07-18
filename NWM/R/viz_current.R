@@ -48,23 +48,24 @@
 #' @export
 
   viz_current = function(catchment = NULL, flowlines = NULL, catchment_path = NULL, flowline_path = NULL, COMID = NULL, comid_path = NULL, region){
-
-
     
     if(is.null(catchment)){
       catchments = catchment_path}
-   if(is.null(catchment_path)){
+    
+    if(is.null(catchment_path)){
       catchment = NULL
-    }else{ catchment = readOGR(catchment_path)}
+    }else{catchment = readOGR(catchment_path)}
     
     
     if(is.null(flowlines)){
-      flowlines = readOGR(flowline_path)
-    } else {
-      flowlines = flowlines
-    }
+      flowlines = flowline_path}
     
-  
+    if(is.null(flowlines)){
+      print("A flowline shapefile object or path must be provided!")
+      break} else {
+        flowlines = readOGR(flowlines)
+      }
+    
   files = dir(paste0(getwd(),"/NetCDFs/Current"))
   file.remove(list.files(paste0(getwd(),"/Images/Current"), pattern = ".png", full.names = TRUE))
   

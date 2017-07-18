@@ -149,18 +149,30 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
   
   regions.name = gsub(" ", "", regions.name)
   
-  if(start.date == end.date){end.date = NULL}
+  if(start.date == end.date){
+    end.date = NULL
+  }else{
+    end.date = paste0("_", end.date)}
+  
+  ####
+  
+  variables = strsplit(files[1],'.',fixed=TRUE)[[1]]
+ 
+  name = paste0(regions.name,"_", variables[3],"_",substr(variables[2],2,nchar(variables[2])), "_", start.date, end.date, "_discharge")
+  
+  ####
+  
   
   if(folder2 ==  'current'){
-    write.csv(nwm.flow, paste0(getwd(),"/Output/Current/",regions.name,"_",start.date,"_", end.date, ".csv"))
+    write.csv(nwm.flow, paste0(getwd(),"/Output/Current/", name, ".csv"))
   }else{
-    write.csv(nwm.flow, paste0(getwd(),"/Output/",regions.name,"_",start.date,"_", end.date, ".csv"))
+    write.csv(nwm.flow, paste0(getwd(),"/Output/", name, ".csv"))
   }
   
   if(folder2 ==  'current'){
-    return(paste0(getwd(),"/Output/Current/",regions.name,"_",start.date,"_", end.date, ".csv"))
+    return(paste0(getwd(),"/Output/Current/", name, ".csv"))
   }else{
-    return(paste0(getwd(),"/Output/",regions.name,"_",start.date,"_", end.date, ".csv"))
+    return(paste0(getwd(),"/Output/",name, ".csv"))
   }
     
   }

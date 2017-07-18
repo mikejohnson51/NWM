@@ -115,12 +115,6 @@ if(type == "hydrograph"){
             dev.off()
             
             
-            
-            
-            
-            
-            
-    
   } else if(type == "flow") { 
     
     if(length(dir(paste0(export_path,"/", type, "s"))) == 0) {
@@ -183,17 +177,39 @@ if(type == "hydrograph"){
     
     index = which(data[,1] == COMIDs)
     
-    plot(catchments, border = 'white', col= 'lightgrey', main = paste0("Flow Forecasts"), 
+    if(is.null(catchments)){
+      
+      plot(flowlines, col = 'grey50',lwd = ifelse(flowlines@data$streamorde >=3, (as.numeric(paste(flowlines@data$streamorde)))/4, 0),
+      
+      plot(flowlines, 
+           col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue'))
+           ,lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
+      
+      
+      plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMIDs), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
+      points(i-1,data[index,i], cex = 1, pch =16, col = 'red') 
+      
+    }else {
+    
+    
+    plot(catchments, border = 'black', col= 'grey80', main = paste0("Flow Forecasts"), 
          ylim = c(catchments@bbox[2,1], catchments@bbox[2,2]),
          xlim = c(catchments@bbox[1,1], catchments@bbox[1,2]))
                         
-    plot(flowlines,add = TRUE, col ="blue", lwd = (data[,i]/10))   
+      plot(flowlines, 
+           col = 'grey94',
+           lwd = ifelse(flowlines@data$StreamOrde >=3, (as.numeric(paste(flowlines@data$StreamOrde)))/4, 0), add=TRUE)
+      
+      plot(flowlines, 
+           col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue'))
+           ,lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
+      
     
     plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMIDs), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
     points(i-1,data[index,i], cex = 1, pch =16, col = 'red')  
+    }
     
     dev.off()
-  }
 
   }
 }
