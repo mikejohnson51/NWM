@@ -63,21 +63,25 @@ get_HUC6_data = function(HUC6 = "010100", need.shp = FALSE, need.hand.data = TRU
       if (need.hand.data == FALSE){catchment = NULL}
       if (need.shp == FALSE){shp = NULL} 
 
-
+  if( !is.null(hand)){
   for(i in 1:length(hand)){
     URL = paste0("http://141.142.170.172/nfiedata/HUC6/", hand[i])
     download.file(url = URL, destfile = paste0(getwd(),"/Geospatial/HAND/",substr(hand[i],8,nchar(hand[i]))))
-  }
+  }}
   
+  if( !is.null(catchment)){
   for(i in 1:length(catchment)){
     URL = paste0("http://141.142.170.172/nfiedata/HUC6/", catchment[i])
     download.file(url = URL, destfile = paste0(getwd(),"/Geospatial/Catchments/",substr(catchment[i],8,nchar(catchment[i]))))
-  }
+  }}
   
+  
+    if( !is.null(shp)){
   for(i in 1:length(shp)){
     URL = paste0("http://141.142.170.172/nfiedata/HUC6/", shp[i])
     download.file(url = URL, destfile = paste0(getwd(),"/Geospatial/Flowlines/",substr(shp[i],8,nchar(shp[i]))))
-  }
+    }}
+  
   
 }
 
