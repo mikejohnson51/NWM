@@ -27,7 +27,12 @@ living_flood_setup = function(flowlines_path, hand.raster.needed = TRUE){
   
   
   flow_lines.shp = readOGR(flowlines_path)
-  print("shapefile built correctly!")    
+  print("shapefile built correctly!") 
+  print("--------------")
+  print("--------------")
+  print("--------------")
+  print("--------------")
+  print("--------------")
   
   HUC_units6  = as.numeric(na.omit(unique(substr(flow_lines.shp$reachcode,1,6))))
   print(paste0(length(HUC_units6),' HUC units found!' ))
