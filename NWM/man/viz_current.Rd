@@ -5,7 +5,7 @@
 \title{Visualize Current Streamflow Forecasts}
 \usage{
 viz_current(catchment = NULL, flowlines = NULL, catchment_path = NULL,
-  flowline_path = NULL, COMID, region)
+  flowline_path = NULL, COMID = NULL, comid_path = NULL, region)
 }
 \arguments{
 \item{catchment_path}{path name to NHDPlusV2 catchments shapefile (.shp)}

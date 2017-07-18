@@ -4,16 +4,17 @@
 \alias{living_flood_data}
 \title{Getting Current Stage Values for Living Flood Workflow}
 \usage{
-living_flood_data(region.name, comid.path, rating_curve_path)
+living_flood_data(area_of_interest, comid_path = "Output/comids.csv",
+  rating_curve_path = "Output/rating_curves.csv", flowline_path)
 }
 \arguments{
-\item{region.name}{Region being modeled. Will be used to name output files}
-
-\item{rating_curve_path}{A path to a list of rating curves produced in \code{\link{setup_livingflood()}}.  Alternatives can be generated using
-\code{\link{get_rating_curves()}}}
+\item{area_of_interest}{Region being modeled. Will be used to name output files}
 
 \item{comid_path}{A path to a list of COMIDs produced in \code{\link{setup_livingflood()}}. Alternatives can be generated using
 \code{\link{get_COMIDs()}}}
+
+\item{rating_curve_path}{A path to a list of rating curves produced in \code{\link{setup_livingflood()}}.  Alternatives can be generated using
+\code{\link{get_rating_curves()}}}
 }
 \description{
 This script is part 2/2 of the living flood workflow. Once set up with \code{\link{setup_livingflood()}}

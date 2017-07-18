@@ -47,13 +47,16 @@
 
 #' @export
 
-  viz_current = function(catchment = NULL, flowlines = NULL, catchment_path = NULL, flowline_path = NULL, COMID, region){
+  viz_current = function(catchment = NULL, flowlines = NULL, catchment_path = NULL, flowline_path = NULL, COMID = NULL, comid_path = NULL, region){
+
+
     
     if(is.null(catchment)){
-      catchments = readOGR(catchment_path)
-    } else {
-      catchments = catchment
-    }
+      catchments = catchment_path}
+   if(is.null(catchment_path)){
+      catchment = NULL
+    }else{ catchment = readOGR(catchment_path)}
+    
     
     if(is.null(flowlines)){
       flowlines = readOGR(flowline_path)
@@ -61,7 +64,7 @@
       flowlines = flowlines
     }
     
-    
+  
   files = dir(paste0(getwd(),"/NetCDFs/Current"))
   file.remove(list.files(paste0(getwd(),"/Images/Current"), pattern = ".png", full.names = TRUE))
   
@@ -72,13 +75,30 @@
   subset = cbind(data[,2],data[,2:19])
   
   
-  
   for(i in 3:19){ 
     
     png(paste0(getwd(),"/Images/Current/timestep", sprintf("%03d",i-1), ".png"), width = 3000, height = 1500, units= 'px', res = 300)
   
-    par(mfrow= c(1,2)); 
+    par(mfrow= c(1,2))
     index = which(data[,1] == COMID)
+    
+    if(is.null(catchments)){
+      
+      plot(flowlines, col = 'grey50',lwd = ifelse(flowlines@data$streamorde >=3, (as.numeric(paste(flowlines@data$streamorde)))/4, 0),
+           xlab = paste0(paste0("Forcast Type: ", substrRight(substr(files[1], 1, 20),11)),
+                         paste0("\nGenerated On: ", Sys.Date()),
+                         paste0("\nTime of forecast: ", substrRight(substr(files[1], 1,7),2)),
+                         paste0("\nTime since forcast (hr): ", substrRight(substr(files[i-1], 1, 36), 3))))
+      
+      plot(flowlines, 
+           col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue'))
+           ,lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
+      
+      
+      plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMID), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
+      points(i-1,data[index,i], cex = 1, pch =16, col = 'red') 
+      
+    }else {
     
     plot(catchments, border = 'black', col= 'grey80', main = paste0("Short Range Forecasts For \n ", region), 
          xlab = paste0(paste0("Forcast Type: ", substrRight(substr(files[1], 1, 20),11)),
@@ -97,7 +117,9 @@
     
     
     plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMID), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
-    points(i-1,data[index,i], cex = 1, pch =16, col = 'red')  
+    points(i-1,data[index,i], cex = 1, pch =16, col = 'red') 
+    
+    }
     
     dev.off()
   }

@@ -41,8 +41,6 @@ get_server = function(start.date, end.date = NULL, forecast_type = "short_range"
 
 # starting function -------------------------------------------------------
 
-  start.date = "2016-10-10"; forecast_type = "analysis_assim"; end.date = "2016-10-14"; type = NULL; time= NULL; forecast_hour = NULL
-
   if(forecast_type != "analysis_assim" &  !is.null(end.date) ){
    print("End date is only applicable for forecast type = 'analysis_assim'. Please leave as NULL for other forecast types.")
     break}
