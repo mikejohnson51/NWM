@@ -49,6 +49,9 @@
 
   viz_current = function(catchment = NULL, flowlines = NULL, catchment_path = NULL, flowline_path = NULL, COMID = NULL, comid_path = NULL, region){
     
+    #setwd("/Users/mikejohnson/Desktop/Arizona/")
+    #catchment = NULL; flowlines = 'Geospatial/Flowlines/ForFred/AZ_Deaths.shp'; catchment_path = NULL; flowline_path = NULL; COMID = NULL; comid_path = NULL; region= "Test"
+    
     if(is.null(catchment)){
       catchments = catchment_path}
     
@@ -75,13 +78,17 @@
 
   subset = cbind(data[,2],data[,2:19])
   
+  if(is.null(COMID)){
+  index = which.max(data[,2:dim(data)[2]])
+  COMID = as.numeric(data[index,1])
+  }
   
   for(i in 3:19){ 
     
-    png(paste0(getwd(),"/Images/Current/timestep", sprintf("%03d",i-1), ".png"), width = 3000, height = 1500, units= 'px', res = 300)
+  png(paste0(getwd(),"/Images/Current/timestep", sprintf("%03d",i-1), ".png"), width = 3000, height = 1500, units= 'px', res = 300)
   
-    par(mfrow= c(1,2))
-    index = which(data[,1] == COMID)
+      par(mfrow= c(1,2))
+      index = which(data[,1] == COMID)
     
     if(is.null(catchments)){
       
@@ -97,9 +104,9 @@
       
       
       plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMID), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
-      points(i-1,data[index,i], cex = 1, pch =16, col = 'red') 
+        points(i-1,data[index,i], cex = 1, pch =16, col = 'red') 
       
-    }else {
+    }else{
     
     plot(catchments, border = 'black', col= 'grey80', main = paste0("Short Range Forecasts For \n ", region), 
          xlab = paste0(paste0("Forcast Type: ", substrRight(substr(files[1], 1, 20),11)),
@@ -107,21 +114,19 @@
                         paste0("\nTime of forecast: ", substrRight(substr(files[1], 1,7),2)),
                         paste0("\nTime since forcast (hr): ", substrRight(substr(files[i-1], 1, 36), 3)))) 
     
-    
-    plot(flowlines, 
-         col = 'grey94',
+    plot(flowlines, col = 'grey94',
          lwd = ifelse(flowlines@data$StreamOrde >=3, (as.numeric(paste(flowlines@data$StreamOrde)))/4, 0), add=TRUE)
-    
     plot(flowlines, 
-         col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue'))
-    ,lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
+         col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue')),
+         lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
     
     
     plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMID), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
-    points(i-1,data[index,i], cex = 1, pch =16, col = 'red') 
+      points(i-1,data[index,i], cex = 1, pch =16, col = 'red') 
     
     }
     
     dev.off()
   
-  }}
+   }
+}
