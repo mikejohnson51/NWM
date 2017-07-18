@@ -70,7 +70,7 @@ living_flood_setup = function(flowlines_path, hand.raster.needed = TRUE){
   print("--------------")
   
   get_rating_curves(HUC_units6, comids)
-  print(paste0("Rating Curves for " , length(comids), "  writen to rating_curves.csv in the /Output folder."))
+  print(paste0("Rating Curves for " , length(comids), "  COMIDs writen to rating_curves.csv in the /Output folder."))
   print("--------------")
   print("--------------")
   print("--------------")
