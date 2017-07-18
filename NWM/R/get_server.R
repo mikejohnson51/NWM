@@ -39,9 +39,6 @@
 get_server = function(start.date, end.date = NULL, forecast_type = "short_range", 
              type = NULL, time= NULL, forecast_hour = NULL){
   
-  end.date = NULL; forecast_type = "short_range"; 
-  type = NULL; time= NULL; forecast_hour = NULL;
-  start.date = "2017-07-15"; time = '16'
 
 # starting function -------------------------------------------------------
 
