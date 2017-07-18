@@ -72,6 +72,6 @@ living_flood_setup = function(flowlines_path, hand.raster.needed = TRUE){
   print("--------------")
   print("--------------")
   print("Success! All components collected successfully.")
-  print()
+
   
 }
