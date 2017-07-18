@@ -173,17 +173,19 @@ if(type == "hydrograph"){
     
     png(paste0(path111,"/timestep",sprintf("%03d",i),".png"), width = 3000, height = 1500, units= 'px', res = 300)
     
-    par(mfrow= c(1,2)); 
+    par(mfrow= c(1,2)) 
     
     index = which(data[,1] == COMIDs)
     
     if(is.null(catchments)){
       
-      plot(flowlines, col = 'grey50',lwd = ifelse(flowlines@data$streamorde >=3, (as.numeric(paste(flowlines@data$streamorde)))/4, 0),
+      plot(flowlines, 
+           col = 'grey50',lwd = ifelse(flowlines@data$streamorde >=3, 
+           (as.numeric(paste(flowlines@data$streamorde)))/4, 0)
       
       plot(flowlines, 
-           col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue'))
-           ,lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
+           col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue')),
+           lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
       
       
       plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMIDs), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
