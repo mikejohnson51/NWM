@@ -1,4 +1,4 @@
-#' Exporting Timeseries Data for NWM data for select COMIDs using the NWM package
+#' Exporting Timeseries CSV Files
 #' 
 #' This function subsets a folder of temporal .nc data to a spatial list of COMIDs and returns a .csv of time series by COMID.
 #' If the user wants all temporal slices only the first three parameters are needed. Otherwise start.date, start.time, end.date, 
