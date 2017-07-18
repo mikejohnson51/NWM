@@ -61,9 +61,9 @@ get_HUC6_data = function(HUC6 = "010100", need.shp = FALSE, need.hand.data = TRU
     download.file(url = URL, destfile = paste0(getwd(),"/Geospatial/HAND/",substr(hand[i],8,nchar(hand[i]))))
   }
   
-  for(i in 1:length(catchments)){
-    URL = paste0("http://141.142.170.172/nfiedata/HUC6/", catchments[i])
-    download.file(url = URL, destfile = paste0(getwd(),"/Geospatial/Catchments/",substr(catchments[i],8,nchar(catchments[i]))))
+  for(i in 1:length(catchment)){
+    URL = paste0("http://141.142.170.172/nfiedata/HUC6/", catchment[i])
+    download.file(url = URL, destfile = paste0(getwd(),"/Geospatial/Catchments/",substr(catchment[i],8,nchar(catchment[i]))))
   }
   
   for(i in 1:length(shp)){
