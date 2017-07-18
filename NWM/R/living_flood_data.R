@@ -19,7 +19,7 @@
 #' @export
 #' 
 
-living_flood_data = function(area_of_interest, comid_path = 'Output/comids.csv', rating_curve_path = "Output/rating_curves.csv", flowline_path){
+living_flood_data = function(area_of_interest, comid_path = 'Output/comids.csv', rating_curve_path = "Output/rating_curves.csv", flowlines_path){
 
   comids        = read.csv(comid_path)
     comids      = comids[,2]
@@ -82,6 +82,6 @@ living_flood_data = function(area_of_interest, comid_path = 'Output/comids.csv',
  index = which.max(discharge[,2:dim(discharge)[2]])
  COMID = as.numeric(discharge[index,1])
   
-  viz_current(region = area_of_interest, COMID = COMID, flowline_path = "/Users/mikejohnson/Desktop/Arizona/Geospatial/Flowlines/ForFred/AZ_Deaths.shp")
+  viz_current(region = area_of_interest, COMID = COMID, flowlines_path = flowlines_path)
  
 }
