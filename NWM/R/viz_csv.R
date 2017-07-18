@@ -73,21 +73,28 @@
 #' @export
 
 
-viz_csv = function(type, COMIDs, csv_path, catchment_path, flowlines_path, region){
+viz_csv = function(type, COMIDs = NULL, csv_path = NULL, catchment_path = NULL, flowlines_path = NULL, region){
   
-  catchments = readOGR(catchment_path)
+  if(is.null(catchment_path)){
+    catchments = NULL}else{
+  catchments = readOGR(catchment_path)}
+  
+  
+  
   flowlines = readOGR(flowlines_path)
 
   data = read.csv(csv_path, header = TRUE, sep =",")
 
-  data = as.matrix(data)
+  data = na.omit(as.matrix(data))
   
-  if(is.null(COMID)){
-    index = which.max(data[,2:dim(data)[2]])
+  subset = cbind(data[,2], data[,2:dim(data)[2]])
+  
+  if(is.null(COMIDs)){
+    index = which(data == max(data[,2:dim(data)[2]]), arr.ind = TRUE)[1]
     COMID = as.numeric(data[index,1])
   }
   
-  name = gsub(" ","",region)
+  name = gsub(" ","", region)
   
   export_path = paste0(getwd(),"/Images/", name)
   
@@ -175,18 +182,18 @@ if(type == "hydrograph"){
     
   }
   
-  for(i in 2:dim(data)[2]){ 
+  for(i in 3:dim(data)[2]){ 
     
     png(paste0(path111,"/timestep",sprintf("%03d",i),".png"), width = 3000, height = 1500, units= 'px', res = 300)
     
     par(mfrow= c(1,2)) 
     
-    index = which(data[,1] == COMIDs)
+    index = which(data[,1] == COMID)
     
     if(is.null(catchments)){
       
       plot(flowlines, 
-           col = 'grey50',lwd = ifelse(flowlines@data$streamorde >=3, 
+           col = 'grey50',lwd = ifelse(flowlines@data$streamorde >= 3, 
            (as.numeric(paste(flowlines@data$streamorde)))/4, 0))
       
       plot(flowlines, 
@@ -194,7 +201,7 @@ if(type == "hydrograph"){
            lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
       
       
-      plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMIDs), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
+      plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMID), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
       points(i-1,data[index,i], cex = 1, pch =16, col = 'red') 
       
     }else {
@@ -219,5 +226,6 @@ if(type == "hydrograph"){
     
     dev.off()
 
-  }}
+  }
+    }
 }
