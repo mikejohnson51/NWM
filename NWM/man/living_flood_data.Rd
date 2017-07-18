@@ -5,7 +5,7 @@
 \title{Getting Current Stage Values for Living Flood Workflow}
 \usage{
 living_flood_data(area_of_interest, comid_path = "Output/comids.csv",
-  rating_curve_path = "Output/rating_curves.csv", flowline_path)
+  rating_curve_path = "Output/rating_curves.csv", flowlines_path)
 }
 \arguments{
 \item{area_of_interest}{Region being modeled. Will be used to name output files}

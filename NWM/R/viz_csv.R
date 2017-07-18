@@ -213,5 +213,5 @@ if(type == "hydrograph"){
     
     dev.off()
 
-  }
+  }}
 }

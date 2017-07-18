@@ -2,7 +2,7 @@
 % Please edit documentation in R/build_csv.R
 \name{build_csv}
 \alias{build_csv}
-\title{Exporting Timeseries Data for NWM data for select COMIDs using the NWM package}
+\title{Exporting Timeseries CSV Files}
 \usage{
 build_csv(folder = "current", start.date = NULL, start.time = NULL,
   end.date = NULL, end.time = NULL, comids, regions.name = "OnionCreek")
