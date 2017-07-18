@@ -60,6 +60,6 @@ stage_data = matrix(0, nrow = length(comids_final), ncol = dim(discharge)[2])
       }
     }
   
-write.csv(stage_data, file = paste0(getwd(),"/Output/", region.name, "stage_data_cms.csv"))
+write.csv(stage_data, file = paste0(getwd(),"/Output/", regions.name, "stage_data_cms.csv"))
 
 }

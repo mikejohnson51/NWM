@@ -5,7 +5,7 @@
 #' run hourly constantly providing modeled stage heights and discharge values for all input COMIDs 
 #' 
 #' @param 
-#' region.name Region being modeled. Will be used to name output files 
+#' area_of_interest Region being modeled. Will be used to name output files 
 #' @param 
 #' comid_path A path to a list of COMIDs produced in \code{\link{setup_livingflood()}}. Alternatives can be generated using
 #' \code{\link{get_COMIDs()}}
@@ -19,26 +19,58 @@
 #' @export
 #' 
 
-living_flood_data = function(region.name, comid.path, rating_curve_path){
-    
-  region.name = "Austin"
-  comid_path  = "/Users/mikejohnson/Desktop/AustinExample/Output/comids.csv"
-  rating_curve_path = rating_curve_path
-  
-  
+living_flood_data = function(area_of_interest, comid_path = 'Output/comids.csv', rating_curve_path = "Output/rating_curves.csv"){
+
   comids        = read.csv(comid_path)
     comids      = comids[,2]
     
+    print('COMIDs read in successfully!')
+    print("----------------------------")
+    print("----------------------------")
+    print("----------------------------")
+    print("----------------------------")
+    print("----------------------------")
+    
   ratingCurve   = read.csv(rating_curve_path)
     ratingCurve = ratingCurve[,2:4]
+    
+    print('Rating Curves read in successfully!')
+    print("----------------------------")
+    print("----------------------------")
+    print("----------------------------")
+    print("----------------------------")
+    print("----------------------------")
   
   get_current()
+  
+  print('Most Current SR forecast read in successfully!')
+  print("----------------------------")
+  print("----------------------------")
+  print("----------------------------")
+  print("----------------------------")
+  print("----------------------------")
 
-  Q = build_csv(folder = 'current', comids = comids, regions.name = region.name)
+  Q = build_csv(folder = 'current', comids = comids, regions.name = area_of_interest)
 
+  print('Discharge Data built successfully!')
+  print("----------------------------")
+  print("----------------------------")
+  print("----------------------------")
+  print("----------------------------")
+  print("----------------------------")
+  
   get_stage(discharge_csv_path = Q,
           rating_curve_path  = rating_curve_path,
           units_discharge = "cfs",
-          regions.name    = regions.name
-            )
+          regions.name    = area_of_interest)
+  
+  print('Stage Data built successfully!')
+  print("----------------------------")
+  print("----------------------------")
+  print("----------------------------")
+  print("----------------------------")
+  print("----------------------------")
+  
+  print('You now have a .csv for discharge and stage for this forecast hour. Move into ArcMap to map!')
+
 }
