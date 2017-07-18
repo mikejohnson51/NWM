@@ -81,6 +81,12 @@ viz_csv = function(type, COMIDs, csv_path, catchment_path, flowlines_path, regio
   data = read.csv(csv_path, header = TRUE, sep =",")
 
   data = as.matrix(data)
+  
+  if(is.null(COMID)){
+    index = which.max(data[,2:dim(data)[2]])
+    COMID = as.numeric(data[index,1])
+  }
+  
   name = gsub(" ","",region)
   
   export_path = paste0(getwd(),"/Images/", name)
