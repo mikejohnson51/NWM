@@ -29,10 +29,6 @@
 
 get_HUC6_data = function(HUC6 = "010100", need.shp = FALSE, need.hand.data = TRUE){
   
-  HUC6 = HUC_units6
-  need.shp = FALSE
-  need.hand.data = TRUE
-  
   hand = list() 
   catchment = list()
   shp = list()
