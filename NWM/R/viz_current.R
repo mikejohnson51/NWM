@@ -123,7 +123,6 @@
     
     plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMID), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
       points(i-1,data[index,i], cex = 1, pch =16, col = 'red') 
-    
     }
     
     dev.off()
