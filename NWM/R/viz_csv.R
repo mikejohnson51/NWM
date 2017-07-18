@@ -79,8 +79,6 @@ viz_csv = function(type, COMIDs = NULL, csv_path = NULL, catchment_path = NULL, 
     catchments = NULL}else{
   catchments = readOGR(catchment_path)}
   
-  
-  
   flowlines = readOGR(flowlines_path)
 
   data = read.csv(csv_path, header = TRUE, sep =",")
@@ -92,6 +90,8 @@ viz_csv = function(type, COMIDs = NULL, csv_path = NULL, catchment_path = NULL, 
   if(is.null(COMIDs)){
     index = which(data == max(data[,2:dim(data)[2]]), arr.ind = TRUE)[1]
     COMID = as.numeric(data[index,1])
+  }else{
+    COMID = COMIDs
   }
   
   name = gsub(" ","", region)
@@ -190,15 +190,25 @@ if(type == "hydrograph"){
     
     index = which(data[,1] == COMID)
     
+    normals = cbind(as.numeric(levels(flowlines@data$comid)), flowlines@data$q0001e)
+    
+    normals = subset(normals, normals[,1] %in% data[,1])
+    
+    cols = colorRampPalette(c("grey44", "grey94"))
+    
     if(is.null(catchments)){
       
       plot(flowlines, 
-           col = 'grey50',lwd = ifelse(flowlines@data$streamorde >= 3, 
-           (as.numeric(paste(flowlines@data$streamorde)))/4, 0))
+           col = cols(7)[flowlines@data$streamorde],lwd = ifelse(flowlines@data$streamorde >= 3, 
+           (as.numeric(paste(flowlines@data$streamorde)))/4, .05))
       
       plot(flowlines, 
-           col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue')),
-           lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
+           lwd = .02*(subset[,i]/(normals[,2]+1)),
+           col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'lightsalmon3', 'dodgerblue3')), add=TRUE)
+           
+           
+           #col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue')),
+           #lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
       
       
       plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMID), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
@@ -229,3 +239,4 @@ if(type == "hydrograph"){
   }
     }
 }
+
