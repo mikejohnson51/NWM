@@ -257,15 +257,10 @@ if(type == "hydrograph"){
            ,lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
       
     }
-    
-    dev.off()
-    
-  } 
-    
-    dev.off()
+
   
     
-  } else if(type == "combo") {
+  } else if (type == "combo") {
   
   if(length(dir(paste0(export_path,"/", type, "s"))) == 0) {
     number = 1

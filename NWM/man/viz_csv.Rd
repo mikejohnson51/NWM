@@ -4,8 +4,9 @@
 \alias{viz_csv}
 \title{Visualize Streamflow Data}
 \usage{
-viz_csv(type, COMIDs = NULL, csv_path = NULL, catchment_path = NULL,
-  flowlines_path = NULL, region)
+viz_csv(type = "combo", COMIDs = NULL, csv_path = NULL,
+  catchment_path = NULL, flowlines_path = NULL,
+  region = "Area of Interest")
 }
 \arguments{
 \item{type}{What type of images should be returned? Options are: \cr \cr
