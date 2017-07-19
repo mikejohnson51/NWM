@@ -105,7 +105,7 @@
                          paste0("\nTime since forcast (hr): ", substrRight(substr(files[i-1], 1, 36), 3))))
       
       plot(flowlines, 
-           lwd = 1, #.003*(subset[,i]/(normals[,2]+1)),
+           lwd = .02*(subset[,i]/(normals[,2]+1)),
            col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'lightsalmon3', 'dodgerblue3')), add=TRUE)
       
       # plot(flowlines, col = 'grey50',lwd = ifelse(flowlines@data$streamorde >=3, (as.numeric(paste(flowlines@data$streamorde)))/4, 0),
