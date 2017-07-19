@@ -75,6 +75,8 @@
   data = read.csv(paste0(getwd(),"/Output/Current/", dir(paste0(getwd(),"/Output/Current"))))
   data = as.matrix(data)
   data = na.omit(data)
+  normals = cbind(as.numeric(levels(flowlines@data$comid)), flowlines@data$q0001e)
+  normals = subset(normals, normals[,1] %in% data[,1])
 
   subset = cbind(data[,2],data[,2:19])
   
@@ -83,9 +85,6 @@
   COMID = as.numeric(data[index,1])
   }
   
-  normals = cbind(as.numeric(levels(flowlines@data$comid)), flowlines@data$q0001e)
-  
-  normals = subset(normals, normals[,1] %in% data[,1])
   
   for(i in 3:dim(data)[2]){
     
@@ -106,7 +105,7 @@
                          paste0("\nTime since forcast (hr): ", substrRight(substr(files[i-1], 1, 36), 3))))
       
       plot(flowlines, 
-           lwd = .02*(subset[,i]/(normals[,2]+1)),
+           lwd = 1, #.003*(subset[,i]/(normals[,2]+1)),
            col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'lightsalmon3', 'dodgerblue3')), add=TRUE)
       
       # plot(flowlines, col = 'grey50',lwd = ifelse(flowlines@data$streamorde >=3, (as.numeric(paste(flowlines@data$streamorde)))/4, 0),
