@@ -50,7 +50,7 @@
   viz_current = function(catchment = NULL, flowlines = NULL, catchment_path = NULL, flowline_path = NULL, COMID = NULL, comid_path = NULL, region){
     
     #setwd("/Users/mikejohnson/Desktop/Austin/")
-    #catchment = NULL; flowlines = 'Geospatial/Flowlines/AZ_Deaths.shp'; catchment_path = NULL; flowline_path = NULL; COMID = NULL; comid_path = NULL; region= "Test"
+    #catchment = NULL; flowline_path = 'Geospatial/Flowlines/OssomFlowLines/AuastinFlowlines.shp'; catchment_path = NULL; flowlines = NULL; COMID = NULL; comid_path = NULL; region= "Test"
     
     if(is.null(catchment)){
       catchments = catchment_path}
@@ -58,7 +58,6 @@
     if(is.null(catchment_path)){
       catchment = NULL
     }else{catchment = readOGR(catchment_path)}
-    
     
     if(is.null(flowlines)){
       flowlines = flowline_path}
@@ -77,8 +76,11 @@
   data = na.omit(data)
   normals = cbind(as.numeric(levels(flowlines@data$comid)), flowlines@data$q0001e)
   normals = subset(normals, normals[,1] %in% data[,1])
+  
+  data1 = data[order(data[,1]),]
+  normals1 = normals[order(normals[,1]),]
 
-  subset = cbind(data[,2],data[,2:19])
+  subset = cbind(data1[,2],data1[,2:19])
   
   if(is.null(COMID)){
   index = which.max(data[,2:dim(data)[2]])
@@ -86,16 +88,15 @@
   }
   
   
-  for(i in 3:dim(data)[2]){
+  for(i in 3:dim(subset)[2]){
     
-  png(paste0(getwd(),"/Images/Current/timestep", sprintf("%03d",i-1), ".png"), width = 3000, height = 1500, units= 'px', res = 300)
+    png(paste0(getwd(),"/Images/Current/timestep", sprintf("%03d",i-1), ".png"), width = 3000, height = 1500, units= 'px', res = 300)
   
       par(mfrow= c(1,2))
-      index = which(data[,1] == COMID)
+        index = which(data[,1] == COMID)
     
-    if(is.null(catchments)){
+      if(is.null(catchments)){
       
-     
       plot(flowlines, 
           col = colorRampPalette(c("grey44", "grey94"))(7)[flowlines@data$streamorde],lwd = ifelse(flowlines@data$streamorde >= 3, 
                         (as.numeric(paste(flowlines@data$streamorde)))/4, .05),
@@ -105,7 +106,7 @@
                          paste0("\nTime since forcast (hr): ", substrRight(substr(files[i-1], 1, 36), 3))))
       
       plot(flowlines, 
-           lwd = .02*(subset[,i]/(normals[,2]+1)),
+           lwd = .002*(subset[,i]/(normals1[,2]+ 1)),
            col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'lightsalmon3', 'dodgerblue3')), add=TRUE)
       
       # plot(flowlines, col = 'grey50',lwd = ifelse(flowlines@data$streamorde >=3, (as.numeric(paste(flowlines@data$streamorde)))/4, 0),
