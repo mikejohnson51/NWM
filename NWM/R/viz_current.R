@@ -49,8 +49,8 @@
 
   viz_current = function(catchment = NULL, flowlines = NULL, catchment_path = NULL, flowline_path = NULL, COMID = NULL, comid_path = NULL, region){
     
-    #setwd("/Users/mikejohnson/Desktop/Arizona/")
-    #catchment = NULL; flowlines = 'Geospatial/Flowlines/ForFred/AZ_Deaths.shp'; catchment_path = NULL; flowline_path = NULL; COMID = NULL; comid_path = NULL; region= "Test"
+    setwd("/Users/mikejohnson/Desktop/Austin/")
+    catchment = NULL; flowlines = 'Geospatial/Flowlines/AZ_Deaths.shp'; catchment_path = NULL; flowline_path = NULL; COMID = NULL; comid_path = NULL; region= "Test"
     
     if(is.null(catchment)){
       catchments = catchment_path}
@@ -83,22 +83,22 @@
   COMID = as.numeric(data[index,1])
   }
   
-  for(i in 3:19){ 
+  normals = cbind(as.numeric(levels(flowlines@data$comid)), flowlines@data$q0001e)
+  
+  normals = subset(normals, normals[,1] %in% data[,1])
+  
+  for(i in 3:dim(data)[2]){
     
   png(paste0(getwd(),"/Images/Current/timestep", sprintf("%03d",i-1), ".png"), width = 3000, height = 1500, units= 'px', res = 300)
   
       par(mfrow= c(1,2))
       index = which(data[,1] == COMID)
-      normals = cbind(as.numeric(levels(flowlines@data$comid)), flowlines@data$q0001e)
-      
-      normals = subset(normals, normals[,1] %in% data[,1])
-      
-      cols = colorRampPalette(c("grey44", "grey94"))
     
     if(is.null(catchments)){
       
+     
       plot(flowlines, 
-           col = cols(7)[flowlines@data$streamorde],lwd = ifelse(flowlines@data$streamorde >= 3, 
+          col = colorRampPalette(c("grey44", "grey94"))(7)[flowlines@data$streamorde],lwd = ifelse(flowlines@data$streamorde >= 3, 
                         (as.numeric(paste(flowlines@data$streamorde)))/4, .05),
                         xlab = paste0(paste0("Forcast Type: ", substrRight(substr(files[1], 1, 20),11)),
                          paste0("\nGenerated On: ", Sys.Date()),
@@ -109,15 +109,15 @@
            lwd = .02*(subset[,i]/(normals[,2]+1)),
            col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'lightsalmon3', 'dodgerblue3')), add=TRUE)
       
-      #plot(flowlines, col = 'grey50',lwd = ifelse(flowlines@data$streamorde >=3, (as.numeric(paste(flowlines@data$streamorde)))/4, 0),
-       #    xlab = paste0(paste0("Forcast Type: ", substrRight(substr(files[1], 1, 20),11)),
-        #                 paste0("\nGenerated On: ", Sys.Date()),
-         #                paste0("\nTime of forecast: ", substrRight(substr(files[1], 1,7),2)),
-        #              paste0("\nTime since forcast (hr): ", substrRight(substr(files[i-1], 1, 36), 3))))
+      # plot(flowlines, col = 'grey50',lwd = ifelse(flowlines@data$streamorde >=3, (as.numeric(paste(flowlines@data$streamorde)))/4, 0),
+      #    xlab = paste0(paste0("Forcast Type: ", substrRight(substr(files[1], 1, 20),11)),
+      #                 paste0("\nGenerated On: ", Sys.Date()),
+      #                paste0("\nTime of forecast: ", substrRight(substr(files[1], 1,7),2)),
+      #              paste0("\nTime since forcast (hr): ", substrRight(substr(files[i-1], 1, 36), 3))))
       
-      #plot(flowlines, 
-       #    col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue'))
-        #   ,lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
+      # plot(flowlines, 
+      #    col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue')),
+      #    lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
       
       
       plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMID), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
