@@ -82,7 +82,7 @@ living_flood_data = function(area_of_interest, comid_path = 'Output/comids.csv',
  index = which.max(discharge[,2:dim(discharge)[2]])
  COMID = as.numeric(discharge[index,1])
   
-  viz_csv(type = 'combo', region = area_of_interest)
+ viz_csv(type = 'combo', region = area_of_interest)
  
  #viz_current(region = area_of_interest, COMID = COMID, flowline_path = flowlines_path)
  
