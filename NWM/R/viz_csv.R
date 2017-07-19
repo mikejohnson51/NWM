@@ -73,32 +73,98 @@
 #' @export
 
 
-viz_csv = function(type, COMIDs = NULL, csv_path = NULL, catchment_path = NULL, flowlines_path = NULL, region){
+viz_csv = function(type = 'combo', COMIDs = NULL, csv_path = NULL, catchment_path = NULL, flowlines_path = NULL, region = 'Area of Interest'){
   
-  if(is.null(catchment_path)){
-    catchments = NULL}else{
-  catchments = readOGR(catchment_path)}
+  type = 'combo'; COMIDs = NULL; csv_path = NULL; catchment_path = NULL; flowlines_path = NULL; region = 'Area of Interest'
   
-  flowlines = readOGR(flowlines_path)
+  #Ensure that flowlines are found
+  
+  if(is.null(flowlines_path)){
+    print('A path to flowlines must be entered!')
+    break
+  }else{
+    flowlines = readOGR(flowlines_path)
+      
+      print(paste0(length(flowlines), " flowlines found."))
+        print       ("=================================")
+        print       ("=================================")
+        print       ("=================================")
+        print       ("=================================")
+        print       ("=================================")
+  }
+  
+  #If path is NULL the default is the CSV in the current folder
+  
+        if(is.null(csv_path)){
+          csv_path = paste0(getwd(),"/Output/Current/", dir(paste0(getwd(),"/Output/Current")))
+          }
+        
+            print(paste0('Using the csv found at ', csv_path))
+              print       ("=================================")
+              print       ("=================================")
+              print       ("=================================")
+              print       ("=================================")
+              print       ("=================================")
+            
+            data = read.csv(csv_path, header = TRUE, sep =",")
+            data = as.matrix(data)
+            data = na.omit(as.matrix(data))
+            data = data[order(data[,1]),]
+            
+            subset = cbind(data[,2], data[,2:dim(data)[2]])
+        
+            normals = cbind(as.numeric(levels(flowlines@data$comid)), flowlines@data$q0001e)
+            normals = subset(normals, normals[,1] %in% data[,1])
+            normals = normals[order(normals[,1]),]
+            
+            print("Data generated!")
+              print       ("=================================")
+              print       ("=================================")
+              print       ("=================================")
+              print       ("=================================")
+              print       ("=================================")
+            
+  #If the catchment path is left as NULL then no catchment will be used in the visuals
+  
+        if(is.null(catchment_path)){
+          catchments = NULL
+            print(paste0('No catchment will be used'))
+              print       ("=================================")
+              print       ("=================================")
+              print       ("=================================")
+              print       ("=================================")
+              print       ("=================================")
+        }else{
+          catchments = readOGR(catchment_path)
+            print("Catchment Found!")
+              print       ("=================================")
+              print       ("=================================")
+              print       ("=================================")
+              print       ("=================================")
+              print       ("=================================")
+        }
+                  
+                  
+  #Determine COMIDS to be used in visualizations 
 
-  data = read.csv(csv_path, header = TRUE, sep =",")
-
-  data = na.omit(as.matrix(data))
-  
-  subset = cbind(data[,2], data[,2:dim(data)[2]])
-  
   if(is.null(COMIDs)){
-    index = which(data == max(data[,2:dim(data)[2]]), arr.ind = TRUE)[1]
+    index = which(rowSums(data[,2:dim(data)[2]]) ==
+                          max(rowSums(data[,2:dim(data)[2]])))
+    
     COMID = as.numeric(data[index,1])
+    
+    print(paste0("No COMID of interest entered. ", COMID, " will be used."))
+      print       ("=================================")
+      print       ("=================================")
+      print       ("=================================")
+      print       ("=================================")
+      print       ("=================================")
   }else{
     COMID = COMIDs
   }
   
   name = gsub(" ","", region)
-  
   export_path = paste0(getwd(),"/Images/", name)
-  
-  
   dir.create(export_path)
   
 if(type == "hydrograph"){
@@ -144,27 +210,60 @@ if(type == "hydrograph"){
       
     }
     
-   
     
-    for(i in 2:dim(data)[2]){ 
-    
-    png(paste0(path111,"/timestep",sprintf("%03d",i),".png"), 
-        width = 3000, height = 1500, units= 'px', res = 300)
-    
-    plot(catchments, border = 'white', col= 'lightgrey', main = paste0("Flow Forecasts"), 
-         ylim = c(catchments@bbox[2,1], catchments@bbox[2,2]),
-         xlim = c(catchments@bbox[1,1], catchments@bbox[1,2]))
-    plot(flowlines, col = 'blue', lwd = (data[,i]/10), add = TRUE)
-    
+    if(is.null(catchments)){
+      
+      plot(flowlines, 
+           col = colorRampPalette(c("grey44", "grey86"))(5)[flowlines@data$streamorde],lwd = ifelse(flowlines@data$streamorde >= 3, 
+           (as.numeric(paste(flowlines@data$streamorde)))/4, .05), 
+           xlab = paste0(paste0("Timestep ", sprintf("%03d",i-1)),
+                         paste0("\nGenerated On: ", Sys.time(), " ", Sys.timezone())),
+           main = paste0('Forecasts for ', region)
+      )
+      
+      comid_seg = flowlines[flowlines@data$comid == COMID,]
+      
+      coord = matrix(c(comid_seg@bbox[1,1],comid_seg@bbox[2,2],
+                       comid_seg@bbox[1,2],comid_seg@bbox[2,2],
+                       comid_seg@bbox[1,2],comid_seg@bbox[2,1],
+                       comid_seg@bbox[1,1],comid_seg@bbox[2,1],
+                       comid_seg@bbox[1,1],comid_seg@bbox[2,2]),
+                     ncol = 2, byrow = TRUE)
+      
+      P1 = Polygon(coord)
+      Ps1 = SpatialPolygons(list(Polygons(list(P1), ID = "a")))
+      plot(Ps1, add = TRUE, border = 'red', lwd = 1)
+      
+      plot(flowlines[flowlines@data$comid == COMID,], lwd = (subset[index,i]/normals[index,2]), col = "red", add = TRUE)
+      
+      plot(flowlines, 
+           lwd = .5*scale((subset[,i]/(normals[,2])), center = FALSE),
+           col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', 
+                        ifelse((subset[,i]-subset[,i-1]) < 0,'lightsalmon3', 'dodgerblue3')), add=TRUE)
+      
+    } else {
+      
+      
+      plot(catchments, border = 'black', col= 'grey80', main = paste0("Flow Forecasts"), 
+           ylim = c(catchments@bbox[2,1], catchments@bbox[2,2]),
+           xlim = c(catchments@bbox[1,1], catchments@bbox[1,2]))
+      
+      plot(flowlines, 
+           col = 'grey94',
+           lwd = ifelse(flowlines@data$StreamOrde >=3, (as.numeric(paste(flowlines@data$StreamOrde)))/4, 0), add=TRUE)
+      
+      plot(flowlines, 
+           col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue'))
+           ,lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
+      
+    }
     
     dev.off()
     
-    } 
+  } 
     
     dev.off()
-    
-    
-    
+  
     
   } else if(type == "combo") {
   
@@ -184,37 +283,52 @@ if(type == "hydrograph"){
   
   for(i in 3:dim(data)[2]){ 
     
-    png(paste0(path111,"/timestep",sprintf("%03d",i),".png"), width = 3000, height = 1500, units= 'px', res = 300)
+    png(paste0(path111,"/timestep",sprintf("%03d",i-1),".png"), width = 3000, height = 1500, units= 'px', res = 300)
     
     par(mfrow= c(1,2)) 
     
     index = which(data[,1] == COMID)
-    
-    normals = cbind(as.numeric(levels(flowlines@data$comid)), flowlines@data$q0001e)
-    
-    normals = subset(normals, normals[,1] %in% data[,1])
-    
-    cols = colorRampPalette(c("grey44", "grey94"))
-    
+  
     if(is.null(catchments)){
       
       plot(flowlines, 
-           col = cols(7)[flowlines@data$streamorde],lwd = ifelse(flowlines@data$streamorde >= 3, 
-           (as.numeric(paste(flowlines@data$streamorde)))/4, .05))
+           col = colorRampPalette(c("grey44", "grey86"))(5)[flowlines@data$streamorde],lwd = ifelse(flowlines@data$streamorde >= 3, 
+           (as.numeric(paste(flowlines@data$streamorde)))/4, .05), 
+           xlab = paste0(paste0("Timestep ", sprintf("%03d",i-1)),
+                  paste0("\nGenerated On: ", Sys.time(), " ", Sys.timezone())),
+                  main = paste0('Forecasts for ', region)
+           )
+      
+      comid_seg = flowlines[flowlines@data$comid == COMID,]
+      
+      coord = matrix(c(comid_seg@bbox[1,1],comid_seg@bbox[2,2],
+                       comid_seg@bbox[1,2],comid_seg@bbox[2,2],
+                       comid_seg@bbox[1,2],comid_seg@bbox[2,1],
+                       comid_seg@bbox[1,1],comid_seg@bbox[2,1],
+                       comid_seg@bbox[1,1],comid_seg@bbox[2,2]),
+                       ncol = 2, byrow = TRUE)
+      
+      P1 = Polygon(coord)
+      Ps1 = SpatialPolygons(list(Polygons(list(P1), ID = "a")))
+      plot(Ps1, add = TRUE, border = 'red', lwd = 1)
+      
+      plot(flowlines[flowlines@data$comid == COMID,], lwd = (subset[index,i]/normals[index,2]), col = "red", add = TRUE)
       
       plot(flowlines, 
-           lwd = .02*(subset[,i]/(normals[,2]+1)),
-           col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'lightsalmon3', 'dodgerblue3')), add=TRUE)
+           lwd = .5*scale((subset[,i]/(normals[,2])), center = FALSE),
+           col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', 
+                        ifelse((subset[,i]-subset[,i-1]) < 0,'lightsalmon3', 'dodgerblue3')), add=TRUE)
            
            
            #col = ifelse((subset[,i]-subset[,i-1]) == 0,'darkgrey', ifelse((subset[,i]-subset[,i-1]) < 0,'red', 'blue')),
            #lwd = .2*abs(scale((subset[,i]-subset[,i-1]+2), center = FALSE)), add = TRUE)
       
       
-      plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMID), ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
-      points(i-1,data[index,i], cex = 1, pch =16, col = 'red') 
+      plot(data[index,2:dim(data)[2]], type = "l", main = paste0("Streamflow at ", COMID), 
+           ylab = "Streamflow (cfs)", xlab= 'Time since forecast')
+      points(i-1,data[index,i], cex = 1, pch =19, col = 'red') 
       
-    }else {
+    } else {
     
     
     plot(catchments, border = 'black', col= 'grey80', main = paste0("Flow Forecasts"), 

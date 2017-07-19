@@ -71,11 +71,11 @@
   files = dir(paste0(getwd(),"/NetCDFs/Current"))
   file.remove(list.files(paste0(getwd(),"/Images/Current"), pattern = ".png", full.names = TRUE))
   
-  data = read.csv(paste0(getwd(),"/Output/Current/", dir(paste0(getwd(),"/Output/Current"))))
-  data = as.matrix(data)
-  data = na.omit(data)
-  normals = cbind(as.numeric(levels(flowlines@data$comid)), flowlines@data$q0001e)
-  normals = subset(normals, normals[,1] %in% data[,1])
+      data = read.csv(paste0(getwd(),"/Output/Current/", dir(paste0(getwd(),"/Output/Current"))))
+      data = as.matrix(data)
+      data = na.omit(data)
+      normals = cbind(as.numeric(levels(flowlines@data$comid)), flowlines@data$q0001e)
+      normals = subset(normals, normals[,1] %in% data[,1])
   
   data1 = data[order(data[,1]),]
   normals1 = normals[order(normals[,1]),]
@@ -89,6 +89,8 @@
   
   
   for(i in 3:dim(subset)[2]){
+     
+    print(paste0('Printing Image for timestep ', sprintf("%03d",i-1)))
     
     png(paste0(getwd(),"/Images/Current/timestep", sprintf("%03d",i-1), ".png"), width = 3000, height = 1500, units= 'px', res = 300)
   
