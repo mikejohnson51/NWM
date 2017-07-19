@@ -49,8 +49,8 @@
 
   viz_current = function(catchment = NULL, flowlines = NULL, catchment_path = NULL, flowline_path = NULL, COMID = NULL, comid_path = NULL, region){
     
-    setwd("/Users/mikejohnson/Desktop/Austin/")
-    catchment = NULL; flowlines = 'Geospatial/Flowlines/AZ_Deaths.shp'; catchment_path = NULL; flowline_path = NULL; COMID = NULL; comid_path = NULL; region= "Test"
+    #setwd("/Users/mikejohnson/Desktop/Austin/")
+    #catchment = NULL; flowlines = 'Geospatial/Flowlines/AZ_Deaths.shp'; catchment_path = NULL; flowline_path = NULL; COMID = NULL; comid_path = NULL; region= "Test"
     
     if(is.null(catchment)){
       catchments = catchment_path}
