@@ -2,13 +2,10 @@
 #====================================================== (Arizona Test Case) ===================================================#
 
                       library(devtools); install_git("https://github.com/mikejohnson51/nwm1", "NWM"); library(NWM)         
-
                       
                                             setwd('/Users/mikejohnson/Desktop/Austin/')
-
                                             
                                                           build_files()
-
                                                           
 #=============================================== (Arizona flood ran in 7.5 min) ===============================================#
 

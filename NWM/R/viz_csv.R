@@ -75,7 +75,7 @@
 
 viz_csv = function(type = 'combo', COMIDs = NULL, csv_path = NULL, catchment_path = NULL, flowlines_path = NULL, region = 'Area of Interest'){
   
-  type = 'combo'; COMIDs = NULL; csv_path = NULL; catchment_path = NULL; flowlines_path = NULL; region = 'Area of Interest'
+  #type = 'combo'; COMIDs = NULL; csv_path = NULL; catchment_path = NULL; flowlines_path = NULL; region = 'Area of Interest'
   
   #Ensure that flowlines are found
   
