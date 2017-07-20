@@ -1,0 +1,658 @@
+Identification_Information:
+  Citation:
+    Citation_Information:
+      Originator: U.S. Geological Survey
+      Publication_Date: 2000
+      Title: Cities and Towns of the United States
+      Publication_Information:
+        Publication_Place: Reston, Virginia
+        Publisher: U.S. Geological Survey
+
+  Description:
+    Abstract:
+      This data set includes cities in the United States. These 
+      cities were collected from the 1970 National Atlas of the 
+      United States.  Where applicable, Bureau of Census Codes for 
+      Named Populated Places were associated with each name to
+      allow additional information to be attached. The Geographic
+      Names Information System (GNIS) was also used as a source
+      for additional information.  This is a revised version of
+      the July 1998 data set. 
+
+    Purpose:
+      These data are intended for geographic display and
+      analysis at the national level, and for large regional
+      areas.  The data should be displayed and analyzed at scales
+      appropriate for 1:2,000,000-scale data.  No responsibility
+      is assumed by the U.S. Geological Survey in the use of
+      these data. 
+
+  Time_Period_of_Content:
+    Time_Period_Information:
+      Range_of_Dates/Times:
+        Beginning_Date: 1972
+        Ending_Date: 1994
+    Currentness_Reference: publication date
+
+  Status:
+    Progress: Complete
+    Maintenance_and_Update_Frequency: Irregular
+
+  Spatial_Domain:
+    Bounding_Coordinates:
+      West_Bounding_Coordinate: 172.0
+      East_Bounding_Coordinate: -66.0
+      North_Bounding_Coordinate: 72.0
+      South_Bounding_Coordinate: 18.0
+
+  Keywords:
+    Theme:
+      Theme_Keyword_Thesaurus: None
+      Theme_Keyword: cities
+      Theme_Keyword: towns
+      Theme_Keyword: populated places
+    Place:
+      Place_Keyword_Thesaurus:
+        U.S. Department of Commerce, 1995, Countries,
+        Dependencies, Areas of Special Sovereignty, and Their 
+        Principal Administrative Divisions (Federal Information 
+        Processing Standard (FIPS) 10-4): Washington, D.C., 
+        National Institute of Standards and Technology.
+      Place_Keyword: United States
+    Place:
+      Place_Keyword_Thesaurus:  
+        U.S. Department of Commerce, 1987, Codes for the         
+        Identification of the States, the District of Columbia
+        and the Outlying Areas of The United States, and
+        Associated Areas (Federal Information Processing Standard
+        5-2):  Washington, D.C., National Institute of Standards
+        and Technology.
+      Place_Keyword: USA
+      Place_Keyword: Alabama
+      Place_Keyword: Alaska
+      Place_Keyword: Arizona
+      Place_Keyword: Arkansas
+      Place_Keyword: California
+      Place_Keyword: Colorado
+      Place_Keyword: Connecticut
+      Place_Keyword: Delaware
+      Place_Keyword: District of Columbia
+      Place_Keyword: Florida
+      Place_Keyword: Georgia
+      Place_Keyword: Hawaii
+      Place_Keyword: Idaho
+      Place_Keyword: Illinois
+      Place_Keyword: Indiana
+      Place_Keyword: Iowa
+      Place_Keyword: Kansas
+      Place_Keyword: Kentucky
+      Place_Keyword: Louisiana
+      Place_Keyword: Maine
+      Place_Keyword: Maryland
+      Place_Keyword: Massachusetts
+      Place_Keyword: Michigan
+      Place_Keyword: Minnesota
+      Place_Keyword: Mississippi 
+      Place_Keyword: Missouri
+      Place_Keyword: Montana
+      Place_Keyword: Nebraska
+      Place_Keyword: Nevada
+      Place_Keyword: New Hampshire
+      Place_Keyword: New Jersey
+      Place_Keyword: New Mexico
+      Place_Keyword: New York
+      Place_Keyword: North Carolina
+      Place_Keyword: North Dakota
+      Place_Keyword: Ohio
+      Place_Keyword: Oklahoma
+      Place_Keyword: Oregon
+      Place_Keyword: Pennsylvania
+      Place_Keyword: Rhode Island
+      Place_Keyword: South Carolina
+      Place_Keyword: South Dakota
+      Place_Keyword: Tennessee
+      Place_Keyword: Texas
+      Place_Keyword: Utah
+      Place_Keyword: Vermont
+      Place_Keyword: Virginia
+      Place_Keyword: Washington
+      Place_Keyword: West Virginia
+      Place_Keyword: Wisconsin
+      Place_Keyword: Wyoming
+
+  Access_Constraints: None
+
+  Use_Constraints:
+    None.  Acknowledgment of the National Atlas of the United 
+    States of America would be appreciated in products derived 
+    from these data.  
+
+  Point_of_Contact:
+    Contact_Information:
+      Contact_Person_Primary:
+        Contact_Person: Steve Kambly
+        Contact_Organization: U.S. Geological Survey
+      Contact_Address:
+        Address_Type: mailing address
+        Address: 561 National Center
+        City: Reston
+        State_or_Province: VA
+        Postal_Code: 20192
+      Contact_Voice_Telephone: 703-648-5094
+      Contact_Electronic_Mail_Address: skambly@usgs.gov
+
+Data_Quality_Information:
+  Logical_Consistency_Report:
+    The data set was checked for topological consistency using
+    the Arc/INFO command BUILD.  No other checks for logical
+    consistency were performed on this data set.
+  Completeness_Report:
+    This category includes built-up areas and populated places
+    for all 50 States.  Capitals and county seats are 
+    identified as well as population ranges where known.
+  Lineage:
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 1995
+          Title: 
+            1:2,000,000-scale Digital Line Graphs - Manmade 
+            Features
+          Publication_Information:
+            Publication_Place: Reston, Virginia
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 2000000
+      Type_of_Source_Media: CD-ROM
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Range_of_Dates/Times:
+            Beginning_Date: 1972
+            Ending_Date: 1994
+        Source_Currentness_Reference: publication date
+      Source_Citation_Abbreviation: 2MILMM
+      Source_Contribution: spatial and attribute information
+
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 1998
+          Title: Geographic Names Information System
+          Publication_Information:
+            Publication_Place: Reston, Virginia
+            Publisher: U.S. Geological Survey
+          Online_Linkage: 
+            <http://mapping.usgs.gov/www/gnis/gnisform.html>
+      Type_of_Source_Media: online
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Single_Date/Time:
+            Calendar_Date: 1998
+        Source_Currentness_Reference: publication date
+      Source_Citation_Abbreviation: GNIS
+      Source_Contribution: attribute information
+
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 1998
+          Title: Cities and Towns of the U.S.
+          Publication_Information:
+            Publication_Place: Reston, Virginia
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 2000000
+      Type_of_Source_Media: online
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Range_of_Dates/Times:
+            Beginning_Date: 1972
+            Ending_Date: 1994
+        Source_Currentness_Reference: ground condition
+      Source_Citation_Abbreviation: ATLAS-CITIES
+      Source_Contribution: spatial and attribute information
+
+    Process_Step:
+      Process_Description:
+        Digitized place names from the 1970 National Atlas of the 
+        United States were compared with Bureau of Census Place 
+        names from the Codes for Named Populated Places 
+        (FIPS 55-DC3).  Where there were discrepancies, names 
+        from the GNIS were used.  A small number of places could
+        not be assigned FIPS-55-DC3 codes and were removed from
+        the data set.  Minor positional corrections were also
+        made.
+      Source_Used_Citation_Abbreviation: 2MILMM
+      Source_Used_Citation_Abbreviation: GNIS
+      Process_Date: 1998
+      Source_Produced_Citation_Abbreviation: ATLAS-CITIES
+
+    Process_Step:
+      Process_Description:
+        No spatial data was changed in ATLAS-CITIES.  The follow
+        edits were made to the ATLAS-CITIES attribute data base
+        file.  In the Feature field, inconsistencies were removed
+        and the population ranges were corrected as nessary to 
+        match the 1990 population information in the Pop field.
+        Unnecessary fields were deleted (Idnum, Capcode, Stid).
+        Fields were added for State, State_Fips, and County.
+        Lakewood Center, Washington was changed to Lakewood, 
+        Washington with a population of 58412.  Incorrect 
+        population information for Lakewood, Snohomish County 
+        was deleted.  Boise City, Idaho was changed to Boise,
+        Idaho.
+      Source_Used_Citation_Abbreviation: ATLAS-CITIES
+      Process_Date: 200002
+
+Spatial_Data_Organization_Information:
+  Indirect_Spatial_Reference:
+    U.S. Department of Commerce, 1987, Codes for the
+    Identification of the States, the District of Columbia and
+    the Outlying areas of the United States, and Associated Areas
+    (FIPS 5-2): Washington, D.C., National Institute of
+    Standards and Technology.
+
+    U.S. Department of Commerce, 1990, Counties and Equivalent
+    Entities of the United States, Its Possessions, and
+    Associated Areas (FIPS 6-4): Washington, D.C., National
+    Institute of Standards and Technology.
+
+  Direct_Spatial_Reference_Method: Vector
+
+  Point_and_Vector_Object_Information:
+    SDTS_Terms_Description:
+      SDTS_Point_and_Vector_Object_Type: Point
+      Point_and_Vector_Object_Count: 28706
+
+Spatial_Reference_Information:
+  Horizontal_Coordinate_System_Definition:
+    Geographic:
+      Latitude_Resolution: 0.000278
+      Longitude_Resolution: 0.000278
+      Geographic_Coordinate_Units: Decimal Degrees
+    Geodetic_Model:
+      Horizontal_Datum_Name: North American Datum 1983
+      Ellipsoid_Name: GRS1980
+      Semi-major_Axis: 6378137
+      Denominator_of_Flattening_Ratio: 298.257222
+
+Entity_and_Attribute_Information:
+  Detailed_Description:
+    Entity_Type:
+      Entity_Type_Label: 
+        Cities and Towns (described by Citiesx020.dbf)
+      Entity_Type_Definition: 
+        Populated places in the United States.
+      Entity_Type_Definition_Source: U.S. Geological Survey
+    Attribute:
+      Attribute_Label: Shape
+      Attribute_Definition:
+        The representation of the entity in the data.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Enumerated_Domain:
+          Enumerated_Domain_Value: Point
+          Enumerated_Domain_Value_Definition:
+            0-dimensional element
+          Enumerated_Domain_Value_Definition_Source:
+            ESRI GIS software
+    Attribute:
+      Attribute_Label: Area
+      Attribute_Definition:
+        The size of the shape in coverage units.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 0.000
+          Range_Domain_Maximum: 0.000
+    Attribute:
+      Attribute_Label: Perimeter
+      Attribute_Definition:
+        The perimeter of the shape in coverage units.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 0.000
+          Range_Domain_Maximum: 0.000
+    Attribute:
+      Attribute_Label: Citiesx020
+      Attribute_Definition: Internal feature number
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 1
+          Range_Domain_Maximum: 28706
+    Attribute:
+      Attribute_Label: Citiesx020
+      Attribute_Definition: User-assigned feature number
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 1
+          Range_Domain_Maximum: 28706
+    Attribute:
+      Attribute_Label: Feature
+      Attribute_Definition: 
+        Population range of the location and, if necessary, type
+        of city or town.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population less than 10,000
+          Enumerated_Domain_Value_Definition: 
+            Population is less than 10,000 based on 1990 data.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population less than 10,000 County Seat
+          Enumerated_Domain_Value_Definition: 
+            Population is less than 10,000 based on 1990 data; the
+            location is a county seat.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population less than 10,000 State Capital County Seat
+          Enumerated_Domain_Value_Definition:  
+            Population is less than 10,000 based on 1990 data; the 
+            location is a State capitol and a county seat.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 10,000 to 49,999
+          Enumerated_Domain_Value_Definition:  
+            Population is between 10,000 and 49,999 based on
+            1990 data.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 10,000 to 49,999 County Seat
+          Enumerated_Domain_Value_Definition: 
+            Population is between 10,000 and 49,999 based on 
+            1990 data; the location is a county seat.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 10,000 to 49,999 State Capital County Seat
+          Enumerated_Domain_Value_Definition: 
+           Population is between 10,000 and 49,999 based on 1990
+           data; the location is a State capitol and a county seat.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 50,000 to 99,999
+          Enumerated_Domain_Value_Definition:  
+            Population is between 50,000 and 99,999 based on 
+            1990 data.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 50,000 to 99,999 County Seat
+          Enumerated_Domain_Value_Definition:  
+            Population is between 50,000 and 99,999 based on 1990
+            data; the location is a county seat.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 50,000 to 99,999 State Capital County Seat
+          Enumerated_Domain_Value_Definition:
+            Population is between 50,000 and 99,999 based on 1990
+            data; the location is a State capitol and a county
+            seat.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 100,000 to 249,999
+          Enumerated_Domain_Value_Definition:
+            Population is between 100,000 and 249,999 based on 
+            1990 data.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 100,000 to 249,999 County Seat
+          Enumerated_Domain_Value_Definition:
+            Populationis  between 100,000 and 249,999 based on 1990
+            data; the location is a county seat.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 100,000 to 249,999 State Capital
+          Enumerated_Domain_Value_Definition:
+            Population is between 100,000 and 249,999 based on 1990
+            data; the location is a State Capital.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 100,000 to 249,999 State Capital County
+            Seat
+          Enumerated_Domain_Value_Definition:
+            Population is between 100,000 and 249,999 based on 1990
+            data; the location is a State capitol and a county
+            seat.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 250,000 to 499,999
+          Enumerated_Domain_Value_Definition:  
+            Population is between 250,000 and 499,999 based on 1990
+            data.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 250,000 to 499,999 County Seat
+          Enumerated_Domain_Value_Definition:  
+            Population is between 250,000 and 499,999 based on 1990
+            data; the location is a county seat.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 250,000 to 499,999 State Capital
+          Enumerated_Domain_Value_Definition:  
+            Population is between 250,000 and 499,999 based on 1990
+            data; the location is a State capital.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 250,000 to 499,999 State Capital County 
+            Seat
+          Enumerated_Domain_Value_Definition:
+            Population is between 250,000 and 499,999 based on 1990
+            data; the location is a State capitol and a county
+            seat.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 500,000 to 999,999 County Seat
+          Enumerated_Domain_Value_Definition: 
+            Population is between 500,000 and 999,999 based on 1990
+            data; the location is a county seat.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 500,000 to 999,999 National Capital
+          Enumerated_Domain_Value_Definition:
+            Population is between 500,000 and 999,999 based on 1990
+            data; the location is the capital of the United States
+            of America.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population 500,000 to 999,999 State Capital County
+            Seat
+          Enumerated_Domain_Value_Definition:  
+            Population is between 500,000 and 999,999 based on 1990
+            data; the location is a State capitol and a county 
+            seat.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: 
+            Population greater than 999,999 County Seat
+          Enumerated_Domain_Value_Definition:  
+            Population is greater than 999,999 based on 1990 data;
+            the location is a county seat.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+    Attribute:
+      Attribute_Label: Name
+      Attribute_Definition: Name of the city or town
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Codeset_Domain:
+          Codeset_Name: 
+            Geographic Names Information System (GNIS) 
+          Codeset_Source: 
+            U.S. Board on Geographic Names 
+    Attribute:
+      Attribute_Label: Fips
+      Attribute_Definition: 
+        The 5-digit FIPS code of the county or county equivalent.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Codeset_Domain:
+          Codeset_Name: 
+            Counties and Equivalent Entities of the United
+            States, Its Possessions, and Associated Areas, FIPS
+            6-4, 1990.
+          Codeset_Source: 
+            U.S. Department of Commerce, National Institute of
+            Standards and Technology
+    Attribute:
+      Attribute_Label: Fips55
+      Attribute_Definition: 
+        The 5-digit code for a named populated place, primary
+        county division, or other locational entity of the
+        United States. 
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Codeset_Domain:
+          Codeset_Name: 
+            Codes for Named Populated Places, Primary County 
+            Divisions, and Other Locational Entities of the
+            United States, Puerto Rico, and the Outlying Areas,
+            FIPS 55-DC3. 
+          Codeset_Source: 
+            U.S. Department of Commerce, National Institute of
+            Standards and Technology
+    Attribute:
+      Attribute_Label: Pop
+      Attribute_Definition: Population of the city or town, a
+        value of 0 (zero) means the population is not known.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 0
+          Range_Domain_Maximum: 7322564
+    Attribute:   
+      Attribute_Label: State_fips
+      Attribute_Definition: 
+        The 2-digit FIPS code of the State or State equivalent.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Codeset_Domain:
+          Codeset_Name: 
+            Codes for the Identification of the States, the
+            District of Columbia and the Outlying Areas of the
+            United States, and Associated Areas, FIPS 5-2.
+          Codeset_Source: 
+            U.S. Department of Commerce, National Institute of
+            Standards and Technology
+    Attribute:  
+      Attribute_Label: State 
+      Attribute_Definition: 
+        The name of the State or State equivalent. 
+      Attribute_Definition_Source: U.S. Geological Survey 
+      Attribute_Domain_Values: 
+        Codeset_Domain: 
+          Codeset_Name: 
+            Codes for the Identification of the States, the
+            District of Columbia and the Outlying Areas of the
+            United States, and Associated Areas, FIPS 5-2. 
+          Codeset_Source: 
+            U.S. Department of Commerce, National Institute of
+            Standards and Technology
+    Attribute: 
+      Attribute_Label: County 
+      Attribute_Definition: 
+        The name of the county or county equivalent. 
+      Attribute_Definition_Source: U.S. Geological Survey 
+      Attribute_Domain_Values: 
+        Codeset_Domain: 
+          Codeset_Name: 
+            Counties and Equivalent Entities of the United
+            States, Its Possessions, and Associated Areas, FIPS
+            6-4, 1990. 
+          Codeset_Source: 
+            U.S. Department of Commerce, National Institute of
+            Standards and Technology
+
+Distribution_Information:
+  Distributor:
+    Contact_Information:
+      Contact_Organization_Primary:
+        Contact_Organization: Earth Science Information Center,
+          U.S. Geological Survey
+      Contact_Address:
+        Address_Type: mailing address
+        Address: 507 National Center
+        City: Reston
+        State_or_Province: VA
+        Postal_Code: 20192
+      Contact_Voice_Telephone: 1-888-ASK-USGS (1-888-275-8747)
+      Hours_of_Service: 0800 - 1600
+      Contact_Instructions:  In addition to the address above,
+        there are other ESIC offices throughout the country.  A
+        full list of these offices is at
+        http://mapping.usgs.gov/esic/esic_index.html
+  Distribution_Liability:
+    Although these data have been processed successfully on a
+    computer system at the U.S. Geological Survey, no warranty
+    expressed or implied is made by the U.S. Geological Survey
+    regarding the utility of the data on any other system, nor    
+    shall the act of distribution constitute any  such warranty. 
+    No responsibility is assumed by the U.S. Geological Survey in
+    the use of these data.
+
+Metadata_Reference_Information:
+  Metadata_Date: 20000217
+  Metadata_Contact:
+    Contact_Information:
+      Contact_Person_Primary:
+        Contact_Person: Gita Urban-Mathieux
+        Contact_Organization: U.S. Geological Survey
+      Contact_Address:
+        Address_Type: mailing address
+        Address: 521 National Center
+        City: Reston
+        State_or_Province: VA
+        Postal_Code: 20192
+      Contact_Voice_Telephone: 703-648-5175
+      Contact_Electronic_Mail_Address: burbanma@usgs.gov
+  Metadata_Standard_Name: 
+    FGDC Content Standards for Digital Geospatial Metadata
+  Metadata_Standard_Version: FGDC-STD-001-1998
+  Metadata_Security_Information:
+    Metadata_Security_Classification_System: None
+    Metadata_Security_Classification: Unclassified
+    Metadata_Security_Handling_Description: None
+
