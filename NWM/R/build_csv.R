@@ -158,7 +158,7 @@ build_csv = function(folder = 'current', start.date = NULL, start.time = NULL, e
   
   variables = strsplit(files[1],'.',fixed=TRUE)[[1]]
  
-  name = paste0(regions.name,"_", variables[3],"_",substr(variables[2],2,nchar(variables[2])), "_", start.date, end.date, "_discharge")
+  name = paste0(regions.name,"_NWM_Discharge", variables[3],"_",substr(variables[2],2,nchar(variables[2])), "_", start.date, end.date)
   
   ####
   

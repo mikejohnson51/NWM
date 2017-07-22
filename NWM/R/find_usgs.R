@@ -2,6 +2,7 @@
 #' 
 #' This function can be used to indintify USGS gages within the study area as defined by the input NHD flow lines and returns a table of 
 #' matching USGSstation, NHD comids, and their respective latitude longitude values.
+
 find_usgs = function(flowlines_path = NULL){
   
     flowlines = readOGR(flowlines_path)
@@ -42,4 +43,4 @@ find_usgs = function(flowlines_path = NULL){
 }
 
 
-
+station = find_usgs()
