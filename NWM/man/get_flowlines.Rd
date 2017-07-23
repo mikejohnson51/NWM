@@ -4,14 +4,16 @@
 \alias{get_flowlines}
 \title{Get NHD Flowlines}
 \usage{
-get_flowlines(place = NULL, area.length = 10)
+get_flowlines(place = NULL, AOI.height = 10, AOI.width = 10)
 }
 \arguments{
 \item{place}{this can be a lat,long pair, a name such as 'UCSB' or 'Austin' or a general search such as 
 'the walmart near Tuscaloosa'. The API engine is driven by google via the ggmap package and thus 
 will allow queries simular to Google Maps.
 
-area.length this value defines the length of each side of the bounding box square that will be used to extract flowlines.}
+AOI.height this value defines the height,in miles, of the bounding box  that will be used to extract flowlines.Default is set to 10 miles.
+
+AOI.width this value defines the width,in miles, of the bounding box  that will be used to extract flowlines.Default is set to 10 miles.}
 }
 \description{
 This function takes a place name, generates a bounding box of a specified size using this 
@@ -24,7 +26,9 @@ get_flowlines("Walmart in Tuscaloosa AL")
 
 get_flowlines("34.42 -119.69")
 
-get_flowlines("University of Oregon")
+get_flowlines("St louis arch")
+
+get_flowlines("UCSB")
 
 }
 \author{
