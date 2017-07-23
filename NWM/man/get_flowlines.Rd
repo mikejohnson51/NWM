@@ -4,7 +4,7 @@
 \alias{get_flowlines}
 \title{Get NHD Flowlines}
 \usage{
-get_flowlines(place, area.length = 10)
+get_flowlines(place = NULL, area.length = 10)
 }
 \arguments{
 \item{place}{this can be a lat,long pair, a name such as 'UCSB' or 'Austin' or a general search such as 
@@ -16,8 +16,8 @@ area.length this value defines the length of each side of the bounding box squar
 \description{
 This function takes a place name, generates a bounding box of a specified size using this 
 place name as a centroid, and downloads
-the contained NHDflowlines. The results are displayed in the RStudio viewer. By hovering over each flow line
-user can see the stream/reiver name and the respective COMID.
+the contained NHDflowlines. The results are displayed in the RStudio viewer via leaflet. By hovering over each flow line
+user can see the stream/river name and the respective COMID.
 }
 \examples{
 get_flowlines("Walmart in Tuscaloosa AL")

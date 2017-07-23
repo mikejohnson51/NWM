@@ -2,8 +2,8 @@
 #' 
 #' This function takes a place name, generates a bounding box of a specified size using this 
 #' place name as a centroid, and downloads
-#' the contained NHDflowlines. The results are displayed in the RStudio viewer. By hovering over each flow line
-#' user can see the stream/reiver name and the respective COMID.
+#' the contained NHDflowlines. The results are displayed in the RStudio viewer via leaflet. By hovering over each flow line
+#' user can see the stream/river name and the respective COMID.
 #' 
 #' @param 
 #' 
@@ -28,8 +28,12 @@
 
 
 
-get_flowlines = function(place, area.length = 10){
+get_flowlines = function(place = NULL, area.length = 10){
 
+dir.create(paste0(getwd(),"/", gsub(" ", "", place)))
+  setwd(paste0(getwd(),"/", gsub(" ", "", place)))
+  
+  build_files()
 
 location = as.numeric(geocode(place))
 
@@ -51,19 +55,19 @@ URL = paste0("https://cida.usgs.gov/nwc/geoserver/nhdplus/ows?service=WFS&versio
 destfile = paste0(getwd(), "/Geospatial/Flowlines/", gsub(" ","", place), "_flowlines")
 
 download.file(url = URL, destfile = destfile)
-unzip(destfile)
+unzip(destfile, exdir =paste0(getwd(),"/Geospatial/Flowlines"))
 
-paste0(destfile, ".shp")
 
-flowlines = readOGR('/Users/mikejohnson/Desktop/Austin/nhdflowline_network.shp')
+flowlines = readOGR(paste0(getwd(),'/Geospatial/Flowlines/nhdflowline_network.shp'))
 flowlines_84 = spTransform(flowlines, CRS("+proj=longlat +datum=WGS84"))
 
-leaflet() %>%
+m = leaflet() %>%
   
   addRectangles(
     lng1 = west , lat1 = north,
     lng2 = east , lat2 = south,
-    fillColor = "transparent"
+    fillColor = "transparent",
+    col
   ) %>%
   
   addMarkers(lng = location[1], lat = location[2]) %>%
@@ -72,12 +76,14 @@ leaflet() %>%
 
   addPolylines(data = flowlines_84, color = 'blue', weight = flowlines_84$streamorde, 
                label = paste0(paste0(flowlines_84@data$gnis_name),
-                              paste0("COMID:", flowlines_84$comid)
+                              paste0(" COMID:", flowlines_84$comid)
                               ))
   
-    
+print(m)
+
+return(flowlines)
     
 
 }
-
+ 
 

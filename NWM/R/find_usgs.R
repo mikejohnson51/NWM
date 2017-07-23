@@ -3,8 +3,9 @@
 #' This function can be used to indintify USGS gages within the study area as defined by the input NHD flow lines and returns a table of 
 #' matching USGSstation, NHD comids, and their respective latitude longitude values.
 
-find_usgs = function(flowlines_path = NULL){
+find_usgs = function(flowlines_path = NULL ){
 
+  #flowlines_path = '/Users/mikejohnson/Documents/R_NWM_tests/UCSB/Geospatial/Flowlines/nhdflowline_network.shp'
   
     flowlines = readOGR(flowlines_path)
      flowlines_84 = spTransform(flowlines, CRS("+proj=longlat +datum=WGS84"))
@@ -25,26 +26,28 @@ find_usgs = function(flowlines_path = NULL){
     
     usgs_final = cbind(usgs4$feature_id, usgs4$site_no, usgs4$lat_reachCent, usgs4$lon_reachCent)
       colnames(usgs_final) = c("USGSgage", "COMID", "lat", "long")
+      
+      usgs_final = as.matrix(usgs_final)
     
     coors = cbind(usgs_final[,4], usgs_final[,3])
     sp = SpatialPoints(coors, proj4string = CRS("+proj=longlat +datum=WGS84"))
     
     
-   # m = leaflet() %>%
-  #        addPolyLines(flowlines_84) %>%
-   #       addmarkers(sp, lng = sp)
     
+    m = leaflet() %>%
+      
+      addProviderTiles(providers$CartoDB.Positron) %>%
+      
+      addMarkers(data = usgs_final,lng= usgs_final[,4], lat = usgs_final[,3],
+                 popup = paste(sep ="<br/>" , "USGS Gage Number: ", usgs_final[,1],
+                          "COMID: ", usgs_final[,2]
+                          ))%>%
+  
+       addPolylines(data = flowlines_84, color = 'blue', weight = flowlines_84$streamorde)%>%
+    addScaleBar("bottomleft")
     
-    plot(flowlines_84,main = ("Local USGS Stations"),
-         xlab = paste0(paste0(dim(usgs_final)[1], " local USGS stations"),
-                       paste0(" across ", dim(flowlines_84)[1], " flowlines"),
-                       paste0("\n Density of ",round(((dim(usgs_final)[1]/dim(flowlines_84)[1])*100),2), "%." )),
-         col = colorRampPalette(c("grey20", "darkblue"))(5)[flowlines_84@data$streamorde],
-         lwd = ifelse(flowlines_84@data$streamorde >= 3, (as.numeric(paste(flowlines_84@data$streamorde)))/2, .3))
-      plot(sp, col = 'grey20', bg ='orange', pch = 25, cex = .9, add = TRUE)
-    
-    
+    print(m)
     return(usgs_final)
+  
       
 }
-
