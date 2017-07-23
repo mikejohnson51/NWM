@@ -77,7 +77,7 @@ end.date = "2014-10-31",end.time= "23",  \\cr
 regions.name = "Onion Creek", comids = comids.onion.creek)
 }
 \author{
-Mike Johnson and Jim Coll
+Mike Johnson
 
-Mike Johnson and Jim Coll
+Mike Johnson
 }

@@ -6,6 +6,7 @@
 #' user can see the stream/reiver name and the respective COMID.
 #' 
 #' @param 
+#' 
 #' place this can be a lat,long pair, a name such as 'UCSB' or 'Austin' or a general search such as 
 #' 'the walmart near Tuscaloosa'. The API engine is driven by google via the ggmap package and thus 
 #' will allow queries simular to Google Maps.
@@ -13,7 +14,6 @@
 #' area.length this value defines the length of each side of the bounding box square that will be used to extract flowlines.
 #'
 #' @examples 
-#' 
 #' get_flowlines("Walmart in Tuscaloosa AL')
 #' 
 #' get_flowlines("34.42 -119.69")
@@ -23,6 +23,8 @@
 #' @author 
 #' 
 #' Mike Johnson
+#' 
+#' @export
 
 
 
@@ -56,7 +58,7 @@ paste0(destfile, ".shp")
 flowlines = readOGR('/Users/mikejohnson/Desktop/Austin/nhdflowline_network.shp')
 flowlines_84 = spTransform(flowlines, CRS("+proj=longlat +datum=WGS84"))
 
-m = leaflet() %>%
+leaflet() %>%
   
   addRectangles(
     lng1 = west , lat1 = north,
@@ -73,7 +75,7 @@ m = leaflet() %>%
                               paste0("COMID:", flowlines_84$comid)
                               ))
   
-    m
+    
     
 
 }

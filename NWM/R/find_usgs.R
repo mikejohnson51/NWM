@@ -4,6 +4,7 @@
 #' matching USGSstation, NHD comids, and their respective latitude longitude values.
 
 find_usgs = function(flowlines_path = NULL){
+
   
     flowlines = readOGR(flowlines_path)
      flowlines_84 = spTransform(flowlines, CRS("+proj=longlat +datum=WGS84"))
@@ -29,6 +30,11 @@ find_usgs = function(flowlines_path = NULL){
     sp = SpatialPoints(coors, proj4string = CRS("+proj=longlat +datum=WGS84"))
     
     
+   # m = leaflet() %>%
+  #        addPolyLines(flowlines_84) %>%
+   #       addmarkers(sp, lng = sp)
+    
+    
     plot(flowlines_84,main = ("Local USGS Stations"),
          xlab = paste0(paste0(dim(usgs_final)[1], " local USGS stations"),
                        paste0(" across ", dim(flowlines_84)[1], " flowlines"),
@@ -42,5 +48,3 @@ find_usgs = function(flowlines_path = NULL){
       
 }
 
-
-station = find_usgs()

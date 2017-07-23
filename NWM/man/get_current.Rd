@@ -19,5 +19,5 @@ Therefore if you see something interesting be sure to save the data elsewhere!
 get_current()
 }
 \author{
-Mike Johnson and Jim Coll
+Mike Johnson
 }
