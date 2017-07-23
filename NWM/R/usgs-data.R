@@ -14,9 +14,7 @@
 #'
 #' @examples
 #' data(usgsStations)
-#' 
-#' @export
- 
+#'
+#'@export
 
-"usgsStations"
 
