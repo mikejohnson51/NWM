@@ -1,0 +1,1 @@
+https://cida.usgs.gov:443/nwc/geoserver/nhdplus/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=nhdplus:nhdflowline_network&srsName=EPSG:4326&bbox=34.3414991318841,-119.936784447847,34.4864266681159,-119.761109552153&outputFormat=SHAPE-ZIP
