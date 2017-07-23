@@ -58,6 +58,9 @@ stage_data = matrix(0, nrow = length(comids_final), ncol = dim(discharge)[2])
         stage_data[i,j] = COMcurve[index,3]
         
       }
+        
+        colnames(stage_data) = c("COMIDS", 1:18)
+        
     }
   
 write.csv(stage_data, file = paste0(getwd(),"/Output/", regions.name, "stage_data_cms.csv"))

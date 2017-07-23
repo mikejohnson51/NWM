@@ -12,7 +12,9 @@ Depends:
   dplyr,
   rgdal,
   svDialogs,
-  XML
+  XML,
+  leaflet,
+  ggmap
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true

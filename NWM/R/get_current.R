@@ -8,7 +8,7 @@
 #' @examples 
 #' get_current()
 #' @author 
-#' Mike Johnson and Jim Coll
+#' Mike Johnson
 #' @export
 #' @return 
 #' This fuction saves the 18 NetCDF files related to the most recent short term forecast to the NetCDFs/Current folder.
