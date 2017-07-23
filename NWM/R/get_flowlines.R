@@ -14,7 +14,7 @@
 #' area.length this value defines the length of each side of the bounding box square that will be used to extract flowlines.
 #'
 #' @examples 
-#' get_flowlines("Walmart in Tuscaloosa AL')
+#' get_flowlines("Walmart in Tuscaloosa AL")
 #' 
 #' get_flowlines("34.42 -119.69")
 #' 

@@ -19,6 +19,14 @@ place name as a centroid, and downloads
 the contained NHDflowlines. The results are displayed in the RStudio viewer. By hovering over each flow line
 user can see the stream/reiver name and the respective COMID.
 }
+\examples{
+get_flowlines("Walmart in Tuscaloosa AL")
+
+get_flowlines("34.42 -119.69")
+
+get_flowlines("University of Oregon")
+
+}
 \author{
 Mike Johnson
 }
