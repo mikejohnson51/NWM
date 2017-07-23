@@ -13,7 +13,10 @@
 #' @source This dataset was supplied by the National Water Center.
 #'
 #' @examples
-#' data(usgs.gages)
+#' data(usgsStations)
 #' 
 #' @export
+ 
+
+"usgsStations"
 
