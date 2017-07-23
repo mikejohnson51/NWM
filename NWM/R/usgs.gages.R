@@ -4,7 +4,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(usgs.gages)
+#' @usage data(usgsStations)
 #'
 #' @format A table
 #'
@@ -16,3 +16,4 @@
 #' data(usgs.gages)
 #' 
 #' @export
+
