@@ -49,7 +49,7 @@ find_usgs = function(flowlines_path = NULL ){
           popup = pop, group = "USGS Stations")%>%
   
     addPolylines(data = flowlines_84, color = 'blue', weight = flowlines_84$streamorde, 
-                 label= label = paste0(paste0(flowlines_84@data$gnis_name),
+                 label= paste0(paste0(flowlines_84@data$gnis_name),
                                        paste0(" COMID:", flowlines_84$comid), group = "NHD Flowlines")%>%
     
       
