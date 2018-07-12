@@ -12,6 +12,7 @@
 
 getChannel = function(AOI, filelist, param) {
   i = NULL
+  j = NULL
   `%dopar%` <- foreach::`%dopar%`
 
   combine_lists <- function(LL1, LL2) {

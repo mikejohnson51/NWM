@@ -17,6 +17,7 @@ Imports:
   foreach,
   ncdf4,
   raster,
+  stats,
   sf,
   sp
 License: MIT + file LICENSE

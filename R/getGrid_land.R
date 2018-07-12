@@ -1,12 +1,14 @@
-#' Get NWM grid indeces of AOI
+#' Get NWM grid indeces for AOI
+#'
+#' Ingests AOI object and returns grid indeces and values for the NWM native grid
 #'
 #' @param AOI an AOI to transform to grid
 #'
-#' @return a list of min/max lon/lat
+#' @return a list of min/max lon/lat values and grid indeces
 #' @export
 #' @author Mike Johnson
 
-getGrid_meta = function(AOI){
+define_AOI_grid = function(AOI){
 
   AOI = sp::spTransform(AOI, "+proj=lcc +lat_1=30 +lat_2=60 +lat_0=40 +lon_0=-97 +x_0=0 +y_0=0 +a=6370000 +b=6370000 +units=m +no_defs")
 

@@ -9,7 +9,9 @@ trimChannel(idList = NULL, data = NULL, time = NULL)
 \arguments{
 \item{idList}{list of ides}
 
-\item{data}{flow data to be trimed}
+\item{data}{flow data to be trime}
+
+\item{time}{a vector of time inputs}
 }
 \value{
 a wide data.frame

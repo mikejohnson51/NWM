@@ -15,7 +15,7 @@ getGrid_data = function(AOI, filelist, param) {
   i = NULL
   `%dopar%` <- foreach::`%dopar%`
 
-  grid = getGrid_meta(AOI)
+  grid = define_AOI_grid(AOI)
 
   no_cores <- parallel::detectCores() - 1
   doParallel::registerDoParallel(no_cores)

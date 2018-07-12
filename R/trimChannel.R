@@ -1,7 +1,8 @@
 #' Trim data to key COMIDs
 #'
 #' @param idList list of ides
-#' @param data flow data to be trimed
+#' @param data flow data to be trime
+#' @param time a vector of time inputs
 #'
 #' @return a wide data.frame
 #' @export
@@ -11,6 +12,7 @@
 trimChannel = function(idList = NULL, data = NULL, time = NULL){
 
   i = NULL
+
   `%dopar%` <- foreach::`%dopar%`
 
   no_cores <- parallel::detectCores() - 1
@@ -20,7 +22,7 @@ trimChannel = function(idList = NULL, data = NULL, time = NULL){
 
   fin = cbind(comids.full, data*35.3147)
 
-  fin = fin[which(comids.full %in% comids_all[do.call("c", idList)]),]
+  fin = fin[which(comids.full %in% nwm::comids_all[do.call("c", idList)]),]
 
   fin = as.data.frame(fin)
 

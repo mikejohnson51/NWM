@@ -12,6 +12,7 @@
 #' @importFrom  foreach %do% %dopar% foreach
 #' @importFrom  doParallel registerDoParallel
 #' @importFrom  sf st_zm read_sf
+#' @importFrom  stats reshape
 #' @importFrom  raster raster projection extent stack
 #' @importFrom  sp spTransform
 
