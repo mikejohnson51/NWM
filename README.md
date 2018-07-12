@@ -7,15 +7,15 @@ The package relies on the [AOI](https://github.com/mikejohnson51/AOI) package
 for defining an area of interest, and currently offers access to the `channel`, `land`, and `forcing` output
 from the `short` and `medium` range configurations. <br>
 
-Point data (channel) are output as "long" data.frames with COMIDS, DateTime (UTC), and the requested value.
-Gridded data is returned as a raster stack. <br>
+Point data (channel) are output as "long" data.frames with COMIDS, DateTime (UTC), and the requested value. <br>
+Gridded data (land and forcing) are returned as a raster stack. <br>
 
-All downloads are parralelized using the `doParallel` and `foreach` packages to offer fast and efficient downloads.
+All downloads are parralelized using the `doParallel` and `foreach` packages to offer fast and efficient access.
 <br>
 
 More info about the National Water Model can be found [here](http://water.noaa.gov/about/nwm).
 
-Documentation will be upcoming ...
+Documentation is upcoming ...
 
 ### Installation:
 
