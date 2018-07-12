@@ -1,0 +1,25 @@
+Package: nwm
+Type: Package
+Title: Provides access to the NOAA National Water Model output
+Version: 0.0.1
+Authors@R: person("Mike", "Johnson", role = c("aut", "cre"), email = "mike.johnson@geog.ucsb.edu")
+Maintainer: Mike Johnson <mike.johnson@geog.ucsb.edu>
+BugReports: https://github.com/mikejohnson51/nwm/issues
+Description: Each day the NOAA NWM produces 404 GB of forecast data for the CONUS. 
+    This data is stored for a 40 day rolling window on the HydroShare Thredds server. 
+    This package provides access to this data.
+Encoding: UTF-8
+Depends:
+    R(>= 3.3.0)
+Imports:
+  AOI,
+  doParallel,
+  foreach,
+  ncdf4,
+  raster,
+  sf,
+  sp
+License: MIT + file LICENSE
+LazyData: true
+RoxygenNote: 6.0.1
+Suggests: testthat
