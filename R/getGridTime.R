@@ -2,7 +2,7 @@
 #'
 #' @param r a raster stack
 #'
-#' @return
+#' @return a vector of POSITct values
 #' @export
 
 

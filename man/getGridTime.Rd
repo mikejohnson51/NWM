@@ -9,6 +9,9 @@ getGridTime(r)
 \arguments{
 \item{r}{a raster stack}
 }
+\value{
+a vector of POSITct values
+}
 \description{
 Get Time for Gridded output from downloadNWM
 }

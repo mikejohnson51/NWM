@@ -7,15 +7,15 @@ test_that("cida server throws correct errors", {
 
 test_that("utility_cida", {
   data_check = !is.null(nwm::comids_all)
-  cida_sf = query_cida(AOI::getAOI(clip = list("UCSB", 1, 1)), type = "nhdflowline_network")
-  cida_sp = query_cida(AOI::getAOI(clip = list("UCSB", 1, 1)), type = "nhdflowline_network", spatial = T)
-  error   = try(query_cida(AOI::getAOI(clip = list("UCSB", .1, .1))))
+  cida_sf = query_cida(AOI::getAOI(clip = list("UCSB", 10, 10)), type = "nhdflowline_network")
+  cida_sp = query_cida(AOI::getAOI(clip = list("UCSB", 10, 10)), type = "nhdflowline_network", spatial = T)
+  #error   = try(query_cida(AOI::getAOI(clip = list("UCSB", .1, .1))))
 
   vec = c(
         data_check,
         any(class(cida_sf) == 'sf'),
-        any(class(cida_sp) == 'SpatialLinesDataFrame'),
-        class(error) == 'try-error'
+        any(class(cida_sp) == 'SpatialLinesDataFrame')
+        #class(error) == 'try-error'
         )
 
   check = any(!isTRUE(vec))
@@ -38,10 +38,10 @@ test_that("getBreaks", {
   expect_true(check)
 })
 
-test_that("findNHD", {
+test_that("getNHD", {
 
   AOI = AOI::getAOI(clip = list("UCSB", 10, 10))
-  nhd = findNHD(AOI)
+  nhd = getNHD(AOI)
 
   vec = c(
     class(AOI) == "SpatialPolygons",

@@ -6,7 +6,6 @@
 #' @param num number of reaches to differentiate (default = 5)
 #' @param max if TRUE the high flows are plotted, if FALSE then low flows
 #'
-#' @return
 #' @export
 
 
@@ -21,8 +20,8 @@ vizFlows = function(AOI = NULL, nhd = NULL, data = NULL, num = 5, max = TRUE){
 
   sp::plot(nhd,
            col = ifelse(nhd$comid %in% unique(flows$COMIDS)[1:num], ifelse(max, "navy", "red"), "blue"),
-           lwd = ifelse(nhd$comid %in% unique(flows$COMIDS)[1:num], 10, 3), add = ifelse(!is.null(AOI), TRUE, FALSE))
-  title(paste(num, ifelse(max, "high", "low"), "flow reaches"))
+           lwd = ifelse(nhd$comid %in% unique(flows$COMIDS)[1:num], 10, 3), add = ifelse(!is.null(AOI), TRUE, FALSE),
+           main =paste(num, ifelse(max, "high", "low"), "flow reaches"))
 
 
 }

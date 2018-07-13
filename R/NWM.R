@@ -6,8 +6,8 @@
 #'
 #' @docType package
 #'
-#' @name NWM
-#' @import      AOI
+#' @name nwm
+#' @import AOI
 #' @importFrom  ncdf4 nc_open nc_close ncvar_get
 #' @importFrom  foreach %do% %dopar% foreach
 #' @importFrom  doParallel registerDoParallel

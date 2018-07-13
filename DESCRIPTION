@@ -13,7 +13,6 @@ Depends:
     R(>= 3.3.0),
     AOI
 Imports:
-  AOI,
   doParallel,
   foreach,
   ncdf4,
