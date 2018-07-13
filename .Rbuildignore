@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 inProgress
 .travis.yml
+tests
