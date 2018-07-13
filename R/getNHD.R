@@ -8,7 +8,7 @@
 #' @author Mike Johnson
 
 
-findNHD = function(AOI, spatial = TRUE) {
+getNHD = function(AOI, spatial = TRUE) {
 
   sl = query_cida(AOI = AOI, type = 'nhdflowline_network', spatial= spatial)
 

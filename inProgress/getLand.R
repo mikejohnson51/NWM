@@ -11,7 +11,6 @@
 #' @export
 
 getGrid_data = function(AOI, filelist, param) {
-
   i = NULL
   `%dopar%` <- foreach::`%dopar%`
 
@@ -20,10 +19,13 @@ getGrid_data = function(AOI, filelist, param) {
   no_cores <- parallel::detectCores() - 1
   doParallel::registerDoParallel(no_cores)
 
-  stack <- foreach::foreach( i = 1:length(filelist)) %dopar% get_gridded_data(AOI = AOI,
-                                                                                      grid = grid,
-                                                                                      filepath = filelist[i],
-                                                                                      param = param)
+  stack <- foreach::foreach(i = 1:length(filelist)) %dopar%
+    get_gridded_data(
+      AOI = AOI,
+      grid = grid,
+      filepath = filelist[i],
+      param = param
+    )
 
   r = do.call(raster::stack, stack)
 
@@ -31,4 +33,3 @@ getGrid_data = function(AOI, filelist, param) {
 
 }
 
-foreach::`%dopar%`

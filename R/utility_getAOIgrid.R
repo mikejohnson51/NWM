@@ -34,5 +34,5 @@ define_AOI_grid = function(AOI){
               long.max = long.max,
               lat.min  = lat.min,
               lat.max  = lat.max
-              ))
+          ))
 }

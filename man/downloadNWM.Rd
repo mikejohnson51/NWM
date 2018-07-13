@@ -14,7 +14,7 @@ downloadNWM(AOI = NULL, filelist = NULL, param = NULL)
 \item{param}{a parameter to get}
 }
 \value{
-a matrix of values
+a matrix of point values or a stack of gridded raster images
 }
 \description{
 Download National Water Model Data

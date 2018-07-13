@@ -12,7 +12,7 @@ comidList = function(AOI, num){
   i = NULL
   `%do%` <- foreach::`%do%`
 
-  nhd = findNHD(AOI, spatial = FALSE)
+  nhd = getNHD(AOI, spatial = FALSE)
 
   index = which(nwm::comids_all %in% nhd$comid)
 

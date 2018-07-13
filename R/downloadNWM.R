@@ -4,30 +4,46 @@
 #' @param filelist a filelist generated with getFilelist
 #' @param param a parameter to get
 #'
-#' @return a matrix of values
+#' @return a matrix of point values or a stack of gridded raster images
 #' @export
 #'
 #' @author Mike Johnson
 
-downloadNWM = function(AOI = NULL, filelist = NULL, param = NULL){
+downloadNWM = function(AOI = NULL,
+                       filelist = NULL,
+                       param = NULL) {
+  tmp = filelist[1]
 
-config <- regmatches(filelist[1],regexec("nwm/(.*?)/",filelist[1]))[[1]][2]
+  config <-
+    regmatches(tmp, regexec("nwm/(.*?)/", tmp))[[1]][2]
 
-if(grepl("channel", filelist[1])) {type = 'channel'}
-if(grepl("land", filelist[1]))    {type = 'land'}
-if(grepl("forcing", filelist[1])) {type = 'forcing'}
+  types  = c("channel", "land", "forcing")
 
-param.error = error.check(error = "parameter", param = param, config = config, type = type)
-if(!is.null(param.error)){stop(param.error)}
+  type = types[sapply(types, grepl, tmp)]
 
-if(type == 'channel'){
-  vals = getChannel(AOI = AOI, filelist = filelist, param = param)
-}
+  param.error = error.check(
+    error = "parameter",
+    param = param,
+    config = config,
+    type = type
+  )
 
-if(type %in% c('land', "forcing")){
-  vals = getGrid_data(AOI = AOI, filelist = filelist, param = param)
-}
+  if (!is.null(param.error)) {
+    stop(param.error)
+  }
 
-return(vals)
+  if (type == 'channel') {
+    vals = getChannel(AOI = AOI,
+                      filelist = filelist,
+                      param = param)
+  }
+
+  if (type %in% c('land', "forcing")) {
+    vals = getGridded(AOI = AOI,
+                      filelist = filelist,
+                      param = param)
+  }
+
+  return(vals)
 
 }

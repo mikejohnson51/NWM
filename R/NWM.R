@@ -7,14 +7,14 @@
 #' @docType package
 #'
 #' @name NWM
-#' @importFrom  AOI getAOI getPoint check
+#' @import      AOI
 #' @importFrom  ncdf4 nc_open nc_close ncvar_get
 #' @importFrom  foreach %do% %dopar% foreach
 #' @importFrom  doParallel registerDoParallel
 #' @importFrom  sf st_zm read_sf
 #' @importFrom  stats reshape
-#' @importFrom  raster raster projection extent stack
-#' @importFrom  sp spTransform
+#' @importFrom  raster raster projection extent stack plot
+#' @importFrom  sp spTransform plot
 
 NULL
 
