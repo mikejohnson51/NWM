@@ -22,4 +22,19 @@ test_that("utility_cida", {
   expect_true(check)
 })
 
+test_that("getBreaks", {
+
+  index = c(1:30, 40:50, 200:210)
+  test1 = getBreaks(index, gap = 50)
+  test2 = getBreaks(index, gap = 5)
+
+
+  vec = c(
+   length(test1) == 2,
+   length(test2) == 3
+  )
+
+  check = any(!isTRUE(vec))
+  expect_true(check)
+})
 
