@@ -38,3 +38,17 @@ test_that("getBreaks", {
   expect_true(check)
 })
 
+test_that("getNHD", {
+
+  AOI = AOI::getAOI(clip = list("UCSB", 10, 10))
+  nhd = getNHD(AOI)
+
+  vec = c(
+    class(AOI) == "SpatialPolygons",
+    class(nhd) == 'SpatialLinesDataFrame'
+  )
+
+  check = any(!isTRUE(vec))
+  expect_true(check)
+})
+
