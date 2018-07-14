@@ -57,3 +57,16 @@ test_that("look throws correct errors", {
   expect_error(look("short_range", type = "test") , "short_range not a valid configuraion. Use:\nchannel\nland\nforcing\nmeta", fixed = TRUE)
 })
 
+test_that("look", {
+
+  config = nwm::look("short_range")
+  type = look("medium_range", type = "channel")
+
+  vec = c(
+    is.null(config),
+    is.null(type)
+  )
+
+  check = any(!isTRUE(vec))
+  expect_true(check)
+})
