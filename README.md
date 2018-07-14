@@ -1,4 +1,6 @@
-## NWM: An R client for the National Water Model. 
+## NWM: An R client for the National Water Model.
+
+[![Build Status](https://travis-ci.org/mikejohnson51/NWM.svg?branch=master)](https://travis-ci.org/mikejohnson51/NWM)
 
 Each day the NOAA NWM produces ~400 GB of forecast data for the CONUS. This data is stored for a 40 day rolling window on the HydroShare Thredds server amounting to over 16,000 GB (2 TB) of data being stored and accessible at any one time. This package aims to provide access to this data in a clean, fast, and convenient way through the R environment. <br>
 
