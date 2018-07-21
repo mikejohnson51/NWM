@@ -10,7 +10,8 @@ test_that("getFilelist throws correct errors", {
 
   expect_error(getFilelist(type = "test"), paste("TEST is not a valid output type, select from:\n\n channel\n land\n forcing \n\nIf having trouble, run look('medium_range')"), fixed = TRUE)
 
-  expect_error(getFilelist(config = 'short_range', t = 30), paste("30 not a valid t value for short_range configuration. Use: \n\n",
+  expect_error(getFilelist(date = gsub("-", "", Sys.Date() -1 ),
+    config = 'short_range', t = 30), paste("30 not a valid t value for short_range configuration. Use: \n\n",
  	      paste(0:23, collapse = ", "), paste0("\n\nIf having trouble, run look('short_range')")), fixed = TRUE)
 
   expect_error(getFilelist(config = 'short_range', f = 30), paste("30 not a valid f value for short_range configuration. Use: \n\n",

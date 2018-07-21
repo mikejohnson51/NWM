@@ -1,5 +1,6 @@
 ---
 title: National Water Model Access in R
+subtitle: Mike Johnson UCSB
 output:
   prettydoc::html_pretty:
     theme: architect
@@ -13,36 +14,31 @@ library(knitr)
 opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
 ```
 
+In August 2016 NOAA made the National Water Model operational aimed towards impact-based forecasting of weather and water events. The NWM runs on NOAA’s centralized Weather and Climate Operational Supercomputing System (WCOSS) utilizing the community [WRF-Hydro modeling system](https://www.ral.ucar.edu/projects/wrf_hydro). It delivers streamflow forecasts for the 2.7 million USGS [NHDPlusv2](http://www.horizon-systems.com/nhdplus/) river reaches as well as 1-kilometer gridded analyses for a range of hydrologic variables across the CONUS.
 
-## What is the National Water Model?
-
-In August 2016 the NOAA made the Nation
-
-From NOAAs [webpage]("http://water.noaa.gov/about/nwm"):<br>
-
-"The National Water Model (NWM) is a hydrologic model that simulates observed and forecast streamflow over the entire continental United States (CONUS). The NWM simulates the water cycle with mathematical representations of the different processes and how they fit together. This complex representation of physical processes such as snowmelt and infiltration and movement of water through the soil layers varies significantly with changing elevations, soils, vegetation types and a host of other variables. Additionally, extreme variability in precipitation over short distances and times can cause the response on rivers and streams to change very quickly. Overall, the process is so complex that to simulate it with a mathematical model means that it needs a very high powered computer or super computer in order to run in the time frame needed to support decision makers..."
+The [nwm package](https://github.com/mikejohnson51/NWM) offers methods to access and subset this data in a quick fashion and returns processed data ready for analysis in the R environment.
 
 ## What are the challenges?
 
-Each day the NWM outputs ~400 GB of data relating to streamflow, terrain and atmospheric processes for the CONUS. This data is stored for a 40 day rolling window on the HydroShare Thredds server. These outputs come from four unique model configurations that cycle on different intervals, using different forcing data, and generate different output. 
+Given the size of CONUS and the resolution of both point and grid data, the sheer size of output is enormous. Each day,  approximately 400 GB of data relating to streamflow, terrain and atmospheric processes is produced. This data is stored for a 48 hour rolling window on the NOAA NOMADS server, and for a 40 day rolling window on the HydroShare THREDDS server hosted at RENCI. These outputs come from four unique model configurations that cycle on different intervals, using different forcing data, and generate different output. 
 
-<strong>The first challenge this package hopes to address is how people come to understand and interact with the NWM output. </strong>
+<strong>The first challenge this package hopes to address is how people can better to understand and interact with the NWM output. </strong>
 
-This first challenge is addressed with the `look` function
+This is addressed with the `look` function which prints the meta data and description of each model configuration and output type. 
 
-<strong>The second challenge is how to this data can be easily queried and subset to an Area of Interest. </strong>
+<strong>The second challenge is how to this data can be queried and subset to an Area of Interest. </strong>
 
-The second challenge is addressed using the [`AOI` package](https://github.com/mikejohnson51/AOI) and the `getFilelist` and `downloadNWM` functions.
+The is addressed through a dependency on the [`AOI` package](https://github.com/mikejohnson51/AOI) to define an area of interest; the `getFilelist` function to define the paths to the desired data sets,  and the `downloadNWM` function to get the data and process it for analysis.
 
-<strong>The third challenge is how to make these processes fast, effieicent, and usefull in the R environment. </strong>
+<strong>The third challenge is how to make these processes fast, efficient, and useful in the R environment. </strong>
 
-This challenge is taken care of on the backend of the package making use of the parralization capabilites of `foreach` and `doParallel` [packages](https://cran.r-project.org/web/packages/doParallel/vignettes/gettingstartedParallel.pdf).
+This is handeled on the backed of the package making use of the parralization capabilities of `foreach` and `doParallel` [packages](https://cran.r-project.org/web/packages/doParallel/vignettes/gettingstartedParallel.pdf) along with the subsetting capabilities of the [OPeNDAP framework](https://www.opendap.org) 
 
-But first we need the package!
+This document will walk users through the use of this package, but first we need to install `nwm`!
 
 ###Installation:
 
-First things first, get up and running in R by downlaoding and installing the `NWM` package:
+First things first, get up and running in R by downloading and installing the `NWM` package:
 
 ```{r, eval = F}
 install.packages("devtools")
@@ -51,26 +47,38 @@ install_github("mikejohnson51/NWM")
 ```
 
 ##Challenge #1: 
+
 ###Understanding the configurations, output types, data, units, and nomenclature.
 
-The NWM runs on four unique configurations - each cycling on a different time intervals, producing forcasts out to different lengths, and including varying suites of parameters. 
+The NWM runs on four unique configurations - each cycling on a different time intervals, producing forecasts out to different lengths, and including varying suites of parameters. 
+
+Specifically these are `analysis & assimulation`, `short range`, `medium range`, and `long range`. To get a better understanding of these configurations users can call on the `look()` function. Below is an example for the `short_range` configuration.
 
 ```{r}
 look("short_range")
 ```
+The output of this call is sent to the R console and provides (1) a description of the configuration, (2) the output types offered, (3) the time when these forcasts are made (t), and (4) how far out - or forward - each goes (f).
 
-At the most general level, each configuration generates three sets of outputs. `Channel` data are point values generated at the outlets of each of the 2.7 million NHDPusV2 reaches in the CONUS; `land` outputs are gridded data set to a 1 km grid; and forcing data are those parameters used to generate the `channel` and `land` forcasts 
+For example a forecast made at noon for 3PM would have a t value of 12 and an f value of 3.
+
+At the most general level, each model configuration generates three sets of outputs. 
+
+`Channel` output are point values generated at the outlets of each of the 2.7 million NHDPusV2 reaches in the CONUS  
+
+`land` outputs are gridded data set to a 1 km grid
+
+`forcing` data are those parameters used to generate the `channel` and `land` forecasts, these are also 1 km gridded data.
 
 ```{r}
 look("medium_range", 'channel')
 ```
 
-Great so now using the `look` function you have the tools to check the parmaters, cycle time and forecast durations of any configuration, type combination! Now we can move one to actually getting that data!
+Great so now using the `look` function you have the tools to check the parameters, cycle time and forecast duration of any configuration, type combination - now we can actually get some data!
 
 ##Challenge #2: 
 ###Querying data and subsetting to an AOI
 
-Defining Area of Interests in the `nwm` package are based on the `AOI` package which was developed to help find, define, and refine AOI spatial objects. AOIs can be defined by a state, county or clip area. To learn more about this package please consult the package [documentation](https://mikejohnson51.github.io/AOI/).
+Defining Area of Interest in the `nwm` package is based on the `AOI` package which was developed to help find, define, and refine AOI spatial objects. AOIs can be defined by a state, county or clip area generated from a location and bounding box. To learn more about this package please consult the package [documentation](https://mikejohnson51.github.io/AOI/).
 
 Here is a basic example querying a 100 square mile AOI centered on 'Colorado Springs, Colorado'. The AOI `check()` function can be used to view its boundaries:
 
@@ -78,24 +86,33 @@ Here is a basic example querying a 100 square mile AOI centered on 'Colorado Spr
 getAOI(clip = list("Colorado Springs", 10, 10)) %>% check()
 ```
 
-```{r}
-AOI = getAOI(clip = list("Colorado Springs", 10, 10))
+We can use our AOI to subset and download the NHD reaches: 
 
+```{r, echo = F}
+AOI = getAOI(clip = list("Colorado Springs", 10, 10))
+```
+
+```{r}
 system.time({
   nhd <-getNHD(AOI)
 })
 
 head(nhd)
-
 ```
 
-Here we see that we have 91 flowlines (so 91 points) where `channel` forecasts can be found from the NWM. To view these flowlines we can chain `leaflet::addPolylines()` to the `check(AOI)` call.
+Here we see that that there are 91 flow lines (so 91 points) where `channel` forecasts can be found from the NWM. To view these flow lines we can chain `leaflet::addPolylines()` to the `check(AOI)` call. We can also quickly label each river by its COMID using the `popup` options, and symbolize each reach by its order using `weight`.
 
 ```{r}
 library(leaflet)
-check(AOI) %>% addPolylines(data = nhd)
+check(AOI) %>% addPolylines(data = nhd, popup = paste0("COMID: ", nhd$comid), weight  = nhd$streamorde)
+
 ```
 
+With an area selected, we next need to define the file list we need to subset. This requires defining a model configuration (`config`), the `date(s)`, the time of forecast(`t`), and the time forward from each `t`, (`f`).
+
+In this example we are getting the medium range, channel, forecasts made on the July 12, 2018 at 12AM, 6AM, and 12PM UTC time.  
+
+Remember the `look()` function can be useful in paramatrizing this query:
 
 ```{r}
 files = getFilelist(config = "medium_range", date = "20180712", type = "channel", t = c(0,6,12))
@@ -103,15 +120,22 @@ files = getFilelist(config = "medium_range", date = "20180712", type = "channel"
 print(files)
 ```
 
+With a known AOI, and a list of files we can use the `downloadNWM` function to specifiy the parameter we want to grab from these files subset to the region. In this basic example 
+
+
 ```{r}
 xx = system.time({
   flows <-downloadNWM(AOI, files, "streamflow")
 })
-
-
 ```
 
-`r xx[3]`
+Alternitvly we could grab the velocity values simple by changing the `parameter` value, likewise and output type can be 
+
+```{r}
+xx = system.time({
+  flows <-downloadNWM(AOI, files, "velocity")
+})
+```
 
 ```{r}
 head(flows, 8)
@@ -131,10 +155,8 @@ vizFlows(AOI = AOI, nhd = nhd,  data = flows, num = 10, max = FALSE)}
 ```{r}
 files = getFilelist(config = "medium_range", date = "20180711", type = "land", t = 6, f = seq(3,30,3))
 
-nwm$medium_range$land$PARAM
-
 system.time({
-  et <-downloadNWM(AOI, files, "accet")
+  et <-downloadNWM(AOI, files, nwm$medium_range$land$PARAM[17])
 })
 
 {par(mar = c(0.1, 0.1, 0.1, 0.1), mfrow = c(2,2))
