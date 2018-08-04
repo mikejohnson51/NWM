@@ -115,7 +115,7 @@ In this example we are getting the medium range, channel, forecasts made on the 
 Remember the `look()` function can be useful in paramatrizing this query:
 
 ```{r}
-files = getFilelist(config = "medium_range", date = "20180712", type = "channel", t = c(0,6,12))
+files = getFilelist(config = "medium_range", date = "20180712", type = "channel", t = c(0,6,12), f = 3)
 
 print(files)
 ```

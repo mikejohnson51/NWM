@@ -4,8 +4,8 @@
 \alias{getFilelist}
 \title{Get file list}
 \usage{
-getFilelist(config = "medium_range", type = "channel", date = 20180615,
-  t = 0, f = 3, useHTTP = FALSE)
+getFilelist(config = "medium_range", type = "channel", date = NULL,
+  t = NULL, f = NULL, n = 5, useHTTP = FALSE)
 }
 \arguments{
 \item{config}{model configuration}

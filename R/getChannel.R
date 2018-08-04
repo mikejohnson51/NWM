@@ -11,6 +11,7 @@
 #' @export
 
 getChannel = function(AOI, filelist, param) {
+
   i = NULL
   j = NULL
   `%dopar%` <- foreach::`%dopar%`

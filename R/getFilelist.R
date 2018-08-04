@@ -94,7 +94,7 @@ getFilelist = function(config = "medium_range",
 
 # Use HTTP or OpenDaP -----------------------------------------------------
 
- base = paste0(server.base, ifelse(isTRUE(useHTTP), "fileServer", "dodsC"), "/nwm/")
+ base = paste0(server.base, ifelse(isTRUE(useHTTP), "/fileServer", "/dodsC"), "/nwm/")
 
 # Build file paths --------------------------------------------------------
 

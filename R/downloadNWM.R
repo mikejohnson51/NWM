@@ -12,6 +12,9 @@
 downloadNWM = function(AOI = NULL,
                        filelist = NULL,
                        param = NULL) {
+
+  if(!(class(AOI) %in% c("list","HydroData"))){AOI = list(AOI = AOI)}
+
   tmp = filelist[1]
 
   config <-
@@ -33,17 +36,19 @@ downloadNWM = function(AOI = NULL,
   }
 
   if (type == 'channel') {
-    vals = getChannel(AOI = AOI,
+    vals = getChannel(AOI = AOI$AOI,
                       filelist = filelist,
                       param = param)
   }
 
   if (type %in% c('land', "forcing")) {
-    vals = getGridded(AOI = AOI,
+    vals = getGridded(AOI = AOI$AOI,
                       filelist = filelist,
                       param = param)
   }
 
-  return(vals)
+  AOI[[param]] = vals
+
+  return(AOI)
 
 }
