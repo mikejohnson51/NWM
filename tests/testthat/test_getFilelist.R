@@ -23,9 +23,9 @@ test_that("getFilelist throws correct errors", {
 test_that("getFilelist returns", {
 
   base = getFilelist(t = 0)
-  http = getFilelist(useHTTP = TRUE)
-  forcing = getFilelist(type = 'forcing')
-  today = getFilelist(date = gsub("-", "", Sys.Date()))
+  http = getFilelist(t = 0, useHTTP = TRUE)
+  forcing = getFilelist(t = 0, type = 'forcing')
+  today = getFilelist(t = 0, date = gsub("-", "", Sys.Date()))
 
 
   vec =  c(
