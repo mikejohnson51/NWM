@@ -6,12 +6,13 @@
 #' @param AOI a AOI to subset data (generated with AOI::getAOI())
 #' @param filelist a list of filepaths (generated with getFiles)
 #' @param param a channel paramater
+#' @param layer for soil and snow land parameters a layer must be declared (defaults to 1)
 #'
 #' @return a raster stack
 #' @export
 #'
 
-getGridded = function(AOI, filelist, param) {
+getGridded = function(AOI, filelist, param, layer = NULL) {
 
   i = NULL
 
@@ -23,8 +24,9 @@ getGridded = function(AOI, filelist, param) {
     return(list(r = r, time = time))
   }
 
-
   param = toupper(param)
+
+  layer = defineLayers(param, layer)
 
   grid = define_AOI_grid(AOI)
 
@@ -41,7 +43,9 @@ getGridded = function(AOI, filelist, param) {
                     grid$y.min,
                     ":1:",
                     grid$y.max ,
-                    "][",
+                    "]",
+                    layer$layer.p,
+                    "[",
                     grid$x.min,
                     ":1:",
                     grid$x.max,
@@ -58,8 +62,6 @@ getGridded = function(AOI, filelist, param) {
       raster::projection(r) = sp::CRS("+proj=lcc +lat_1=30 +lat_2=60 +lat_0=40 +lon_0=-97 +x_0=0 +y_0=0 +a=6370000 +b=6370000 +units=m +no_defs")
       raster::extent(r) = c(grid$long.min, grid$long.max, grid$lat.min, grid$lat.max)
       raster::res(r) = 1000
-
-      #r = raster::projectRaster(from = r, crs = sp::CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
 
       return(list(r = r, time = time))
 

@@ -3,6 +3,7 @@
 #' @param AOI an Area of Interest to subset to (generated with getAOI)
 #' @param filelist a filelist generated with getFilelist
 #' @param param a parameter to get
+#' @param layer for soil and snow land parameters a layer must be declared (defaults to 1)
 #'
 #' @return a matrix of point values or a stack of gridded raster images
 #' @export
@@ -11,7 +12,8 @@
 
 downloadNWM = function(AOI = NULL,
                        filelist = NULL,
-                       param = NULL) {
+                       param = NULL,
+                       layer = NULL) {
 
   if(!(class(AOI) %in% c("list","HydroData"))){AOI = list(AOI = AOI)}
 
@@ -36,18 +38,36 @@ downloadNWM = function(AOI = NULL,
   }
 
   if (type == 'channel') {
+    for(i in seq_along(param)){
+
     vals = getChannel(AOI = AOI$AOI,
                       filelist = filelist,
-                      param = param)
+                      param = param[i])
+
+    AOI[[param[i]]] = vals
+    }
   }
 
   if (type %in% c('land', "forcing")) {
-    vals = getGridded(AOI = AOI$AOI,
+
+    for(i in seq_along(param)){
+
+      for(j in 1:max(1, length(layer))){
+
+      l = defineLayers(param[i], layer[j])
+
+      vals = getGridded(AOI = AOI$AOI,
                       filelist = filelist,
-                      param = param)
+                      param = param[i],
+                      layer = layer[j])
+
+      AOI[[paste0(param[i], l$layer)]] = vals
+      }
+    }
   }
 
-  AOI[[param]] = vals
+
+
 
   return(AOI)
 

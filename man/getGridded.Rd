@@ -4,7 +4,7 @@
 \alias{getGridded}
 \title{Get NWM gridded data output}
 \usage{
-getGridded(AOI, filelist, param)
+getGridded(AOI, filelist, param, layer = NULL)
 }
 \arguments{
 \item{AOI}{a AOI to subset data (generated with AOI::getAOI())}
@@ -12,6 +12,8 @@ getGridded(AOI, filelist, param)
 \item{filelist}{a list of filepaths (generated with getFiles)}
 
 \item{param}{a channel paramater}
+
+\item{layer}{for soil and snow land parameters a layer must be declared (defaults to 1)}
 }
 \value{
 a raster stack

@@ -6,6 +6,7 @@
 #' @param date dates of interst
 #' @param t time of forecast
 #' @param f hours foward from t
+#' @param n if f is null n can be used to limit the number of files returned
 #' @param useHTTP use HTTP? default = FALSE
 #'
 #' @return a list of file paths

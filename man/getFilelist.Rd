@@ -18,6 +18,8 @@ getFilelist(config = "medium_range", type = "channel", date = NULL,
 
 \item{f}{hours foward from t}
 
+\item{n}{if f is null n can be used to limit the number of files returned}
+
 \item{useHTTP}{use HTTP? default = FALSE}
 }
 \value{

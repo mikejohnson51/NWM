@@ -4,7 +4,7 @@
 \alias{downloadNWM}
 \title{Download National Water Model Data}
 \usage{
-downloadNWM(AOI = NULL, filelist = NULL, param = NULL)
+downloadNWM(AOI = NULL, filelist = NULL, param = NULL, layer = NULL)
 }
 \arguments{
 \item{AOI}{an Area of Interest to subset to (generated with getAOI)}
@@ -12,6 +12,8 @@ downloadNWM(AOI = NULL, filelist = NULL, param = NULL)
 \item{filelist}{a filelist generated with getFilelist}
 
 \item{param}{a parameter to get}
+
+\item{layer}{for soil and snow land parameters a layer must be declared (defaults to 1)}
 }
 \value{
 a matrix of point values or a stack of gridded raster images

@@ -60,7 +60,8 @@ getChannel = function(AOI, filelist, param) {
   final <-
     trimChannel(idList = idList,
                 data = res$vals,
-                time = unique(res$time))
+                time = unique(res$time),
+                param = param)
 
   return(final)
 
