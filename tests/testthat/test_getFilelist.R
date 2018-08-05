@@ -22,7 +22,7 @@ test_that("getFilelist throws correct errors", {
 
 test_that("getFilelist returns", {
 
-  base = getFilelist()
+  base = getFilelist(t = 0)
   http = getFilelist(useHTTP = TRUE)
   forcing = getFilelist(type = 'forcing')
   today = getFilelist(date = gsub("-", "", Sys.Date()))
