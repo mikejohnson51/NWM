@@ -55,8 +55,9 @@ test_that("getNHD", {
 
 test_that("look throws correct errors", {
   expect_error(look("test") , "test not a valid configuraion. Use:\nshort_range\nmedium_range\nlong_range", fixed = TRUE)
-  expect_error(look("short_range", type = "test") , "short_range not a valid configuraion. Use:\nchannel\nland\nforcing\nmeta", fixed = TRUE)
+  expect_error(look("short_range", type = "test") , "short_range not a valid configuraion. Use:\nchannel\nreservoir\nland\nterrain\nforcing\nmeta", fixed = TRUE)
 })
+
 
 test_that("look", {
 

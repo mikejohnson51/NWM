@@ -1,3 +1,16 @@
+reservoir = data.frame(
+  PARAM = c("elevation", "inflow", "outflow"),
+  UNITS = c("m", "m3/sec", "m3/sec"),
+  DESCRIPTION = c("Reservoir water surface elevation", "Reservoir inflow", "Reservoir outflow")
+)
+
+terrain = data.frame(
+  PARAM = c("sfcheadsubrt", "zwattablrt"),
+  UNITS = c("mm", "m"),
+  DESCRIPTION = c("Ponded water depth", "Depth to soil saturation")
+)
+
+
 forcing = data.frame(
 
   PARAM = c(
@@ -67,6 +80,8 @@ nwm = list(
 
     channel = channel,
 
+    reservoir = reservoir,
+
     land = data.frame(
 
       PARAM = c("soilsat_top",
@@ -95,6 +110,8 @@ nwm = list(
       stringsAsFactors = FALSE
     ),
 
+    terrain = terrain,
+
     forcing = forcing,
 
     meta = list(
@@ -107,7 +124,10 @@ nwm = list(
 
 
   medium_range = list(
+
     channel = channel,
+
+    reservoir = reservoir,
 
     land = data.frame(
 
@@ -192,6 +212,8 @@ nwm = list(
       stringsAsFactors = FALSE
     ),
 
+    terrain = terrain,
+
     forcing = forcing,
 
     meta = list(
@@ -205,6 +227,8 @@ nwm = list(
   long_range = list(
 
     channel =  channel[-3,],
+
+    reservoir = reservoir,
 
     land = data.frame(
 
@@ -242,9 +266,11 @@ nwm = list(
       stringsAsFactors = FALSE
     ),
 
+    terrain = NULL,
     forcing = forcing,
 
     meta = list(
+      member = c(1:4),
       flist = paste0("f", sprintf("%03d", seq(6,720,6))),
       tlist = "t00",
       DESCRIPTION = "The Long Range Forecast cycles four times per day (i.e. every 6 hours) and produces a daily 16-member 30-day ensemble forecast. There are 4 ensemble members in each cycle of this forecast configuration, each forced with a different CFS forecast member. It produces 6-hourly streamflow and daily land surface output, and, as with the other forecast configurations, is initialized with a common restart file from the Analysis and Assimilation configuration."

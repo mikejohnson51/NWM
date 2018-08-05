@@ -7,6 +7,7 @@
 #' @param t time of forecast
 #' @param f hours foward from t
 #' @param n if f is null n can be used to limit the number of files returned
+#' @param m ensemble memeber (long_range only)
 #' @param useHTTP use HTTP? default = FALSE
 #'
 #' @return a list of file paths
@@ -20,7 +21,10 @@ getFilelist = function(config = "medium_range",
                     t = NULL,
                     f = NULL,
                     n = 5,
+                    m = NULL,
                     useHTTP = FALSE) {
+
+  if(type == 'terrain'){stop("\n\nRENCI server does not host gridded terrain data.\nAs soon as it becomes available the nwm package will support it. ")}
 
 
   server.base = "http://thredds.hydroshare.org/thredds"
@@ -99,21 +103,17 @@ getFilelist = function(config = "medium_range",
 
 # Build file paths --------------------------------------------------------
 
+  if(config == 'long_range'){ ext = paste0("_", m)} else {ext = NULL}
+
+  ext = param.combine(config, type, t, f, ext)
+
   all.files = paste0(
     base,
     config,
     "/",
     date,
     "/",
-    paste(
-      "nwm",
-      paste0("t", sprintf("%02d", t), "z"),
-      ifelse(type == "forcing", sub('.*forcing_', '', config), config),
-      ifelse(type == "channel", paste0(type, "_rt"), type),
-      paste0("f", sprintf("%03d", f)),
-      "conus.nc",
-      sep = "."
-    )
+    ext
   )
 
  all.files = all.files[!grepl('NA', all.files)]

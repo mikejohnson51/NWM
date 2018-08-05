@@ -17,14 +17,13 @@ downloadNWM = function(AOI = NULL,
 
   if(!(class(AOI) %in% c("list","HydroData"))){AOI = list(AOI = AOI)}
 
-  tmp = filelist[1]
+  config <- regmatches(filelist[1], regexec("nwm/(.*?)/", filelist[1]))[[1]][2]
 
-  config <-
-    regmatches(tmp, regexec("nwm/(.*?)/", tmp))[[1]][2]
+  types  = c("channel", "land", "forcing", "terrain", "reservoir")
 
-  types  = c("channel", "land", "forcing")
+  type = types[sapply(types, grepl, filelist[1])]
 
-  type = types[sapply(types, grepl, tmp)]
+  if(type == 'terrain'){stop("\n\nRENCI server does not host gridded terrain data.\nAs soon as it becomes available the nwm package will support it. ")}
 
   param.error = error.check(
     error = "parameter",
@@ -37,18 +36,11 @@ downloadNWM = function(AOI = NULL,
     stop(param.error)
   }
 
-  if (type == 'channel') {
-    for(i in seq_along(param)){
-
-    vals = getChannel(AOI = AOI$AOI,
-                      filelist = filelist,
-                      param = param[i])
-
-    AOI[[param[i]]] = vals
-    }
+  if (type %in% c('channel', 'reservoir')) {
+    AOI = getNWM_point(AOI = AOI, type = type, filelist = filelist, param = param)
   }
 
-  if (type %in% c('land', "forcing")) {
+  if (type %in% c('land', "forcing", "terrain")) {
 
     for(i in seq_along(param)){
 
@@ -65,9 +57,6 @@ downloadNWM = function(AOI = NULL,
       }
     }
   }
-
-
-
 
   return(AOI)
 
