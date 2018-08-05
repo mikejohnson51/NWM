@@ -3,6 +3,7 @@
 #' @param idList list of ides
 #' @param data flow data to be trime
 #' @param time a vector of time inputs
+#' @param param string used to name time varying column
 #'
 #' @return a wide data.frame
 #' @export
