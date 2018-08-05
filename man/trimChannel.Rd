@@ -11,6 +11,8 @@ trimChannel(idList = NULL, data = NULL, param = NULL, time = NULL)
 
 \item{data}{flow data to be trime}
 
+\item{param}{string used to name time varying column}
+
 \item{time}{a vector of time inputs}
 }
 \value{

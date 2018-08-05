@@ -5,7 +5,7 @@
 \title{Get file list}
 \usage{
 getFilelist(config = "medium_range", type = "channel", date = NULL,
-  t = NULL, f = NULL, n = 5, useHTTP = FALSE)
+  t = NULL, f = NULL, n = 5, m = NULL, useHTTP = FALSE)
 }
 \arguments{
 \item{config}{model configuration}
@@ -19,6 +19,8 @@ getFilelist(config = "medium_range", type = "channel", date = NULL,
 \item{f}{hours foward from t}
 
 \item{n}{if f is null n can be used to limit the number of files returned}
+
+\item{m}{ensemble memeber (long_range only)}
 
 \item{useHTTP}{use HTTP? default = FALSE}
 }
