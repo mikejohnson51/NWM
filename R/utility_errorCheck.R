@@ -36,7 +36,10 @@ if (any(request.dates < max.date)) {
 # 2. Error check `parameter` -------------------------------------------------
 
 if(error == "parameter"){
+
+  if(grepl("forcing", config)){config = gsub("forcing_", "", config)}
   good.param = eval(parse(text = paste0("nwm$", config, "$", type, "$PARAM")))
+
   bad.param  = param[!(param %in% good.param)]
 
   if(length(bad.param) > 0) {
