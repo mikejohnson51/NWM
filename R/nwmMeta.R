@@ -1,3 +1,8 @@
+#' @title National Water Meta Data
+#' @description listed data.frame of NWM meta data
+#' @export
+#' @author Mike Johnson
+
 reservoir = data.frame(
   PARAM = c("elevation", "inflow", "outflow"),
   UNITS = c("m", "m3/sec", "m3/sec"),
