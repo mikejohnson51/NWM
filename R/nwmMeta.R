@@ -3,89 +3,37 @@
 #' @export
 #' @author Mike Johnson
 
-reservoir = data.frame(
-  PARAM = c("elevation", "inflow", "outflow"),
-  UNITS = c("m", "m3/sec", "m3/sec"),
-  DESCRIPTION = c("Reservoir water surface elevation", "Reservoir inflow", "Reservoir outflow")
-)
-
-terrain = data.frame(
-  PARAM = c("sfcheadsubrt", "zwattablrt"),
-  UNITS = c("mm", "m"),
-  DESCRIPTION = c("Ponded water depth", "Depth to soil saturation")
-)
-
-
-forcing = data.frame(
-
-  PARAM = c(
-    "t2d",
-    "q2d",
-    "u2d",
-    "v2d",
-    "psfc",
-    "swdown",
-    "lwdown",
-    "rainrate"
-  ),
-
-  UNITS = c(
-    "degrees K",
-    "kg/kg",
-    "m/sec",
-    "m/sec",
-    "Pa",
-    "w/m2",
-    "w/m2",
-    "kg/m2sec"
-  ),
-
-  DESCRIPTION = c(
-    "2 meter temperature",
-    "2 meter specific humidity",
-    "10 meter U wind component",
-    "10 meter V wind component",
-    "Surface pressure",
-    "Downward shortwave radiation",
-    "Downward longwave radiation",
-    "Precipitation rate"
-  ),
-  stringsAsFactors = FALSE
-)
-
-
-channel = data.frame(
-
-  PARAM = c("streamflow",
-            "nudge",
-            "velocity",
-            "q_lateral"),
-
-  UNITS = c("m3/sec",
-            "m3/sec",
-            "m/s",
-            "m3/sec"),
-
-  DESCRIPTION = c(
-    "Streamflow",
-    "Streamflow data assimilation increment",
-    "Stream velocity",
-    "Channel inflow"
-  ),
-
-  stringsAsFactors = FALSE
-)
-
-
-
-
 nwm = list(
 
   short_range = list(
 
-    channel = channel,
+  channel = data.frame(
 
-    reservoir = reservoir,
+      PARAM = c("streamflow",
+                "nudge",
+                "velocity",
+                "q_lateral"),
+
+      UNITS = c("m3/sec",
+                "m3/sec",
+                "m/s",
+                "m3/sec"),
+
+      DESCRIPTION = c(
+        "Streamflow",
+        "Streamflow data assimilation increment",
+        "Stream velocity",
+        "Channel inflow"
+      ),
+
+      stringsAsFactors = FALSE
+    ),
+
+    reservoir = data.frame(
+      PARAM = c("elevation", "inflow", "outflow"),
+      UNITS = c("m", "m3/sec", "m3/sec"),
+      DESCRIPTION = c("Reservoir water surface elevation", "Reservoir inflow", "Reservoir outflow")
+    ),
 
     land = data.frame(
 
@@ -115,9 +63,48 @@ nwm = list(
       stringsAsFactors = FALSE
     ),
 
-    terrain = terrain,
+    terrain = data.frame(
+      PARAM = c("sfcheadsubrt", "zwattablrt"),
+      UNITS = c("mm", "m"),
+      DESCRIPTION = c("Ponded water depth", "Depth to soil saturation")
+    ),
 
-    forcing = forcing,
+    forcing = data.frame(
+
+      PARAM = c(
+        "t2d",
+        "q2d",
+        "u2d",
+        "v2d",
+        "psfc",
+        "swdown",
+        "lwdown",
+        "rainrate"
+      ),
+
+      UNITS = c(
+        "degrees K",
+        "kg/kg",
+        "m/sec",
+        "m/sec",
+        "Pa",
+        "w/m2",
+        "w/m2",
+        "kg/m2sec"
+      ),
+
+      DESCRIPTION = c(
+        "2 meter temperature",
+        "2 meter specific humidity",
+        "10 meter U wind component",
+        "10 meter V wind component",
+        "Surface pressure",
+        "Downward shortwave radiation",
+        "Downward longwave radiation",
+        "Precipitation rate"
+      ),
+      stringsAsFactors = FALSE
+    ),
 
     meta = list(
       flist = paste0("f", sprintf("%03d", 1:18)),
@@ -130,9 +117,33 @@ nwm = list(
 
   medium_range = list(
 
-    channel = channel,
+    channel = data.frame(
 
-    reservoir = reservoir,
+      PARAM = c("streamflow",
+                "nudge",
+                "velocity",
+                "q_lateral"),
+
+      UNITS = c("m3/sec",
+                "m3/sec",
+                "m/s",
+                "m3/sec"),
+
+      DESCRIPTION = c(
+        "Streamflow",
+        "Streamflow data assimilation increment",
+        "Stream velocity",
+        "Channel inflow"
+      ),
+
+      stringsAsFactors = FALSE
+    ),
+
+    reservoir = data.frame(
+      PARAM = c("elevation", "inflow", "outflow"),
+      UNITS = c("m", "m3/sec", "m3/sec"),
+      DESCRIPTION = c("Reservoir water surface elevation", "Reservoir inflow", "Reservoir outflow")
+    ),
 
     land = data.frame(
 
@@ -217,9 +228,48 @@ nwm = list(
       stringsAsFactors = FALSE
     ),
 
-    terrain = terrain,
+    terrain = data.frame(
+      PARAM = c("sfcheadsubrt", "zwattablrt"),
+      UNITS = c("mm", "m"),
+      DESCRIPTION = c("Ponded water depth", "Depth to soil saturation")
+    ),
 
-    forcing = forcing,
+    forcing = data.frame(
+
+      PARAM = c(
+        "t2d",
+        "q2d",
+        "u2d",
+        "v2d",
+        "psfc",
+        "swdown",
+        "lwdown",
+        "rainrate"
+      ),
+
+      UNITS = c(
+        "degrees K",
+        "kg/kg",
+        "m/sec",
+        "m/sec",
+        "Pa",
+        "w/m2",
+        "w/m2",
+        "kg/m2sec"
+      ),
+
+      DESCRIPTION = c(
+        "2 meter temperature",
+        "2 meter specific humidity",
+        "10 meter U wind component",
+        "10 meter V wind component",
+        "Surface pressure",
+        "Downward shortwave radiation",
+        "Downward longwave radiation",
+        "Precipitation rate"
+      ),
+      stringsAsFactors = FALSE
+    ),
 
     meta = list(
       flist = paste0("f", sprintf("%03d", seq(3, 240, 3))),
@@ -231,9 +281,30 @@ nwm = list(
 
   long_range = list(
 
-    channel =  channel[-3,],
+    channel = data.frame(
 
-    reservoir = reservoir,
+      PARAM = c("streamflow",
+                "nudge",
+                "q_lateral"),
+
+      UNITS = c("m3/sec",
+                "m3/sec",
+                "m3/sec"),
+
+      DESCRIPTION = c(
+        "Streamflow",
+        "Streamflow data assimilation increment",
+        "Channel inflow"
+      ),
+
+      stringsAsFactors = FALSE
+    ),
+
+    reservoir = data.frame(
+      PARAM = c("elevation", "inflow", "outflow"),
+      UNITS = c("m", "m3/sec", "m3/sec"),
+      DESCRIPTION = c("Reservoir water surface elevation", "Reservoir inflow", "Reservoir outflow")
+    ),
 
     land = data.frame(
 
@@ -272,7 +343,42 @@ nwm = list(
     ),
 
     terrain = NULL,
-    forcing = forcing,
+    forcing = data.frame(
+
+      PARAM = c(
+        "t2d",
+        "q2d",
+        "u2d",
+        "v2d",
+        "psfc",
+        "swdown",
+        "lwdown",
+        "rainrate"
+      ),
+
+      UNITS = c(
+        "degrees K",
+        "kg/kg",
+        "m/sec",
+        "m/sec",
+        "Pa",
+        "w/m2",
+        "w/m2",
+        "kg/m2sec"
+      ),
+
+      DESCRIPTION = c(
+        "2 meter temperature",
+        "2 meter specific humidity",
+        "10 meter U wind component",
+        "10 meter V wind component",
+        "Surface pressure",
+        "Downward shortwave radiation",
+        "Downward longwave radiation",
+        "Precipitation rate"
+      ),
+      stringsAsFactors = FALSE
+    ),
 
     meta = list(
       member = c(1:4),
