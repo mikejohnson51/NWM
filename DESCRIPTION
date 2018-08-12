@@ -13,6 +13,7 @@ Depends:
     R(>= 3.3.0),
     AOI
 Imports:
+  crayon,
   doParallel,
   foreach,
   magrittr,
@@ -21,6 +22,7 @@ Imports:
   stats,
   sf,
   sp
+Remotes: mikejohnson51/AOI
 License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 6.0.1

@@ -39,24 +39,22 @@ look = function(config, type = NULL) {
     t.mat = as.numeric(substr(data$meta$tlist, 2, 3)) }
 
   if (is.null(type)) {
-    cat("You are viewing metadata for the",
+    cat(crayon::blue$underline("You are viewing metadata for the",
         paste0("`",config, "`"),
-        "configuration:\n\n")
+        "configuration:\n"))
     cat(data$meta$DESCRIPTION, "\n\n")
-    cat("Valid Types include:\n",
-        paste(names(data), collapse = ", "),
-        "\n\n")
 
-    cat("Valid `t` values include:\n\t")
+    cat(crayon::blue$underline("Valid Types include:\n"))
+    cat(paste(names(data)[1:length(names(data)) -1], collapse = ", "), "\n\n")
 
-    if(length(data$meta$tlist) > 5){
-      prmatrix(t.mat, rowlab = rep("", nrow(t.mat)), collab = rep("", ncol(t.mat)))
-    } else {cat(paste(t.mat, collapse = ", "))}
+    cat(crayon::blue$underline("Valid `t` values include:\n"))
+
+    cat(paste(as.numeric(substr(data$meta$tlist, 2, 3)), collapse = ", "))
     cat("\n\n")
 
-    cat("Valid `f` values include:\n\t")
+    cat(crayon::blue$underline("Valid `f` values include:\n"))
 
-    prmatrix(f.mat, rowlab = rep("", nrow(f.mat)), collab = rep("", ncol(f.mat)))
+    cat(paste(as.numeric(substr(data$meta$flist, 2, 4)), collapse = ", "))
     cat("\n")
 
 
@@ -67,28 +65,26 @@ look = function(config, type = NULL) {
     }
 
     type_data = eval(parse(text = paste0("nwm$", config, "$", type)))
-    cat("You are viewing metadata for the",
+    cat(crayon::blue$underline("You are viewing metadata for the",
         paste0("`", config ,"`"),
         "configuration and",
         paste0("`",type, "`"),
-        "type:\n\n")
+        "type:\n"))
 
     cat(data$meta$DESCRIPTION, "\n\n")
 
-    cat("Valid", paste0("`",type, "`"),  "parameters include:\n\n")
+    cat(crayon::blue$underline("Valid", paste0("`",type, "`"),  "parameters include:\n"))
     mat = as.matrix(type_data, byrow = T)
     prmatrix(mat, rowlab = rep("", nrow(mat)))
-    cat("\n")
 
-    cat("Valid `t` values include:\n\t")
+    cat(crayon::blue$underline("Valid `t` values include:\n"))
 
-    if(length(data$meta$tlist) > 5){
-    prmatrix(t.mat, rowlab = rep("", nrow(t.mat)), collab = rep("", ncol(t.mat)))
-    } else {cat(paste(t.mat, collapse = ", "))}
+    cat(paste(as.numeric(substr(data$meta$tlist, 2, 3)), collapse = ", "))
     cat("\n\n")
 
-    cat("Valid `f` values include:\n\t")
-    prmatrix(f.mat, rowlab = rep("", nrow(f.mat)), collab = rep("", ncol(f.mat)))
+    cat(crayon::blue$underline("Valid `f` values include:\n"))
+
+    cat(paste(as.numeric(substr(data$meta$flist, 2, 4)), collapse = ", "))
     cat("\n")
   }
 

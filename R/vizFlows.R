@@ -14,7 +14,7 @@ vizFlows = function(AOI = NULL, nhd = NULL, data = NULL, num = 5, max = TRUE){
   if(all(is.null(AOI), is.null(nhd))){stop("Must provide either AOI or NHD file...")}
   if(is.null(nhd)){ nhd = getNHD(AOI)}
 
-  flows = data[order(data$cfs, decreasing = ifelse(max, TRUE, FALSE)),]
+  flows = data[order(data$streamflow, decreasing = ifelse(max, TRUE, FALSE)),]
 
   if(!is.null(AOI)){ sp::plot(AOI, col = 'gray') }
 

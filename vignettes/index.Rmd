@@ -1,17 +1,17 @@
 ---
 title: National Water Model Access in R
-subtitle: Mike Johnson UCSB
-output:
-  prettydoc::html_pretty:
-    theme: architect
-    highlight: github
 ---
 
 ```{r echo = FALSE, results='hide', warning= FALSE,message=FALSE}
-devtools::load_all()
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 6, 
+  fig.height = 4
+)
+
+devtools::load_all(".")
 library(leaflet)
-library(knitr)
-opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
 ```
 
 In August 2016 NOAA made the National Water Model operational aimed towards impact-based forecasting of weather and water events. The NWM runs on NOAA’s centralized Weather and Climate Operational Supercomputing System (WCOSS) utilizing the community [WRF-Hydro modeling system](https://www.ral.ucar.edu/projects/wrf_hydro). It delivers streamflow forecasts for the 2.7 million USGS [NHDPlusv2](http://www.horizon-systems.com/nhdplus/) river reaches as well as 1-kilometer gridded analyses for a range of hydrologic variables across the CONUS.
@@ -35,16 +35,6 @@ The is addressed through a dependency on the [`AOI` package](https://github.com/
 This is handeled on the backed of the package making use of the parralization capabilities of `foreach` and `doParallel` [packages](https://cran.r-project.org/web/packages/doParallel/vignettes/gettingstartedParallel.pdf) along with the subsetting capabilities of the [OPeNDAP framework](https://www.opendap.org) 
 
 This document will walk users through the use of this package, but first we need to install `nwm`!
-
-###Installation:
-
-First things first, get up and running in R by downloading and installing the `NWM` package:
-
-```{r, eval = F}
-install.packages("devtools")
-library(devtools)
-install_github("mikejohnson51/NWM")
-```
 
 ##Challenge #1: 
 
@@ -86,6 +76,8 @@ Here is a basic example querying a 100 square mile AOI centered on 'Colorado Spr
 getAOI(clip = list("Colorado Springs", 10, 10)) %>% check()
 ```
 
+
+
 We can use our AOI to subset and download the NHD reaches: 
 
 ```{r, echo = F}
@@ -103,8 +95,8 @@ head(nhd)
 Here we see that that there are 91 flow lines (so 91 points) where `channel` forecasts can be found from the NWM. To view these flow lines we can chain `leaflet::addPolylines()` to the `check(AOI)` call. We can also quickly label each river by its COMID using the `popup` options, and symbolize each reach by its order using `weight`.
 
 ```{r}
-library(leaflet)
-check(AOI) %>% addPolylines(data = nhd, popup = paste0("COMID: ", nhd$comid), weight  = nhd$streamorde)
+
+check(AOI)$m %>% addPolylines(data = nhd, popup = paste0("COMID: ", nhd$comid), weight  = nhd$streamorde)
 
 ```
 
@@ -129,60 +121,65 @@ xx = system.time({
 })
 ```
 
-Alternitvly we could grab the velocity values simple by changing the `parameter` value, likewise and output type can be 
+This operation took `r xx[3]` seconds to extract `dim(flows$streamflow)[1]` flow recods for the AOI>
+
+Alternitvly we could grab the velocity values from the same file list simple by changing the `parameter` value to 'velocity':
 
 ```{r}
 xx = system.time({
-  flows <-downloadNWM(AOI, files, "velocity")
+  vel <-downloadNWM(AOI, files, "velocity")
 })
 ```
 
 ```{r}
-head(flows, 8)
+head(flows$streamflow, 8)
 ```
 
 ```{r}
-max = flows[order(flows$cfs, decreasing = T),]
+max = flows$streamflow[order(flows$streamflow$streamflow, decreasing = T),]
 head(max)
 ```
 
 ```{r}
 {par(mfrow = c(1,2))
-vizFlows(AOI = AOI, data = flows, num = 10, max = TRUE)
-vizFlows(AOI = AOI, nhd = nhd,  data = flows, num = 10, max = FALSE)}
+vizFlows(AOI = AOI, data = flows$streamflow, num = 10, max = TRUE)
+vizFlows(AOI = AOI, nhd = nhd,  data = flows$streamflow, num = 10, max = FALSE)}
 ```
 
 ```{r}
+library(RColorBrewer)
+
 files = getFilelist(config = "medium_range", date = "20180711", type = "land", t = 6, f = seq(3,30,3))
 
 system.time({
-  et <-downloadNWM(AOI, files, nwm$medium_range$land$PARAM[17])
+  d <-downloadNWM(AOI, files, "accet")
 })
 
-{par(mar = c(0.1, 0.1, 0.1, 0.1), mfrow = c(2,2))
-raster::plot(et[[1:4]], nc = 2, nr = 2, axes=FALSE, box=FALSE,legend = TRUE, main = getGridTime(et[[1:4]]),
-             legend.args=list(text= "ET (mm)", side=3, font=2, line=1, cex=0.5),
-             legend.width=1, legend.shrink=0.75)}
+rasterVis::levelplot(d$accet,
+                     main = "National Water Model: Accumulated ET", 
+                     names.attr = as.character(nwm::getGridTime(d$accet)),
+                     col.regions = colorRampPalette(brewer.pal(9,"YlOrRd")))
 
-check(AOI) %>% addRasterImage(x = et[[1]], opacity = .8)
-
-
+check(AOI)$m %>% addRasterImage(x = d$accet[[1]], opacity = .8)
 
 ```
 
 ```{r}
+
+library(ggplot2)
 loc = "Garden of the Gods, Colorado Springs"
 
-pt = getPoint(name = loc)
+pt = AOI::geocode(loc, pt = T)
 
-time = getGridTime(et)
+vals = data.frame(date = getGridTime(d$accet), accet = c(raster::extract(d$accet, y =  pt$pt)))
 
-et = raster::projectRaster(from = et, crs = aoiProj)
-
-vals = raster::extract(et, y =  data.frame(pt$lon, pt$lat))
-
-{plot(x = time, y = vals[1,], type = 'o', pch = 16, ylab = "ET", xlab = "Time (UTC)")
-title(loc)}
+plot(x = vals$date, 
+     y = vals$accet, 
+     type = 'o', 
+     pch = 16, 
+     ylab = "ET", 
+     xlab = "Time (UTC)",
+     main = loc)
 ```
 
 

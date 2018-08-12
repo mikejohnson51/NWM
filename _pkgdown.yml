@@ -1,0 +1,35 @@
+title: HydroData
+template:
+  params:
+    bootswatch: flatly
+reference:
+  - title: Get Data
+    desc: ~
+      Functions for Accessing NWM
+    contents:
+      - '`look`'
+      - '`getFilelist`'
+      - '`downloadNWM`'
+      - '`getRetro`'
+  - title: Functions for Viewing
+    desc: ~
+      View
+    contents:
+      - '`nwm`'
+      - '`getNHD`'
+      - '`getGridTime`'
+      - '`vizFlows`'
+      - '`findNearestNWIS`'
+      - '`findNearestWaterbodies`'
+navbar:
+  left:
+    - icon: fa-home
+      href: index.html
+    - text: "Documentation"
+      icon: fas fa-book
+      menu:
+      -  text: Getting Started
+         href: articles/index.html
+    - icon: fa-file-code-o
+      text: "functions"
+      href: reference/index.html
