@@ -29,8 +29,7 @@ getChannel = function(AOI, filelist, param) {
 
   }
 
-  idList <-
-    comidList(AOI, 2)
+  idList <- comidList(AOI, 2)
 
   no_cores <- parallel::detectCores() - 1
   doParallel::registerDoParallel(no_cores)
@@ -57,10 +56,12 @@ getChannel = function(AOI, filelist, param) {
       }
     }
 
+  subs = seq(1, length(res$time), length(idList))
+
   final <-
     trimChannel(idList = idList,
                 data = res$vals,
-                time = unique(res$time),
+                time = res$time[subs],
                 param = param)
 
   return(final)

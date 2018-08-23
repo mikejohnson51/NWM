@@ -42,6 +42,8 @@ trimChannel = function(idList = NULL, data = NULL, param = NULL, time = NULL){
 
   tst$time = as.POSIXct('1970-01-01 00:00:00', tz = 'GMT') + tst$time*60
 
+  tst = tst[order(tst$COMIDS, tst$time),]
+
   names(tst) <- c("COMIDS", "DateTime", param)
 
   return(tst)

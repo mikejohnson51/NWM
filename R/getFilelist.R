@@ -24,7 +24,7 @@ getFilelist = function(config = "medium_range",
                     m = NULL,
                     useHTTP = FALSE) {
 
-  if(type == 'terrain'){stop("\n\nRENCI server does not host gridded terrain data.\nAs soon as it becomes available the nwm package will support it. ")}
+ # if(type == 'terrain'){stop("\n\nRENCI server does not host gridded terrain data.\nAs soon as it becomes available the nwm package will support it. ")}
 
 
   server.base = "http://thredds.hydroshare.org/thredds"

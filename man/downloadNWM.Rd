@@ -4,7 +4,8 @@
 \alias{downloadNWM}
 \title{Download National Water Model Data}
 \usage{
-downloadNWM(AOI = NULL, filelist = NULL, param = NULL, layer = NULL)
+downloadNWM(AOI = NULL, filelist = NULL, param = NULL,
+  layer = NULL)
 }
 \arguments{
 \item{AOI}{an Area of Interest to subset to (generated with getAOI)}

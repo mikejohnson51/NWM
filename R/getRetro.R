@@ -123,5 +123,4 @@ cat(crayon::white("All files stored at: ") %+% crayon::blue(paste0(raw.dir, "/..
 
 }
 
-getRetro(date = 19950309, type = c("land", "channel"))
 

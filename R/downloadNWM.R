@@ -23,8 +23,6 @@ downloadNWM = function(AOI = NULL,
 
   type = types[sapply(types, grepl, filelist[1])]
 
-  if(type == 'terrain'){stop("\n\nRENCI server does not host gridded terrain data.\nAs soon as it becomes available the nwm package will support it. ")}
-
   param.error = error.check(
     error = "parameter",
     param = param,

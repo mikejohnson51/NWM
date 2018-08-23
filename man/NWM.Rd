@@ -4,7 +4,6 @@
 \name{nwm}
 \alias{nwm}
 \alias{nwm-package}
-\alias{nwm}
 \title{National Water Model Client}
 \format{An object of class \code{list} of length 3.}
 \usage{

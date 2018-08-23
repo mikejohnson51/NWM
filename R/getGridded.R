@@ -16,6 +16,12 @@ getGridded = function(AOI, filelist, param, layer = NULL) {
 
   i = NULL
 
+  types  = c("channel", "land", "forcing", "terrain", "reservoir")
+
+  type = types[sapply(types, grepl, filelist[1])]
+
+  if(type == 'terrain') { param = tolower(param)} else { param = toupper(param) }
+
   `%dopar%` <- foreach::`%dopar%`
 
   combine_lists <- function(LL1, LL2) {
@@ -23,8 +29,6 @@ getGridded = function(AOI, filelist, param, layer = NULL) {
     time <- c(LL1$time, LL2$time)
     return(list(r = r, time = time))
   }
-
-  param = toupper(param)
 
   layer = defineLayers(param, layer)
 

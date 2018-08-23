@@ -4,7 +4,8 @@
 \alias{vizFlows}
 \title{Vizualize Channel Flows}
 \usage{
-vizFlows(AOI = NULL, nhd = NULL, data = NULL, num = 5, max = TRUE)
+vizFlows(AOI = NULL, nhd = NULL, data = NULL, num = 5,
+  max = TRUE)
 }
 \arguments{
 \item{AOI}{an AOI object (for background plotting) (optional if AOI is not NULL)}
