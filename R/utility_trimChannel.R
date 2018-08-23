@@ -10,7 +10,7 @@
 #' @author Mike Johnson
 
 
-trimChannel = function(idList = NULL, data = NULL, param = NULL, time = NULL){
+trimChannel = function(idList = NULL, data = NULL, param = NULL, time = NULL,  f = NULL){
 
   i = NULL
 
@@ -38,13 +38,18 @@ trimChannel = function(idList = NULL, data = NULL, param = NULL, time = NULL){
 
   row.names(tst) <- NULL
 
+  #tst$t = foreach::foreach(i = 1:nrow(tst), .combine = 'c') %dopar% t[tst$time[i]]
+  tst$start = foreach::foreach(i = 1:nrow(tst), .combine = 'c') %dopar% f[tst$time[i]]
   tst$time = foreach::foreach(i = 1:nrow(tst), .combine = 'c') %dopar% time[tst$time[i]]
+
 
   tst$time = as.POSIXct('1970-01-01 00:00:00', tz = 'GMT') + tst$time*60
 
-  tst = tst[order(tst$COMIDS, tst$time),]
+  tst$start = tst$time - (tst$start)*60*60
 
-  names(tst) <- c("COMIDS", "DateTime", param)
+  tst = tst[order(tst$COMIDS, tst$time, tst$start),]
+
+  names(tst) <- c("COMIDS", "DateTime", param, 'start')
 
   return(tst)
 }

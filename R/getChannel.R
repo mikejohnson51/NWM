@@ -16,16 +16,18 @@ getChannel = function(AOI, filelist, param) {
   j = NULL
   `%dopar%` <- foreach::`%dopar%`
 
-  combine_lists <- function(LL1, LL2) {
+  combine_lists <- function(LL1, LL2, LL3) {
     vals <- c(LL1$vals, LL2$vals)
     time <- c(LL1$time, LL2$time)
-    return(list(vals = vals, time = time))
+    f <- c(LL1$f, LL2$f)
+    return(list(vals = vals, time = time, f = f))
   }
 
   combine_files <- function(LL1, LL2) {
     vals <- cbind(LL1$vals, LL2$vals)
     time <- c(LL1$time, LL2$time)
-    return(list(vals = vals, time = time))
+    f <- c(LL1$f, LL2$f)
+    return(list(vals = vals, time = time, f = f))
 
   }
 
@@ -51,7 +53,9 @@ getChannel = function(AOI, filelist, param) {
         time = ncdf4::ncvar_get(nc, "time")
         ncdf4::nc_close(nc)
 
-        return(list(vals = vals, time = time))
+        f = as.numeric(regmatches(filelist[i], regexec('f(.*?)\\.conus', filelist[i]))[[1]][2])
+
+        return(list(vals = vals, time = time, f = f))
 
       }
     }
@@ -62,6 +66,7 @@ getChannel = function(AOI, filelist, param) {
     trimChannel(idList = idList,
                 data = res$vals,
                 time = res$time[subs],
+                f = res$f[subs],
                 param = param)
 
   return(final)
