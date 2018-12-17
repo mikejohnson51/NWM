@@ -10,7 +10,10 @@
 #' @return a matrix of values where columns are files and rows are COMIDs
 #' @export
 
-getChannel = function(AOI, filelist, param) {
+getChannel = function(AOI = NULL,
+                      nhd = NULL,
+                      comids = NULL,
+                      filelist, param) {
 
   i = NULL
   j = NULL
@@ -31,7 +34,7 @@ getChannel = function(AOI, filelist, param) {
 
   }
 
-  idList <- comidList(AOI, 2)
+  idList <- comidList(AOI = AOI, nhd = nhd, comids = comids,  2)
 
   no_cores <- parallel::detectCores() - 1
   doParallel::registerDoParallel(no_cores)
@@ -62,8 +65,7 @@ getChannel = function(AOI, filelist, param) {
 
   subs = seq(1, length(res$time), length(idList))
 
-  final <-
-    trimChannel(idList = idList,
+  final <- trimChannel(idList = idList,
                 data = res$vals,
                 time = res$time[subs],
                 f = res$f[subs],

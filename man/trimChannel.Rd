@@ -4,7 +4,8 @@
 \alias{trimChannel}
 \title{Trim data to key COMIDs}
 \usage{
-trimChannel(idList = NULL, data = NULL, param = NULL, time = NULL)
+trimChannel(idList = NULL, data = NULL, param = NULL, time = NULL,
+  f = NULL)
 }
 \arguments{
 \item{idList}{list of ides}

@@ -1,4 +1,9 @@
-getNWM_point = function(AOI, type, filelist, param){
+getNWM_point = function(AOI = NULL,
+                        nhd = NULL,
+                        comids = NULL,
+                        type,
+                        filelist,
+                        param){
 
   if(!(class(AOI) %in% c("list","HydroData"))){AOI = list(AOI = AOI)}
 
@@ -7,6 +12,8 @@ getNWM_point = function(AOI, type, filelist, param){
     for(i in seq_along(param)){
 
       vals = getChannel(AOI = AOI$AOI,
+                        nhd = nhd,
+                        comids = comids,
                         filelist = filelist,
                         param = param[i])
 

@@ -4,7 +4,7 @@
 \alias{getChannel}
 \title{Get NWM channel output}
 \usage{
-getChannel(AOI, filelist, param)
+getChannel(AOI = NULL, nhd = NULL, comids = NULL, filelist, param)
 }
 \arguments{
 \item{AOI}{a AOI to subset data (generated with AOI::getAOI())}

@@ -4,7 +4,7 @@
 \alias{comidList}
 \title{Break COMIDs into sequential lists}
 \usage{
-comidList(AOI, num)
+comidList(AOI = NULL, nhd = NULL, comid = NULL, num)
 }
 \arguments{
 \item{AOI}{an AOI object}

@@ -11,6 +11,8 @@
 #' @author Mike Johnson
 
 downloadNWM = function(AOI = NULL,
+                       nhd = NULL,
+                       comids = NULL,
                        filelist = NULL,
                        param = NULL,
                        layer = NULL) {
@@ -35,7 +37,7 @@ downloadNWM = function(AOI = NULL,
   }
 
   if (type %in% c('channel', 'reservoir')) {
-    AOI = getNWM_point(AOI = AOI, type = type, filelist = filelist, param = param)
+    AOI = getNWM_point(AOI = AOI, nhd = nhd, comids = comids, type = type, filelist = filelist, param = param)
   }
 
   if (type %in% c('land', "forcing", "terrain")) {

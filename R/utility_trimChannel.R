@@ -14,6 +14,8 @@ trimChannel = function(idList = NULL, data = NULL, param = NULL, time = NULL,  f
 
   i = NULL
 
+  if(class(idList) != 'list') { idList = list(idList)}
+
   `%dopar%` <- foreach::`%dopar%`
 
   no_cores <- parallel::detectCores() - 1
@@ -23,7 +25,9 @@ trimChannel = function(idList = NULL, data = NULL, param = NULL, time = NULL,  f
 
   fin = cbind(comids.full, data*35.3147)
 
-  fin = fin[which(comids.full %in% nwm::comids_all[do.call("c", idList)]),]
+  if(NROW(fin) > 1 ){
+    fin = fin[which(comids.full %in% nwm::comids_all[do.call("c", idList)]),]
+  }
 
   fin = as.data.frame(fin)
 
