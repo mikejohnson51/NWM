@@ -59,7 +59,6 @@ findNHD = function(AOI = NULL, comid = NULL, streamorder = NULL) {
   sl = query_cida(AOI = AOI$AOI, type = 'nhd', filter  = f)
 
   if(!is.null(sl)){
-
     return(sl)
   }
 

@@ -85,6 +85,7 @@ query_cida = function(AOI = NULL, type, spatial = TRUE, filter = NULL){
                 }
   )
 
+  sl = sf::st_transform(sl, 4326)
   #file.remove(c(myfile, dest))
 
   if(any(is.null(sl), nrow(sl) ==0)) {
