@@ -4,15 +4,14 @@
 \alias{getFilelist}
 \title{Get file list}
 \usage{
-getFilelist(config = "medium_range", type = "channel", date = NULL,
-  t = NULL, f = NULL, n = 5, m = NULL, useHTTP = FALSE)
+getFilelist(config = "medium_range", type = "channel",
+  startDate = NULL, endDate = NULL, t = NULL, f = NULL, n = 5,
+  m = NULL)
 }
 \arguments{
 \item{config}{model configuration}
 
 \item{type}{output type}
-
-\item{date}{dates of interst}
 
 \item{t}{time of forecast}
 
@@ -21,6 +20,8 @@ getFilelist(config = "medium_range", type = "channel", date = NULL,
 \item{n}{if f is null n can be used to limit the number of files returned}
 
 \item{m}{ensemble memeber (long_range only)}
+
+\item{date}{dates of interst}
 
 \item{useHTTP}{use HTTP? default = FALSE}
 }

@@ -19,6 +19,7 @@ data = eval(parse(text = paste0("nwm$", config)))
 # 1. Error check `date` ------------------------------------------------------
 
 if(error == 'date'){
+
 true.date = as.POSIXlt(format(Sys.Date(), tz = "GMT", usetz = TRUE))
 max.date = as.POSIXlt(format(Sys.Date() - 40, tz = "GMT", usetz = TRUE))
 request.dates = as.POSIXlt(paste(date), format = "%Y%m%d", tz = "GMT")

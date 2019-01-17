@@ -58,6 +58,8 @@ downloadNWM = function(AOI = NULL,
     }
   }
 
+  AOI$AOI = NULL
+
   return(AOI)
 
 }

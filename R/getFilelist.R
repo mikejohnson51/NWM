@@ -17,17 +17,23 @@
 
 getFilelist = function(config = "medium_range",
                     type = "channel",
-                    date = NULL,
+                    startDate = NULL,
+                    endDate = NULL,
                     t = NULL,
                     f = NULL,
                     n = 5,
-                    m = NULL,
-                    useHTTP = FALSE) {
+                    m = NULL) {
 
- # if(type == 'terrain'){stop("\n\nRENCI server does not host gridded terrain data.\nAs soon as it becomes available the nwm package will support it. ")}
+  server.base = "http://thredds.hydroshare.org/thredds/"
 
-
-  server.base = "http://thredds.hydroshare.org/thredds"
+  if(!is.null(startDate)) {
+    if (is.null(endDate)) {
+      endDate = startDate
+    }
+    date = seq.Date(as.Date(startDate), as.Date(endDate), 1)
+  } else {
+    date = NULL
+  }
 
   errors = error.check(
     error = "configuration",
@@ -40,8 +46,7 @@ getFilelist = function(config = "medium_range",
 
   if (!is.null(errors)) { stop (errors) }
 
-
-  if(any(is.null(date), date == gsub("-", "", Sys.Date()))){
+  if(is.null(date) || max(date) == Sys.Date()){
 
     date = gsub("-", "", Sys.Date())
 
@@ -76,6 +81,7 @@ getFilelist = function(config = "medium_range",
      }
     }
 
+  date = gsub("-", "", date)
 
 # Gerneral Error Checking -------------------------------------------------
 
@@ -99,19 +105,23 @@ getFilelist = function(config = "medium_range",
 
 # Use HTTP or OpenDaP -----------------------------------------------------
 
- base = paste0(server.base, ifelse(isTRUE(useHTTP), "/fileServer", "/dodsC"), "/nwm/")
+ base = "http://thredds.hydroshare.org/thredds/dodsC/nwm/"
 
 # Build file paths --------------------------------------------------------
 
-  if(config == 'long_range'){ ext = paste0("_", m)} else {ext = NULL}
+  if(config == 'long_range'){ ext = paste0("_", m) } else { ext = NULL }
 
   ext = param.combine(config, type, t, f, ext)
+
+  ext = expand.grid(date, "/", ext, stringsAsFactors = F)
+
+  ext = as.matrix(ext[order(ext$Var1),])
+
+  ext <- paste0(ext[,1],ext[,2], ext[,3])
 
   all.files = paste0(
     base,
     config,
-    "/",
-    date,
     "/",
     ext
   )

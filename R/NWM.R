@@ -7,15 +7,15 @@
 #' @docType package
 #'
 #' @name nwm
-#' @import AOI
+#' @import      AOI
 #' @importFrom  crayon blue underline
-#' @importFrom  ncdf4 nc_open nc_close ncvar_get
+#' @importFrom  RNetCDF open.nc close.nc var.get.nc
 #' @importFrom  foreach %do% %dopar% foreach
 #' @importFrom  doParallel registerDoParallel
 #' @importFrom  sf st_zm read_sf
 #' @importFrom  stats reshape
 #' @importFrom  raster raster projection extent stack plot
-#' @importFrom  sp spTransform plot
+#' @importFrom  sp spTransform
 
 NULL
 

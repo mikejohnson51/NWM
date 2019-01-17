@@ -42,7 +42,6 @@ trimChannel = function(idList = NULL, data = NULL, param = NULL, time = NULL,  f
 
   row.names(tst) <- NULL
 
-  #tst$t = foreach::foreach(i = 1:nrow(tst), .combine = 'c') %dopar% t[tst$time[i]]
   tst$start = foreach::foreach(i = 1:nrow(tst), .combine = 'c') %dopar% f[tst$time[i]]
   tst$time = foreach::foreach(i = 1:nrow(tst), .combine = 'c') %dopar% time[tst$time[i]]
 

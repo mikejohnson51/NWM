@@ -24,14 +24,24 @@ tmp <- foreach::foreach(i  = 1:length(filelist), .combine = 'rbind') %dopar% {
                 param,
                 "[0:1:1505]")
 
-  nc = ncdf4::nc_open(file)
+  nc = RNetCDF::open.nc(file)
 
   all.res  = data.frame(
-  ID = ncdf4::ncvar_get(nc, "feature_id"),
-  lat = ncdf4::ncvar_get(nc, "latitude"),
-  lng = ncdf4::ncvar_get(nc, "longitude"),
-  time = as.POSIXct('1970-01-01 00:00:00', tz = 'GMT') + ncdf4::ncvar_get(nc, "time")*60,
-  val = ncdf4::ncvar_get(nc, "inflow")
+
+  # ID = ncdf4::ncvar_get(nc, "feature_id"),
+  # lat = ncdf4::ncvar_get(nc, "latitude"),
+  # lng = ncdf4::ncvar_get(nc, "longitude"),
+  #
+  # time = as.POSIXct('1970-01-01 00:00:00', tz = 'GMT') + ncdf4::ncvar_get(nc, "time")*60,
+  # val = ncdf4::ncvar_get(nc, "inflow")
+
+
+    ID = RNetCDF::var.get.nc(nc, "feature_id"),
+    lat = RNetCDF::var.get.nc(nc, "latitude"),
+    lng = RNetCDF::var.get.nc(nc, "longitude"),
+
+    time = as.POSIXct('1970-01-01 00:00:00', tz = 'GMT') + ncdf4::ncvar_get(nc, "time")*60,
+    val = RNetCDF::var.get.nc(nc, "inflow")
   )
 
   ncdf4::nc_close(nc)

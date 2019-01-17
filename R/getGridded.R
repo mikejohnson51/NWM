@@ -56,10 +56,15 @@ getGridded = function(AOI, filelist, param, layer = NULL) {
                     "]"
       )
 
-      nc = ncdf4::nc_open(file)
-      vals = ncdf4::ncvar_get(nc, param)
-      time = ncdf4::ncvar_get(nc, "time")
-      ncdf4::nc_close(nc)
+      # nc = ncdf4::nc_open(file)
+      # vals = ncdf4::ncvar_get(nc, param)
+      # time = ncdf4::ncvar_get(nc, "time")
+      # ncdf4::nc_close(nc)
+
+      nc   = RNetCDF::open.nc(file)
+      vals = RNetCDF::var.get.nc(nc, param)
+      time = RNetCDF::var.get.nc(nc, 'time')
+      RNetCDF::close.nc(nc)
 
       mat <- apply(t(vals),2,rev)
       r <-raster::raster(mat)

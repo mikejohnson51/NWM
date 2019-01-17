@@ -1,8 +1,11 @@
 param.combine = function(config, type, t ,f ,ext){
 
   t.f = paste0("nwm.t", sprintf("%02d", t), "z")
+
   c.f = ifelse(type == "forcing", sub('.*forcing_', '', config), config)
+
   type.f = if(type %in% c("terrain", "channel")){ paste0(type, "_rt", ext) } else { paste0(type, ext) }
+
   f.f = paste0("f", sprintf("%03d", f), ".conus.nc")
 
   vec = expand.grid(t.f, c.f)

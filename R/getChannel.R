@@ -42,7 +42,7 @@ getChannel = function(AOI = NULL,
   res <-
     foreach::foreach(i = 1:length(filelist) , .combine = combine_files) %dopar% {
       foreach::foreach(j = 1:length(idList),  .combine = combine_lists) %dopar% {
-        file = paste0(filelist[i],
+        try({file = paste0(filelist[i],
                       "?time[0:1:0],",
                       param,
                       "[",
@@ -51,10 +51,17 @@ getChannel = function(AOI = NULL,
                       max(idList[[j]]),
                       "]")
 
-        nc = ncdf4::nc_open(file)
-        vals = ncdf4::ncvar_get(nc, param)
-        time = ncdf4::ncvar_get(nc, "time")
-        ncdf4::nc_close(nc)
+        # nc = ncdf4::nc_open(file)
+        # vals = ncdf4::ncvar_get(nc, param)
+        # time = ncdf4::ncvar_get(nc, "time")
+        # ncdf4::nc_close(nc)
+
+        nc   = RNetCDF::open.nc(file)
+        vals = RNetCDF::var.get.nc(nc, param)
+        time = RNetCDF::var.get.nc(nc, 'time')
+        RNetCDF::close.nc(nc)
+
+        })
 
         f = as.numeric(regmatches(filelist[i], regexec('f(.*?)\\.conus', filelist[i]))[[1]][2])
 
