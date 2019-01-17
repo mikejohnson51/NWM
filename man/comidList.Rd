@@ -9,6 +9,10 @@ comidList(AOI = NULL, nhd = NULL, comids = NULL, num)
 \arguments{
 \item{AOI}{an AOI object}
 
+\item{nhd}{an NHD spatial file}
+
+\item{comids}{list of NHD comids}
+
 \item{num}{the number of desired lists (default 2)}
 }
 \value{

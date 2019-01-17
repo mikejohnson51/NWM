@@ -40,11 +40,11 @@ tmp <- foreach::foreach(i  = 1:length(filelist), .combine = 'rbind') %dopar% {
     lat = RNetCDF::var.get.nc(nc, "latitude"),
     lng = RNetCDF::var.get.nc(nc, "longitude"),
 
-    time = as.POSIXct('1970-01-01 00:00:00', tz = 'GMT') + ncdf4::ncvar_get(nc, "time")*60,
+    time = as.POSIXct('1970-01-01 00:00:00', tz = 'GMT') +  RNetCDF::var.get.nc(nc, "time")*60,
     val = RNetCDF::var.get.nc(nc, "inflow")
   )
 
-  ncdf4::nc_close(nc)
+  RNetCDF::close.nc(nc)
 
   all.res = all.res[all.res$lat > AOI@bbox[2,1], ]
   all.res = all.res[all.res$lat < AOI@bbox[2,2], ]

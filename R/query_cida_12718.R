@@ -69,8 +69,10 @@ query_cida = function(AOI = NULL, type, spatial = TRUE, filter = NULL){
    filePath <- tempdir()
    list.files(filePath)
    #suppressWarnings(
-   unzip(dest, exdir = filePath)
+   utils::unzip(dest, exdir = filePath)
   # #)
+
+
 
   myfile = list.files(filePath, pattern = call$call, full.names = TRUE)
   file.call = substr(basename(myfile[1]), 1, nchar(basename(myfile)) - 4)

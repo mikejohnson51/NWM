@@ -1,6 +1,8 @@
 #' Break COMIDs into sequential lists
 #'
 #' @param AOI an AOI object
+#' @param nhd an NHD spatial file
+#' @param comids list of NHD comids
 #' @param num the number of desired lists (default 2)
 #'
 #' @return a list of vectors

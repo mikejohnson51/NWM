@@ -21,7 +21,7 @@ get_channel_partial = function(filepath, index, param) {
                 max(index),
                 "]")
 
-  vals = ncdf4::ncvar_get(ncdf4::nc_open(file), param)
+  vals = RNetCDF::var.get.nc(RNetCDF::open.nc(file), param)
 
   return(vals)
 
@@ -31,7 +31,7 @@ get_channel_partial = function(filepath, index, param) {
 getTime = function(filepath){
 
   file = paste0(filepath, "?time[0:1:0]")
-  time = ncdf4::ncvar_get(ncdf4::nc_open(file), "time")
+  time = RNetCDF::var.get.nc(RNetCDF::open.nc(file), "time")
 
   time = as.POSIXct('1970-01-01 00:00:00', tz = 'GMT') + time*60
 

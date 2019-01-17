@@ -16,6 +16,7 @@ Imports:
   crayon,
   doParallel,
   foreach,
+  httr,
   magrittr,
   raster,
   RNetCDF,
