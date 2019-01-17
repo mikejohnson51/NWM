@@ -17,8 +17,8 @@ Imports:
   doParallel,
   foreach,
   magrittr,
-  ncdf4,
   raster,
+  RNetCDF,
   stats,
   sf,
   sp
