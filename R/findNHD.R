@@ -26,7 +26,7 @@
 
 findNHD = function(AOI = NULL, comid = NULL, streamorder = NULL) {
 
-  if(!(class(AOI) %in% c("list","HydroData"))){AOI = list(AOI = AOI)}
+  if(!checkClass(AOI, "list")){AOI = list(AOI = AOI)}
 
   f = NULL
 

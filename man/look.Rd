@@ -4,7 +4,7 @@
 \alias{look}
 \title{View NWM Model Metadata}
 \usage{
-look(config, type = NULL)
+look(config = NULL, type = NULL)
 }
 \arguments{
 \item{config}{\code{character} model configuration}

@@ -10,15 +10,16 @@
 
 define_AOI_grid = function(AOI){
 
-  AOI = sp::spTransform(AOI, "+proj=lcc +lat_1=30 +lat_2=60 +lat_0=40 +lon_0=-97 +x_0=0 +y_0=0 +a=6370000 +b=6370000 +units=m +no_defs")
+  AOI = sf::st_transform(AOI, "+proj=lcc +lat_1=30 +lat_2=60 +lat_0=40 +lon_0=-97 +x_0=0 +y_0=0 +a=6370000 +b=6370000 +units=m +no_defs")
 
+  bb = AOI::bbox_st(AOI)
   lat  = seq(-1919500, 1919500, 1000)
   long = seq(-2303501, 2303499, 1000)
 
-  x.min = which.min(abs(long - AOI@bbox[1,1]))
-  x.max = which.min(abs(long - AOI@bbox[1,2]))
-  y.min  = which.min(abs(lat  - AOI@bbox[2,1]))
-  y.max  = which.min(abs(lat  - AOI@bbox[2,2]))
+  x.min = which.min(abs(long - bb$xmin))
+  x.max = which.min(abs(long - bb$xmax))
+  y.min  = which.min(abs(lat  - bb$ymin))
+  y.max  = which.min(abs(lat  - bb$ymax))
 
   long.min = long[x.min]
   long.max = long[x.max + 1]
@@ -36,3 +37,4 @@ define_AOI_grid = function(AOI){
               lat.max  = lat.max
           ))
 }
+

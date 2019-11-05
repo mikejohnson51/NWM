@@ -5,7 +5,6 @@ getNWM_point = function(AOI = NULL,
                         filelist,
                         param){
 
-  if(!(class(AOI) %in% c("list","HydroData"))){AOI = list(AOI = AOI)}
 
   if(type == "channel"){
 

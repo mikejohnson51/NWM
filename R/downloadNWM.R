@@ -17,7 +17,7 @@ downloadNWM = function(AOI = NULL,
                        param = NULL,
                        layer = NULL) {
 
-  if(!(class(AOI) %in% c("list","HydroData"))){AOI = list(AOI = AOI)}
+  if(!checkClass(AOI, "list")){AOI = list(AOI = AOI)}
 
   config <- regmatches(filelist[1], regexec("nwm/(.*?)/", filelist[1]))[[1]][2]
 

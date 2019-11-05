@@ -15,7 +15,17 @@
 #' @author Mike Johnson
 
 
-look = function(config, type = NULL) {
+look = function(config = NULL, type = NULL) {
+
+  if(is.null(config)){
+
+    message('The National Water Model comes in three configurations:\n"', paste0(names(nwm), collapse = '", "'), '":')
+    message("The short_range configuration provides data 18 hours out at an hourly timestep")
+    message("The medium_range configuration provides data 10 days out at an 3 hour timestep")
+    message("The long_range configuration provides data 30 days hours out at a 6 hour timestep")
+
+  } else {
+
   if (!(config %in% names(nwm))) {
     stop(paste(config, "not a valid configuraion. Use:\n"),
          paste(names(nwm), collapse = "\n"))
@@ -34,7 +44,7 @@ look = function(config, type = NULL) {
   t.data = as.numeric(substr(data$meta$tlist, 2, 3))
   length(t.data) <- x*x
   t.mat = matrix(t.data, nrow = x, byrow = T)
-  #t.mat[is.na(t.mat)]   <- ""
+
   } else {
     t.mat = as.numeric(substr(data$meta$tlist, 2, 3)) }
 
@@ -88,4 +98,5 @@ look = function(config, type = NULL) {
     cat("\n")
   }
 
+  }
 }

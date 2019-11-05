@@ -56,10 +56,17 @@ getGridded = function(AOI, filelist, param, layer = NULL) {
                     "]"
       )
 
-      # nc = ncdf4::nc_open(file)
-      # vals = ncdf4::ncvar_get(nc, param)
-      # time = ncdf4::ncvar_get(nc, "time")
-      # ncdf4::nc_close(nc)
+      nc = tryCatch({
+        RNetCDF::open.nc(file)
+      }, warning = function(w) {
+        NULL
+      }, error = function(e) {
+        NULL
+      })
+
+      if(is.null(nc)){
+        stop(paste(filelist[i], 'not availiable on hydroshare server'), call. = TRUE)
+      } else {
 
       nc   = RNetCDF::open.nc(file)
       vals = RNetCDF::var.get.nc(nc, param)
@@ -73,10 +80,11 @@ getGridded = function(AOI, filelist, param, layer = NULL) {
       raster::res(r) = 1000
 
       return(list(r = r, time = time))
+      }
 
     }
 
-  names(res$r) <- paste0("X.", res$time)
+  names(res$r) <- paste0(tolower(param), ".", res$time)
 
   return(res$r)
 

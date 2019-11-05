@@ -3,7 +3,7 @@
 #'
 #' @param config model configuration
 #' @param type output type
-#' @param date dates of interst
+#' @param startDate dates of interst
 #' @param t time of forecast
 #' @param f hours foward from t
 #' @param n if f is null n can be used to limit the number of files returned
@@ -15,7 +15,7 @@
 #' @author Mike Johnson
 
 
-getFilelist = function(config = "medium_range",
+getFilelist = function(config = "short_range",
                     type = "channel",
                     startDate = NULL,
                     endDate = NULL,
@@ -23,6 +23,10 @@ getFilelist = function(config = "medium_range",
                     f = NULL,
                     n = 5,
                     m = NULL) {
+
+  if(config == "medium_range"){
+    stop("As of 11/05/2019 (Mike last checked) the HydroShare server is not archiving the new ensemble MR forecasts. Until they do, MR values cannot be queried.")
+  }
 
   server.base = "http://thredds.hydroshare.org/thredds/"
 
